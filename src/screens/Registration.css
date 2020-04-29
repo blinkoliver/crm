@@ -1,0 +1,34 @@
+.Registration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Registration .FirstBlock {
+  display: block;
+  flex-direction: row;
+  width: 50%;
+  padding: 1vh;
+}
+.Registration .SecondBlock {
+  padding: 1vh;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.Registration input {
+  width: inherit;
+  border: none;
+  margin-top: 2vh;
+  padding-left: 2vh;
+  height: 10vh;
+  border-radius: 0.5vh;
+  font-size: 4vh;
+}
+.Registration .LegalEntity {
+  display: flex;
+  flex-direction: column;
+}
+.Registration .IndividualEntrepreneur {
+  display: flex;
+  flex-direction: column;
+}
