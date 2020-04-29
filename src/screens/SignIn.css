@@ -1,0 +1,31 @@
+.SignIn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.SignIn .FirstBlock {
+  padding: 1vh;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.SignIn input {
+  width: inherit;
+  border: none;
+  margin-top: 2vh;
+  padding-left: 2vh;
+  height: 10vh;
+  border-radius: 0.5vh;
+  font-size: 4vh;
+}
+.SignIn button {
+  margin-top: 1vh;
+  height: 10vh;
+  border: solid grey 1px;
+  border-radius: 5px;
+  background-color: initial;
+  color: white;
+  font-size: large;
+  width: max-content;
+}

@@ -1,13 +1,8 @@
 import React from "react";
 import Select from "react-select";
-import Input from "../components/Input";
-import selectedOption from "../components/Dropdown";
-import {
-  ownership,
-  ownershipForm,
-  fieldForIndividualEntrepreneur,
-  fieldForLegalEntity,
-} from "../constants/registration";
+import RegistrationFormIP from "../components/RegistrationFormIP";
+import RegistrationFormUL from "../components/RegistrationFormUL";
+import { ownership } from "../constants/registration";
 import "../screens/Registration.css";
 
 class Registration extends React.Component {
@@ -24,26 +19,13 @@ class Registration extends React.Component {
     return (
       <div className="Registration">
         <div className="FirstBlock">
-          <Select
-            onChange={this.handleChange}
-            options={ownership}
-            value={selectedOption}
-          />
+          <Select onChange={this.handleChange} options={ownership} />
         </div>
         <div className="SecondBlock">
           {this.state.selectedOption === 1 ? (
-            <div className="IndividualEntrepreneur">
-              {fieldForIndividualEntrepreneur.map((element) => (
-                <Input placeholder={element.placeholder} />
-              ))}
-            </div>
+            <RegistrationFormIP />
           ) : (
-            <div className="LegalEntity">
-              <Select options={ownershipForm} />
-              {fieldForLegalEntity.map((element) => (
-                <Input placeholder={element.placeholder} />
-              ))}
-            </div>
+            <RegistrationFormUL />
           )}
         </div>
       </div>

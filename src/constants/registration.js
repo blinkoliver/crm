@@ -1,15 +1,18 @@
 export const ownership = [
-  { value: 0, label: "Юридическое лицо" },
-  { value: 1, label: "Индивидуальный предприниматель" },
+  { value: "Юридическое лицо", label: "Юридическое лицо" },
+  {
+    value: "Индивидуальный предприниматель",
+    label: "Индивидуальный предприниматель",
+  },
 ];
 
 export const ownershipForm = [
-  { value: "1", label: "ОАО" },
-  { value: "2", label: "ООО" },
-  { value: "3", label: "ЧУП" },
-  { value: "4", label: "ЧТУП" },
-  { value: "5", label: "ИП (Иностранное предприятие)" },
-  { value: "6", label: "ИНОЕ" },
+  { value: 0, label: "ОАО" },
+  { value: 1, label: "ООО" },
+  { value: 2, label: "ЧУП" },
+  { value: 3, label: "ЧТУП" },
+  { value: 4, label: "ИП (Иностранное предприятие)" },
+  { value: 5, label: "ИНОЕ" },
 ];
 
 export const fieldForIndividualEntrepreneur = [

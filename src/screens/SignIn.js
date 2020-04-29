@@ -1,20 +1,26 @@
 import React from "react";
-import Input from "../components/Input"
+import Input from "../components/Input";
+import "../screens/SignIn.css";
 
 class SignIn extends React.Component {
   state = {
     inputValue: "",
-    selectedValue: "",
   };
 
   render() {
     return (
-      <div>
+      <div className="SignIn">
+        <div className="FirstBlock">
         <Input
           onChange={(event) => this.handleInput(event)}
-          onBlur={this.onBlur}
-          onFocus={this.onFocus}
+          placeholder={"email"}
         />
+        <Input
+          onChange={(event) => this.handleInput(event)}
+          placeholder={"password"}
+        />
+        <button>Войти</button>
+        </div>
       </div>
     );
   }

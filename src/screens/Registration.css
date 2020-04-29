@@ -32,3 +32,13 @@
   display: flex;
   flex-direction: column;
 }
+.Registration button {
+  height: 10vh;
+  border: solid grey 1px;
+  border-radius: 5px;
+  background-color: initial;
+  color: white;
+  font-size: large;
+  width: 50vh;
+  margin: 1vh auto;
+}

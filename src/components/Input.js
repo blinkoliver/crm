@@ -15,7 +15,6 @@ const Input = ({ onChange, onBlur, onFocus, placeholder }) => (
     onChange={onChange}
     onBlur={onBlur}
     onFocus={onFocus}
-    id={"focus"}
     placeholder={placeholder}
   />
 );
