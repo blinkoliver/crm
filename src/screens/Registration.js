@@ -5,24 +5,36 @@ import RegistrationFormUL from "../components/RegistrationFormUL";
 import { ownership } from "../constants/registration";
 import "../screens/Registration.css";
 
+const customStyles = {
+  valueContainer: () => ({
+    height: "10vh",
+  }),
+};
+
 class Registration extends React.Component {
   state = {
-    selectedOption: "",
+    selectedOwnership: "",
   };
 
   handleChange = (selectedOption) => {
-    this.setState({ selectedOption: selectedOption.value });
+    this.setState({ selectedOwnership: selectedOption.value });
   };
 
   render() {
-    console.log(this.state.selectedOption);
+    console.log(this.state.selectedOwnership)
     return (
       <div className="Registration">
         <div className="FirstBlock">
-          <Select onChange={this.handleChange} options={ownership} />
+          <Select
+            placeholder={"Форма деятельности"}
+            onChange={this.handleChange}
+            options={ownership}
+            components={{ IndicatorSeparator: () => null }}
+            styles={customStyles}
+          />
         </div>
         <div className="SecondBlock">
-          {this.state.selectedOption === 1 ? (
+          {this.state.selectedOwnership === "Индивидуальный предприниматель" ? (
             <RegistrationFormIP />
           ) : (
             <RegistrationFormUL />

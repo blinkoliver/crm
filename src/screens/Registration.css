@@ -24,6 +24,9 @@
   border-radius: 0.5vh;
   font-size: 4vh;
 }
+.Registration form p {
+  color: white;
+}
 .Registration .LegalEntity {
   display: flex;
   flex-direction: column;

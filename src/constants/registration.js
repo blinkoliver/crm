@@ -7,12 +7,15 @@ export const ownership = [
 ];
 
 export const ownershipForm = [
-  { value: 0, label: "ОАО" },
-  { value: 1, label: "ООО" },
-  { value: 2, label: "ЧУП" },
-  { value: 3, label: "ЧТУП" },
-  { value: 4, label: "ИП (Иностранное предприятие)" },
-  { value: 5, label: "ИНОЕ" },
+  { value: "ОАО", label: "ОАО" },
+  { value: "ООО", label: "ООО" },
+  { value: "ЧУП", label: "ЧУП" },
+  { value: "ЧТУП", label: "ЧТУП" },
+  {
+    value: "ИП (Иностранное предприятие)",
+    label: "ИП (Иностранное предприятие)",
+  },
+  { value: "ИНОЕ", label: "ИНОЕ" },
 ];
 
 export const fieldForIndividualEntrepreneur = [

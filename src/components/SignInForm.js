@@ -23,7 +23,7 @@ function SignInForm() {
         name="Password"
         ref={register({ required: true, maxLength: 100 })}
       />
-      <input type="submit" />
+      <input type="submit" placeholder="Войти" />
     </form>
   );
 }
