@@ -64,6 +64,9 @@ const RegistrationFormIP = () => {
       {errors.Email && errors.Email.type === "required" && (
         <p>Обязательное поле</p>
       )}
+      {errors.Email && errors.Email.type === "pattern" && (
+        <p>Это не похоже электронный адрес</p>
+      )}
       <input
         type="text"
         placeholder="Пароль"

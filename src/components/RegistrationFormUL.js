@@ -1,4 +1,5 @@
 import React from "react";
+// import { useState } from "react";
 import Select from "react-select";
 import { useForm, Controller } from "react-hook-form";
 import InputMask from "react-input-mask";
@@ -11,12 +12,23 @@ const customStyles = {
 };
 
 const RegistrationFormUL = () => {
+  // const { inputCityValue, setInputCityValue } = useState();
   const { register, handleSubmit, errors, control } = useForm();
   const onSubmit = (data) => console.log(data);
   console.log(errors);
 
+  // const handleChange = (selectValue) => {
+  //   console.log(selectValue);
+  // };
 
   return (
+    // <div>
+    //   <Select
+    //     onChange={handleChange}
+    //     options={ownershipForm}
+    //   />
+    // </div>
+
     <form
       onSubmit={handleSubmit(onSubmit)}
       style={{ display: "flex", flexDirection: "column" }}
@@ -116,6 +128,9 @@ const RegistrationFormUL = () => {
       />
       {errors.Email && errors.Email.type === "required" && (
         <p>Обязательное поле</p>
+      )}
+      {errors.Email && errors.Email.type === "pattern" && (
+        <p>Это не похоже электронный адрес</p>
       )}
       <input
         type="text"
