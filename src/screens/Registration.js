@@ -8,6 +8,7 @@ import "../screens/Registration.css";
 const customStyles = {
   valueContainer: () => ({
     height: "10vh",
+    paddingLeft: "2vh",
   }),
 };
 
@@ -21,7 +22,7 @@ class Registration extends React.Component {
   };
 
   render() {
-    console.log(this.state.selectedOwnership)
+    console.log(this.state.selectedOwnership);
     return (
       <div className="Registration">
         <div className="FirstBlock">

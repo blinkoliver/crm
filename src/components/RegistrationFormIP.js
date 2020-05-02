@@ -1,7 +1,15 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import InputMask from "react-input-mask";
-import Input from "../components/Input";
+import Select from "react-select";
+
+const customStyles = {
+  valueContainer: () => ({
+    height: "10vh",
+    paddingLeft: "2vh",
+  }),
+  container: () => ({ marginTop: "2vh" }),
+};
 
 const RegistrationFormIP = () => {
   const { register, handleSubmit, errors, control } = useForm();
@@ -33,11 +41,29 @@ const RegistrationFormIP = () => {
         ref={register({ required: true, maxLength: 100 })}
       />
       {errors.UNP && errors.UNP.type === "required" && <p>Обязательное поле</p>}
-      <Input
-        type="text"
-        placeholder="Адрес регистрации"
-        name="Адрес регистрации"
+      <Controller
+        as={
+          <Select
+            // options={ownershipForm}
+            styles={customStyles}
+            placeholder={"Город регистрации"}
+            components={{
+              IndicatorSeparator: () => null,
+              DropdownIndicator: () => null,
+            }}
+          />
+        }
+        control={control}
+        rules={{ required: true }}
+        onChange={([selected]) => {
+          return selected;
+        }}
+        name="reactSelectRegistrationCity"
       />
+      {errors.reactSelectRegistrationCity &&
+        errors.reactSelectRegistrationCity.type === "required" && (
+          <p>Обязательное поле</p>
+        )}
       <input
         type="text"
         placeholder="ОКЭД"
@@ -50,11 +76,16 @@ const RegistrationFormIP = () => {
       <Controller
         as={InputMask}
         control={control}
+        type="number"
         placeholder="Телефон"
         mask="+375 (99) 999 99 99"
         maskChar="_"
         name="Telephone"
+        rules={{ required: true }}
       />
+      {errors.Telephone && errors.Telephone.type === "required" && (
+        <p>Обязательное поле</p>
+      )}
       <input
         type="text"
         placeholder="Электронный адрес"
@@ -73,7 +104,7 @@ const RegistrationFormIP = () => {
         name="Password"
         ref={register({ required: true, maxLength: 100 })}
       />
-      {errors.name && errors.name.type === "required" && (
+      {errors.Password && errors.Password.type === "required" && (
         <p>Обязательное поле</p>
       )}
       <input type="submit" placeholder="Зарегистрироваться" />

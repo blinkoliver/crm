@@ -8,6 +8,7 @@ import { ownershipForm } from "../constants/registration";
 const customStyles = {
   valueContainer: () => ({
     height: "10vh",
+    paddingLeft: "2vh",
   }),
 };
 
@@ -47,9 +48,13 @@ const RegistrationFormUL = () => {
         onChange={([selected]) => {
           return selected;
         }}
-        name="reactSelect"
-        defaultValue={{ value: "chocolate" }}
+        name="reactSelectOwnershipForm"
       />
+      {errors.reactSelectOwnershipForm &&
+        errors.reactSelectOwnershipForm.type === "required" && (
+          <p>Обязательное поле</p>
+        )}
+
       <input
         type="text"
         placeholder="Наименование ЮЛ"
@@ -66,16 +71,34 @@ const RegistrationFormUL = () => {
         ref={register({ required: true, maxLength: 100 })}
       />
       {errors.UNP && errors.UNP.type === "required" && <p>Обязательное поле</p>}
-      <input
-        type="text"
-        placeholder="Адрес регистрации"
-        name="RegistrationAdress"
-        ref={register({ required: true, maxLength: 100 })}
+      <Controller
+        as={
+          <Select
+            // options={ownershipForm}
+            styles={{
+              valueContainer: () => ({
+                height: "10vh",
+                paddingLeft: "2vh",
+              }),
+              container: () => ({ marginTop: "2vh" }),
+            }}
+            placeholder={"Город регистрации"}
+            components={{
+              IndicatorSeparator: () => null,
+              DropdownIndicator: () => null,
+            }}
+          />
+        }
+        control={control}
+        rules={{ required: true }}
+        onChange={([selected]) => {
+          return selected;
+        }}
+        name="reactSelectRegistrationCity"
       />
-      {errors.RegistrationAdress &&
-        errors.RegistrationAdress.type === "required" && (
-          <p>Обязательное поле</p>
-        )}
+      {errors.reactSelectRegistrationCity && errors.reactSelectRegistrationCity.type === "required" && (
+        <p>Обязательное поле</p>
+      )}
       <input
         type="text"
         placeholder="ОКЭД"
@@ -101,8 +124,12 @@ const RegistrationFormUL = () => {
         placeholder="Телефон"
         mask="+375 (99) 999 99 99"
         maskChar="_"
-        name="Telephone"
+        name="OwnerTelephone"
+        rules={{ required: true }}
       />
+      {errors.OwnerTelephone && errors.OwnerTelephone.type === "required" && (
+        <p>Обязательное поле</p>
+      )}
       <input
         type="text"
         placeholder="ФИО Исполнителя"
@@ -118,8 +145,13 @@ const RegistrationFormUL = () => {
         placeholder="Телефон"
         mask="+375 (99) 999 99 99"
         maskChar="_"
-        name="Telephone"
+        name="ExecutorTelephone"
+        rules={{ required: true }}
       />
+      {errors.ExecutorTelephone &&
+        errors.ExecutorTelephone.type === "required" && (
+          <p>Обязательное поле</p>
+        )}
       <input
         type="text"
         placeholder="Электронный адрес"

@@ -29,3 +29,6 @@
   font-size: large;
   width: max-content;
 }
+.SignIn form p {
+  color: white;
+}
