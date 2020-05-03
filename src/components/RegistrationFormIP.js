@@ -2,14 +2,7 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import InputMask from "react-input-mask";
 import Select from "react-select";
-
-const customStyles = {
-  valueContainer: () => ({
-    height: "10vh",
-    paddingLeft: "2vh",
-  }),
-  container: () => ({ marginTop: "2vh" }),
-};
+import { city } from "../constants/registration";
 
 const RegistrationFormIP = () => {
   const { register, handleSubmit, errors, control } = useForm();
@@ -35,6 +28,7 @@ const RegistrationFormIP = () => {
         <p>This is field required max length of 10</p>
       )}
       <input
+        style={{ marginBottom: "2vh" }}
         type="text"
         placeholder="УНП"
         name="UNP"
@@ -44,8 +38,13 @@ const RegistrationFormIP = () => {
       <Controller
         as={
           <Select
-            // options={ownershipForm}
-            styles={customStyles}
+            options={city}
+            styles={{
+              valueContainer: () => ({
+                height: "10vh",
+                paddingLeft: "2vh",
+              }),
+            }}
             placeholder={"Город регистрации"}
             components={{
               IndicatorSeparator: () => null,
@@ -76,7 +75,6 @@ const RegistrationFormIP = () => {
       <Controller
         as={InputMask}
         control={control}
-        type="number"
         placeholder="Телефон"
         mask="+375 (99) 999 99 99"
         maskChar="_"

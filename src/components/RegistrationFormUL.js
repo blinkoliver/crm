@@ -3,7 +3,7 @@ import React from "react";
 import Select from "react-select";
 import { useForm, Controller } from "react-hook-form";
 import InputMask from "react-input-mask";
-import { ownershipForm } from "../constants/registration";
+import { ownershipForm, city } from "../constants/registration";
 
 const customStyles = {
   valueContainer: () => ({
@@ -65,6 +65,7 @@ const RegistrationFormUL = () => {
         <p>Обязательное поле</p>
       )}
       <input
+        style={{ marginBottom: "2vh" }}
         type="text"
         placeholder="УНП"
         name="UNP"
@@ -74,13 +75,12 @@ const RegistrationFormUL = () => {
       <Controller
         as={
           <Select
-            // options={ownershipForm}
+            options={city}
             styles={{
               valueContainer: () => ({
                 height: "10vh",
                 paddingLeft: "2vh",
               }),
-              container: () => ({ marginTop: "2vh" }),
             }}
             placeholder={"Город регистрации"}
             components={{
@@ -96,9 +96,10 @@ const RegistrationFormUL = () => {
         }}
         name="reactSelectRegistrationCity"
       />
-      {errors.reactSelectRegistrationCity && errors.reactSelectRegistrationCity.type === "required" && (
-        <p>Обязательное поле</p>
-      )}
+      {errors.reactSelectRegistrationCity &&
+        errors.reactSelectRegistrationCity.type === "required" && (
+          <p>Обязательное поле</p>
+        )}
       <input
         type="text"
         placeholder="ОКЭД"
