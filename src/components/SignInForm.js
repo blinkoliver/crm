@@ -1,30 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-function SignInForm() {
+const SignInForm = () => {
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => console.log(data);
   console.log(errors);
-
-  const handleClick = () => {
-    fetch(`http://altproduction.ru:8080/rest/v1/city/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        city: "Б",
-        district: "Б",
-        region: "Витебская область",
-        limit: 2,
-        offset: 2,
-      }),
-    })
-      .then((response) => response.json())
-      .then((information) => {
-        console.log(information);
-      });
-  };
 
   return (
     <form
@@ -53,9 +33,7 @@ function SignInForm() {
         <p>Обязательное поле</p>
       )}
       <input type="submit" placeholder="Войти" />
-
-      <button onClick={handleClick}>Fetch data test</button>
     </form>
   );
-}
+};
 export default SignInForm;

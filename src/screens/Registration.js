@@ -1,48 +1,41 @@
 import React from "react";
+import { useState } from "react";
 import Select from "react-select";
 import RegistrationFormIP from "../components/RegistrationFormIP";
 import RegistrationFormUL from "../components/RegistrationFormUL";
 import { ownership } from "../constants/registration";
 import "../screens/Registration.css";
 
-const customStyles = {
-  valueContainer: () => ({
-    height: "10vh",
-    paddingLeft: "2vh",
-  }),
-};
-
-class Registration extends React.Component {
-  state = {
-    selectedOwnership: "",
+const Registration = () => {
+  const [selectedValue, setSelectedValue] = useState({});
+  const handleChange = (selectValue) => {
+    setSelectedValue(selectValue);
   };
 
-  handleChange = (selectedOption) => {
-    this.setState({ selectedOwnership: selectedOption.value });
-  };
-
-  render() {
-    console.log(this.state.selectedOwnership);
-    return (
-      <div className="Registration">
-        <div className="FirstBlock">
-          <Select
-            placeholder={"Форма деятельности"}
-            onChange={this.handleChange}
-            options={ownership}
-            components={{ IndicatorSeparator: () => null }}
-            styles={customStyles}
-          />
-        </div>
-        <div className="SecondBlock">
-          {this.state.selectedOwnership === "Индивидуальный предприниматель" ? (
-            <RegistrationFormIP />
-          ) : (
-            <RegistrationFormUL />
-          )}
-        </div>
+  return (
+    <div className="Registration">
+      <div className="FirstBlock">
+        <Select
+          placeholder={"Форма деятельности"}
+          onChange={handleChange}
+          options={ownership}
+          components={{ IndicatorSeparator: () => null }}
+          styles={{
+            valueContainer: () => ({
+              height: "10vh",
+              paddingLeft: "2vh",
+            }),
+          }}
+        />
       </div>
-    );
-  }
-}
+      <div className="SecondBlock">
+        {selectedValue.value === "Индивидуальный предприниматель" ? (
+          <RegistrationFormIP />
+        ) : (
+          <RegistrationFormUL />
+        )}
+      </div>
+    </div>
+  );
+};
 export default Registration;
