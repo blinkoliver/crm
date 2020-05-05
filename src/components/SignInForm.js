@@ -3,7 +3,22 @@ import { useForm } from "react-hook-form";
 
 const SignInForm = () => {
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+    fetch(`http://altproduction.ru:8080`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        data: data,
+      }),
+    })
+      .then((response) => response.json())
+      .then((post) => {
+        localStorage.setItem("JWB", post.result)
+      });
+  };
   console.log(errors);
 
   return (
@@ -21,7 +36,7 @@ const SignInForm = () => {
         <p>Обязательное поле</p>
       )}
       {errors.Email && errors.Email.type === "pattern" && (
-        <p>Это не похоже электронный адрес</p>
+        <p>Это не похоже на электронный адрес</p>
       )}
       <input
         type="text"
