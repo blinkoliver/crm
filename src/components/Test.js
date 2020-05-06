@@ -18,7 +18,7 @@ const Test = () => {
     if (!inputValue) {
       return callback([]);
     }
-    fetch(`http://altproduction.ru:8080/rest/v1/city/`, {
+    fetch(`http://altproduction.ru/rest/v1/city/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
