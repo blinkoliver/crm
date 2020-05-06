@@ -12,6 +12,8 @@ const Test = () => {
     setInputValue(inputValue);
   };
 
+  console.log(inputValue, result)
+
   const loadOptions = (inputValue, callback) => {
     if (!inputValue) {
       return callback([]);

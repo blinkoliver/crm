@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Registration from "./Registration";
 import SignIn from "./SignIn";
+import MyServices from "./MyServices";
 import Test from "../components/Test";
 import "./App.css";
 
@@ -19,18 +20,21 @@ const App = () => {
             </button>
           </div>
           <div className="Menu-bar">
-            <div>Мои услуги</div>
+            <Link to={"/myServices"}>
+              <div>Мои услуги</div>
+            </Link>
             <div>Мои Клиенты</div>
             <div>Персонал</div>
             <div>Тест</div>
             <div>Тест</div>
-            <Link to={"/Test"}>
+            <Link to={"/test"}>
               <div>Тест</div>
             </Link>
           </div>
         </header>
         <Route path={"/registration"} component={Registration} />
         <Route path={"/signIn"} component={SignIn} />
+        <Route path={"/myServices"} component={MyServices} />
         <Route path={"/test"} component={Test} />
       </div>
     </Router>

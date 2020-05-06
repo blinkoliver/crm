@@ -45,3 +45,4 @@ export const fieldForLegalEntity = [
   { placeholder: "Телефон" },
   { placeholder: "Электронный адрес" },
 ];
+
