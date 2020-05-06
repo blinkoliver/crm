@@ -32,6 +32,7 @@ const Test = () => {
       .then((response) => response.json())
       .then((posts) => {
         let results = posts.results;
+        console.log(results)
         let cities = results.map((element) => {
           return {
             value: element.city,
