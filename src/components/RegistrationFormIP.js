@@ -1,8 +1,7 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import InputMask from "react-input-mask";
-import Select from "react-select";
-import { city } from "../constants/registration";
+import SelectCity from "../components/SelectCity";
 
 const RegistrationFormIP = () => {
   const { register, handleSubmit, errors, control } = useForm();
@@ -19,39 +18,31 @@ const RegistrationFormIP = () => {
         type="text"
         placeholder="Наименование ИП"
         name="IPName"
-        ref={register({ required: true, maxLength: 10 })}
+        ref={register({ required: true, maxLength: 100 })}
       />
       {errors.IPName && errors.IPName.type === "required" && (
         <p>Обязательное поле</p>
       )}
       {errors.IPName && errors.IPName.type === "maxLength" && (
-        <p>This is field required max length of 10</p>
+        <p>This is field required max length of 100</p>
       )}
-      <input
-        style={{ marginBottom: "2vh" }}
-        type="text"
+      <Controller
+        as={InputMask}
+        control={control}
         placeholder="УНП"
+        mask="999 999 999"
+        maskChar="-"
         name="UNP"
-        ref={register({ required: true, maxLength: 100 })}
+        rules={{ required: true, minLength: 9 }}
+        style={{marginBottom:"2vh"}}
       />
       {errors.UNP && errors.UNP.type === "required" && <p>Обязательное поле</p>}
+      {errors.UNP && errors.UNP.type === "minLength" && (
+        <p>УНП должен состоять из 9 цифр</p>
+      )}
+
       <Controller
-        as={
-          <Select
-            options={city}
-            styles={{
-              valueContainer: () => ({
-                height: "10vh",
-                paddingLeft: "2vh",
-              }),
-            }}
-            placeholder={"Город регистрации"}
-            components={{
-              IndicatorSeparator: () => null,
-              DropdownIndicator: () => null,
-            }}
-          />
-        }
+        as={<SelectCity />}
         control={control}
         rules={{ required: true }}
         onChange={([selected]) => {
@@ -63,6 +54,15 @@ const RegistrationFormIP = () => {
         errors.reactSelectRegistrationCity.type === "required" && (
           <p>Обязательное поле</p>
         )}
+      <input
+        type="text"
+        placeholder="Адрес регистрации"
+        name="Adress"
+        ref={register({ required: true, maxLength: 100 })}
+      />
+      {errors.Adress && errors.Adress.type === "required" && (
+        <p>Обязательное поле</p>
+      )}
       <input
         type="text"
         placeholder="ОКЭД"
@@ -77,13 +77,14 @@ const RegistrationFormIP = () => {
         control={control}
         placeholder="Телефон"
         mask="+375 (99) 999 99 99"
-        maskChar="_"
+        maskChar="-"
         name="Telephone"
         rules={{ required: true }}
       />
       {errors.Telephone && errors.Telephone.type === "required" && (
         <p>Обязательное поле</p>
       )}
+
       <input
         type="text"
         placeholder="Электронный адрес"

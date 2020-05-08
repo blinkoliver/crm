@@ -4,6 +4,7 @@ import Select from "react-select";
 import RegistrationFormIP from "../components/RegistrationFormIP";
 import RegistrationFormUL from "../components/RegistrationFormUL";
 import { ownership } from "../constants/registration";
+
 import "../screens/Registration.css";
 
 const Registration = () => {
@@ -11,12 +12,13 @@ const Registration = () => {
   const handleChange = (selectValue) => {
     setSelectedValue(selectValue);
   };
+  console.log(selectedValue)
 
   return (
     <div className="Registration">
       <div className="FirstBlock">
         <Select
-          placeholder={"Форма деятельности"}
+          placeholder={"Выберите форму деятельности"}
           onChange={handleChange}
           options={ownership}
           components={{ IndicatorSeparator: () => null }}
@@ -29,11 +31,12 @@ const Registration = () => {
         />
       </div>
       <div className="SecondBlock">
-        {selectedValue.value === "Индивидуальный предприниматель" ? (
+        {(selectedValue.value === "Индивидуальный предприниматель" && (
           <RegistrationFormIP />
-        ) : (
-          <RegistrationFormUL />
-        )}
+        )) ||
+          (selectedValue.value === "Юридическое лицо" && (
+            <RegistrationFormUL />
+          ))}
       </div>
     </div>
   );

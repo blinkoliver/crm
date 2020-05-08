@@ -3,7 +3,7 @@ import { useState } from "react";
 import "../screens/Registration.css";
 import AsyncSelect from "react-select/async";
 
-const Test = () => {
+const SelectCity = () => {
   const [inputValue, setInputValue] = useState({});
   const [result, setResult] = useState({});
 
@@ -12,7 +12,7 @@ const Test = () => {
     setInputValue(inputValue);
   };
 
-  console.log(inputValue, result)
+  console.log(inputValue, result);
 
   const loadOptions = (inputValue, callback) => {
     if (!inputValue) {
@@ -31,12 +31,12 @@ const Test = () => {
     })
       .then((response) => response.json())
       .then((posts) => {
-        let results = posts.results;
-        console.log(results)
+        let results = posts.city;
+        console.log(results);
         let cities = results.map((element) => {
           return {
-            value: element.city,
-            label: element.city,
+            value: `${element.type} ${element.city}, ${element.district} район, ${element.region}`,
+            label: `${element.type} ${element.city}, ${element.district} район, ${element.region}`,
           };
         });
         callback(cities);
@@ -44,7 +44,6 @@ const Test = () => {
       });
   };
 
-  
   // const loadOptions = (inputValue, callback) => {
   //   if (!inputValue) {
   //     return callback([]);
@@ -67,21 +66,25 @@ const Test = () => {
   // };
 
   return (
-    <div className="Registration">
-      <div className="FirstBlock">
-        <AsyncSelect
-          cacheOptions
-          loadOptions={loadOptions}
-          defaultOptions
-          onInputChange={handleInputChange}
-          components={{
-            IndicatorSeparator: () => null,
-            DropdownIndicator: () => null,
-          }}
-        />
-      </div>
-      {/* <button onClick={handleClick}>Fetch data test</button> */}
+    <div>
+      <AsyncSelect
+        cacheOptions
+        loadOptions={loadOptions}
+        defaultOptions
+        onInputChange={handleInputChange}
+        styles={{
+          valueContainer: () => ({
+            height: "10vh",
+            paddingLeft: "2vh",
+          })
+        }}
+        placeholder={"Город регистрации"}
+        components={{
+          IndicatorSeparator: () => null,
+          DropdownIndicator: () => null,
+        }}
+      />
     </div>
   );
 };
-export default Test;
+export default SelectCity;

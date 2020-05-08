@@ -2,7 +2,8 @@ import React from "react";
 import Select from "react-select";
 import { useForm, Controller } from "react-hook-form";
 import InputMask from "react-input-mask";
-import { ownershipForm, city } from "../constants/registration";
+import { ownershipForm } from "../constants/registration";
+import SelectCity from "../components/SelectCity";
 
 const customStyles = {
   valueContainer: () => ({
@@ -41,7 +42,6 @@ const RegistrationFormUL = () => {
         errors.reactSelectOwnershipForm.type === "required" && (
           <p>Обязательное поле</p>
         )}
-
       <input
         type="text"
         placeholder="Наименование ЮЛ"
@@ -51,15 +51,43 @@ const RegistrationFormUL = () => {
       {errors.ULName && errors.ULName.type === "required" && (
         <p>Обязательное поле</p>
       )}
-      <input
-        style={{ marginBottom: "2vh" }}
-        type="text"
+      <Controller
+        as={InputMask}
+        control={control}
         placeholder="УНП"
+        mask="999 999 999"
+        maskChar="-"
         name="UNP"
-        ref={register({ required: true, maxLength: 100 })}
+        rules={{ required: true, minLength: 9 }}
+        style={{ marginBottom: "2vh" }}
       />
       {errors.UNP && errors.UNP.type === "required" && <p>Обязательное поле</p>}
+      {errors.UNP && errors.UNP.type === "minLength" && (
+        <p>УНП должен состоять из 9 цифр</p>
+      )}
       <Controller
+        as={<SelectCity />}
+        control={control}
+        rules={{ required: true }}
+        onChange={([selected]) => {
+          return selected;
+        }}
+        name="reactSelectRegistrationCity"
+      />
+      {errors.reactSelectRegistrationCity &&
+        errors.reactSelectRegistrationCity.type === "required" && (
+          <p>Обязательное поле</p>
+        )}
+      <input
+        type="text"
+        placeholder="Адрес регистрации"
+        name="Adress"
+        ref={register({ required: true, maxLength: 100 })}
+      />
+      {errors.Adress && errors.Adress.type === "required" && (
+        <p>Обязательное поле</p>
+      )}
+      {/* <Controller
         as={
           <Select
             options={city}
@@ -86,7 +114,7 @@ const RegistrationFormUL = () => {
       {errors.reactSelectRegistrationCity &&
         errors.reactSelectRegistrationCity.type === "required" && (
           <p>Обязательное поле</p>
-        )}
+        )} */}
       <input
         type="text"
         placeholder="ОКЭД"
