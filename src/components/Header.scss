@@ -1,9 +1,4 @@
-.App {
-  text-align: center;
-  min-height: 100vh;
-  background-color: #282c34;
-}
-.App-header {
+.Header {
   background-color: #282c34;
   display: flex;
   flex-direction: column;
@@ -31,7 +26,7 @@
   flex-direction: row;
   justify-content: space-around;
 }
- a {
-   color: white;
-   text-decoration: none;
- }
+a {
+  color: white;
+  text-decoration: none;
+}

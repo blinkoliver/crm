@@ -1,22 +1,27 @@
 import React from "react";
 import Service from "../components/Service";
-import "./App.css";
 import { services } from "../constants/services";
+import "./MyServices.scss";
 
 const MyServices = () => {
   return (
-    <div>
-      <button>Добавить услугу</button>
-      Сортировать
-      <select>
-        <option>По названию услуги</option>
-        <option>По заказчику</option>
-        <option>По исполнителю</option>
-        <option>По статусу</option>
-        <option>По цене</option>
-      </select>
+    <div className="MyServices">
+      <div className="AddAndSort">
+        <div className="Add">
+          <button>Добавить услугу</button>
+        </div>
+        <div className="Sort">
+          Сортировать
+          <select>
+            <option>По названию услуги</option>
+            <option>По заказчику</option>
+            <option>По исполнителю</option>
+            <option>По статусу</option>
+            <option>По цене</option>
+          </select>
+        </div>
+      </div>
       {services.map((element) => (
-        <p>
           <Service
             taskName={element.taskName}
             status={element.status}
@@ -24,7 +29,6 @@ const MyServices = () => {
             price={element.price}
             customer={element.customer}
           />
-        </p>
       ))}
     </div>
   );

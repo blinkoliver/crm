@@ -4,8 +4,7 @@ import Select from "react-select";
 import RegistrationFormIP from "../components/RegistrationFormIP";
 import RegistrationFormUL from "../components/RegistrationFormUL";
 import { ownership } from "../constants/registration";
-
-import "../screens/Registration.css";
+import "./Registration.scss";
 
 const Registration = () => {
   const [selectedValue, setSelectedValue] = useState({});

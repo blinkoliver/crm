@@ -1,0 +1,25 @@
+.MyServices {
+  display: flex;
+  flex-direction: column;
+  color: antiquewhite;
+}
+.AddAndSort {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 2vh;
+}
+.Sort {
+  display: flex;
+  flex-direction: column;
+}
+.MyServices button {
+  height: 5vh;
+  border: solid grey 1px;
+  border-radius: 5px;
+  background-color: initial;
+  color: white;
+  font-size: large;
+  width: 25vh;
+  margin: 1vh auto;
+}

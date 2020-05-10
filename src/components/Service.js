@@ -1,15 +1,14 @@
 import React from "react";
+import "./Service.scss"
 
 const Service = (props) => {
   return (
     <div className="ServiceCard">
-      <div className="ServiceCard-Header">
-        <div>Название:{props.taskName}</div>
-        <div>Статус:{props.status}</div>
-        <div>Цена:{props.price}</div>
-        <div>Исполнитель:{props.executor}</div>
-        <div>Заказчик:{props.customer}</div>
-      </div>
+      <div className="TaskName">Название:{props.taskName}</div>
+      <div className="Status">Статус:{props.status}</div>
+      <div className="Price">Цена:{props.price}</div>
+      <div className="Executor">Исполнитель:{props.executor}</div>
+      <div className="Customer">Заказчик:{props.customer}</div>
     </div>
   );
 };

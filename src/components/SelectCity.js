@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import "../screens/Registration.css";
 import AsyncSelect from "react-select/async";
 
 const SelectCity = () => {
@@ -25,8 +24,8 @@ const SelectCity = () => {
       },
       body: JSON.stringify({
         city: `${inputValue}`,
-        limit: 2,
-        offset: 2,
+        limit: 7,
+        offset: 1,
       }),
     })
       .then((response) => response.json())
@@ -43,27 +42,6 @@ const SelectCity = () => {
         setResult(cities);
       });
   };
-
-  // const loadOptions = (inputValue, callback) => {
-  //   if (!inputValue) {
-  //     return callback([]);
-  //   }
-  //   fetch(
-  //     `https://api.themoviedb.org/3/search/movie?api_key=6ed6e56030be8bc7d1821d5b302e302e&language=en-US&query=${inputValue}&page=1&include_adult=false`
-  //   )
-  //     .then((response) => response.json())
-  //     .then((posts) => {
-  //       let results = posts.results;
-  //       let original_title = results.map((element) => {
-  //         return {
-  //           value: element.original_title,
-  //           label: element.original_title,
-  //         };
-  //       });
-  //       callback(original_title);
-  //       setResult(original_title);
-  //     });
-  // };
 
   return (
     <div>

@@ -1,6 +1,6 @@
 import React from "react";
-import "../screens/SignIn.css";
 import SignInForm from "../components/SignInForm";
+import "./SignIn.scss";
 
 const SignIn = () => {
   return (
