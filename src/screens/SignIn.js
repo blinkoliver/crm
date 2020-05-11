@@ -1,6 +1,8 @@
 import React from "react";
 import SignInForm from "../components/SignInForm";
 import "./SignIn.scss";
+import { connect } from "react-redux";
+import { getUsername } from "../actions/username";
 
 const SignIn = () => {
   return (
@@ -11,4 +13,12 @@ const SignIn = () => {
     </div>
   );
 };
-export default SignIn;
+
+const mapStateToProps = (state) => ({
+  username: state.username,
+});
+const mapDispatchToProps = (dispatch) => ({
+  getUsername: (url) => dispatch(getUsername(url))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
