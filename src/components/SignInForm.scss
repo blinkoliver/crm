@@ -1,0 +1,28 @@
+.sign-in-form{
+  width: 45vw;
+}
+input {
+  width: -webkit-fill-available;
+  border: none;
+  margin-top: 2vh;
+  padding-left: 2vh;
+  height: 10vh;
+  border-radius: 0.5vh;
+  font-size: 3vh;
+}
+.sign-in-submit {
+  margin-top: 2vh;
+  height: 10vh;
+  border: none;
+  border-radius: 5px;
+  background-color: #3cd719;
+  color: white;
+  font-size: large;
+  width: inherit;
+}
+.sign-in-submit:hover {
+  background-color: #2da914;
+}
+form p {
+  color: white;
+}

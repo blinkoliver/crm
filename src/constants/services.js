@@ -5,6 +5,7 @@ export const services = [
     price: "2300 USD",
     status: "Active",
     taskName: "Research cleanpaste",
+    date: "22.02.19",
   },
   {
     customer: "OOO Procter&Gamble",
@@ -12,6 +13,7 @@ export const services = [
     price: "1980 USD",
     status: "Passive",
     taskName: "Toothpaste research",
+    date: "22.02.19",
   },
   {
     customer: "OOO Procter&Gamble",
@@ -19,6 +21,7 @@ export const services = [
     price: "1900 USD",
     status: "Active",
     taskName: "Research toothpaste",
+    date: "22.02.19",
   },
   {
     customer: "OOO Procter&Gamble",
@@ -26,6 +29,7 @@ export const services = [
     price: "2300 USD",
     status: "Active",
     taskName: "Research cleanpaste",
+    date: "22.02.19",
   },
   {
     customer: "OOO Procter&Gamble",
@@ -33,6 +37,7 @@ export const services = [
     price: "1980 USD",
     status: "Passive",
     taskName: "Toothpaste research",
+    date: "22.02.19",
   },
   {
     customer: "OOO Procter&Gamble",
@@ -40,6 +45,7 @@ export const services = [
     price: "1900 USD",
     status: "Active",
     taskName: "Research toothpaste",
+    date: "22.02.19",
   },
   {
     customer: "OOO Procter&Gamble",
@@ -47,6 +53,7 @@ export const services = [
     price: "2300 USD",
     status: "Active",
     taskName: "Research cleanpaste",
+    date: "22.02.19",
   },
   {
     customer: "OOO Procter&Gamble",
@@ -54,6 +61,7 @@ export const services = [
     price: "1980 USD",
     status: "Passive",
     taskName: "Toothpaste research",
+    date: "22.02.19",
   },
   {
     customer: "OOO Procter&Gamble",
@@ -61,5 +69,6 @@ export const services = [
     price: "1900 USD",
     status: "Active",
     taskName: "Research toothpaste",
+    date: "22.02.19",
   },
 ];

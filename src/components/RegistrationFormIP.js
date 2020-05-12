@@ -2,6 +2,7 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import InputMask from "react-input-mask";
 import SelectCity from "../components/SelectCity";
+import "./RegistrationFormIP.scss"
 
 const RegistrationFormIP = () => {
   const { register, handleSubmit, errors, control } = useForm();
@@ -106,7 +107,7 @@ const RegistrationFormIP = () => {
       {errors.Password && errors.Password.type === "required" && (
         <p>Обязательное поле</p>
       )}
-      <input type="submit" placeholder="Зарегистрироваться" />
+      <button className="registration-ip-submit" type="submit">Зарегистрироваться</button>
     </form>
   );
 };

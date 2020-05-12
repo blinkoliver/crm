@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import Header from "../components/Header";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.scss";
@@ -9,11 +9,13 @@ import MyServices from "../screens/MyServices";
 const App = () => {
   return (
     <Router>
-      <div className="App">
-          <Header />
-        <Route path={"/registration"} component={Registration} />
-        <Route path={"/signIn"} component={SignIn} />
-        <Route path={"/myServices"} component={MyServices} />
+      <div className="app">
+        <Header />
+        <main className="main">
+          <Route path={"/registration"} component={Registration} />
+          <Route path={"/signIn"} component={SignIn} />
+          <Route path={"/myServices"} component={MyServices} />
+        </main>
         <footer></footer>
       </div>
     </Router>

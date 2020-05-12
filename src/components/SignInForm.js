@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import "./SignInForm.scss";
 
 const SignInForm = () => {
   const { register, handleSubmit, errors } = useForm();
@@ -16,39 +17,38 @@ const SignInForm = () => {
     })
       .then((response) => response.json())
       .then((post) => {
-        localStorage.setItem("JWB", post.result)
+        localStorage.setItem("JWB", post.result);
       });
   };
   console.log(errors);
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      style={{ display: "flex", flexDirection: "column" }}
-    >
-      <input
-        type="text"
-        placeholder="Электронный адрес"
-        name="Email"
-        ref={register({ required: true, pattern: /^\S+@\S+$/i })}
-      />
-      {errors.Email && errors.Email.type === "required" && (
-        <p>Обязательное поле</p>
-      )}
-      {errors.Email && errors.Email.type === "pattern" && (
-        <p>Это не похоже на электронный адрес</p>
-      )}
-      <input
-        type="text"
-        placeholder="Пароль"
-        name="Password"
-        ref={register({ required: true, maxLength: 100 })}
-      />
-      {errors.Email && errors.Email.type === "required" && (
-        <p>Обязательное поле</p>
-      )}
-      <input type="submit" placeholder="Войти" />
-    </form>
+      <form className="sign-in-form"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <input
+          type="text"
+          placeholder="Электронный адрес"
+          name="Email"
+          ref={register({ required: true, pattern: /^\S+@\S+$/i })}
+        />
+        {errors.Email && errors.Email.type === "required" && (
+          <p>Обязательное поле</p>
+        )}
+        {errors.Email && errors.Email.type === "pattern" && (
+          <p>Это не похоже на электронный адрес</p>
+        )}
+        <input
+          type="text"
+          placeholder="Пароль"
+          name="Password"
+          ref={register({ required: true, maxLength: 100 })}
+        />
+        {errors.Email && errors.Email.type === "required" && (
+          <p>Обязательное поле</p>
+        )}
+        <button className="sign-in-submit" type="submit">Войти</button>
+      </form>
   );
 };
 export default SignInForm;

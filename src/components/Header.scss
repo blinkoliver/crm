@@ -1,32 +1,66 @@
-.Header {
-  background-color: #282c34;
-  display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-.User-bar {
+.header {
+  background-color: white;
   display: flex;
   flex-direction: row;
-  align-self: flex-end;
+  font-size: 2vmax;
+  color: #2855af;
+  justify-content: space-between;
 }
-.User-bar a {
+.header-logo {
+  margin: 1em;
+}
+.header-logo a {
+  color: #2855af;
   text-decoration: none;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-weight: 700;
 }
-.User-bar button {
-  border: solid grey 1px;
-  border-radius: 5px;
-  background-color: initial;
-  margin: 10px 10px 0px 0px;
+.header-menu {
+  width: 80%;
 }
-.Menu-bar {
+.menu {
+  list-style: none;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
-a {
-  color: white;
+.menu-item a {
+  color: #2855af;
   text-decoration: none;
+  font-weight: 700;
+}
+.menu-item :hover {
+  border-bottom: solid #2855af 0.3vh;
+  transition: 0.1s;
+
+}
+.menu-item-signin a {
+  color: #2855af;
+  font-size: 2vmax;
+  font-weight: 700;
+  padding: 1vh 3vh;
+  text-decoration: none;
+  border: 0.3vh solid #2855af;
+  border-radius: 1vh;
+}
+.menu-item-signin a:hover {
+  color: white;
+  background-color: #2855af;
+  transition: 1s;
+}
+.menu-item-registration a {
+  font-size: 2vmax;
+  color: #2855af;
+  font-weight: 700;
+  padding: 1vh 3vh;
+  text-decoration: none;
+  border: 0.3vh solid #2855af;
+  border-radius: 1vh;
+  color: #fff;
+  background-color: #2855af;
+}
+.menu-item-registration a:hover {
+  color: #fff;
+  background-color: #234187;
+  border-color: #234187;
+  transition: 1s;
 }

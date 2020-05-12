@@ -14,8 +14,8 @@ const Registration = () => {
   console.log(selectedValue)
 
   return (
-    <div className="Registration">
-      <div className="FirstBlock">
+    <div className="registration">
+      <div className="first-block">
         <Select
           placeholder={"Выберите форму деятельности"}
           onChange={handleChange}
@@ -29,7 +29,7 @@ const Registration = () => {
           }}
         />
       </div>
-      <div className="SecondBlock">
+      <div className="second-block">
         {(selectedValue.value === "Индивидуальный предприниматель" && (
           <RegistrationFormIP />
         )) ||

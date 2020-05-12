@@ -1,34 +1,21 @@
-.SignIn {
+.sign-in {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #50afff;
+  height: 75vh;
 }
-.SignIn .FirstBlock {
-  padding: 1vh;
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.SignIn input {
-  width: inherit;
-  border: none;
-  margin-top: 2vh;
-  padding-left: 2vh;
-  height: 10vh;
-  border-radius: 0.5vh;
-  font-size: 3vh;
-}
-.SignIn button {
-  margin-top: 1vh;
-  height: 10vh;
-  border: solid grey 1px;
-  border-radius: 5px;
-  background-color: initial;
+.sign-in-text {
   color: white;
-  font-size: large;
-  width: max-content;
 }
-.SignIn form p {
+.registration-link {
   color: white;
+  border: solid white 0.2rem;
+  border-radius: 0.8vh;
+  text-decoration: none;
+  margin: 2vw 23vw 0vh 0vh;
+  height: 3vh;
+  padding: 2vh;
+  width: 18vw;
+  font-weight: 700;
 }

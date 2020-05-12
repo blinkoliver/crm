@@ -4,6 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import InputMask from "react-input-mask";
 import { ownershipForm } from "../constants/registration";
 import SelectCity from "../components/SelectCity";
+import "./RegistrationFormUL.scss"
 
 const customStyles = {
   valueContainer: () => ({
@@ -87,34 +88,6 @@ const RegistrationFormUL = () => {
       {errors.Adress && errors.Adress.type === "required" && (
         <p>Обязательное поле</p>
       )}
-      {/* <Controller
-        as={
-          <Select
-            options={city}
-            styles={{
-              valueContainer: () => ({
-                height: "10vh",
-                paddingLeft: "2vh",
-              }),
-            }}
-            placeholder={"Город регистрации"}
-            components={{
-              IndicatorSeparator: () => null,
-              DropdownIndicator: () => null,
-            }}
-          />
-        }
-        control={control}
-        rules={{ required: true }}
-        onChange={([selected]) => {
-          return selected;
-        }}
-        name="reactSelectRegistrationCity"
-      />
-      {errors.reactSelectRegistrationCity &&
-        errors.reactSelectRegistrationCity.type === "required" && (
-          <p>Обязательное поле</p>
-        )} */}
       <input
         type="text"
         placeholder="ОКЭД"
@@ -189,7 +162,7 @@ const RegistrationFormUL = () => {
       {errors.Password && errors.Password.type === "required" && (
         <p>Обязательное поле</p>
       )}
-      <input type="submit" placeholder="Зарегистрироваться" />
+      <button className="registration-ul-submit" type="submit">Зарегистрироваться</button>
     </form>
   );
 };

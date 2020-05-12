@@ -1,0 +1,30 @@
+.registration input {
+  width: inherit;
+  border: none;
+  margin-top: 2vh;
+  padding-left: 2vh;
+  height: 10vh;
+  border-radius: 0.5vh;
+  font-size: 3vh;
+}
+.registration form p {
+  color: white;
+}
+
+.registration .individual-entrepreneur {
+  display: flex;
+  flex-direction: column;
+}
+.registration-ip-submit {
+    height: 10vh;
+    margin-top: 2vh;
+    color: white;
+    border: none;
+    border-radius: 1vh;
+    background-color: #2855af;
+    font-size: 4vh;
+    font-weight: 700;
+  }
+  .registration-ip-submit:hover{
+    background-color: #234187;
+}

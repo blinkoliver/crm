@@ -5,15 +5,16 @@ import "./MyServices.scss";
 
 const MyServices = () => {
   return (
-    <div className="MyServices">
-      <div className="AddAndSort">
-        <div className="Add">
+    <div className="my-services">
+      <div className="add-and-sort">
+        <div className="add">
           <button>Добавить услугу</button>
         </div>
-        <div className="Sort">
+        <div className="sort">
           Сортировать
           <select>
             <option>По названию услуги</option>
+            <option>По дате</option>
             <option>По заказчику</option>
             <option>По исполнителю</option>
             <option>По статусу</option>
@@ -22,13 +23,12 @@ const MyServices = () => {
         </div>
       </div>
       {services.map((element) => (
-          <Service
-            taskName={element.taskName}
-            status={element.status}
-            executor={element.executor}
-            price={element.price}
-            customer={element.customer}
-          />
+        <Service
+          date={element.date}
+          taskName={element.taskName}
+          price={element.price}
+          status={element.status}
+        />
       ))}
     </div>
   );
