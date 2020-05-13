@@ -8,19 +8,24 @@ const MyServices = () => {
     <div className="my-services">
       <div className="add-and-sort">
         <div className="add">
-          <button>Добавить услугу</button>
+          <button className="my-services-button">Добавить услугу</button>
         </div>
         <div className="sort">
           Сортировать
           <select>
             <option>По названию услуги</option>
             <option>По дате</option>
-            <option>По заказчику</option>
-            <option>По исполнителю</option>
-            <option>По статусу</option>
             <option>По цене</option>
+            <option>По статусу</option>
           </select>
         </div>
+      </div>
+      <div className="table-header">
+        <p>Дата</p>
+        <p>Наименование</p>
+        <p>Сумма по акту</p>
+        <p>Статус</p>
+        <p>{"    "}</p>
       </div>
       {services.map((element) => (
         <Service

@@ -4,10 +4,14 @@ import "./Service.scss"
 const Service = (props) => {
   return (
     <div className="service-card">
-      <div className="date">Дата:{props.date}</div>
-      <div className="task-name">Наименование:{props.taskName}</div>
-      <div className="price">Сумма по акту:{props.price}</div>
-      <div className="status">Статус:{props.status}</div>
+      <div className="date">{props.date}</div>
+      <div className="task-name">{props.taskName}</div>
+      <div className="price">{props.price}</div>
+      <div className="status">{props.status}</div>
+      <div>
+        <div>изменить</div>
+        <div>удалить</div>
+      </div>
     </div>
   );
 };

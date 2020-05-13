@@ -8,22 +8,31 @@
 .add-and-sort {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  padding: 2vh;
+  justify-content: space-between;
+  padding: 2vh 0;
 }
 .sort {
   display: flex;
   flex-direction: column;
 }
-.my-services button {
+.my-services-button {
   color: #2855af;
   font-weight: 700;
   padding: 1vh 3vh;
   text-decoration: none;
   border: 0.3vh solid #2855af;
   border-radius: 2vh;
-  height: 14vh;
-  font-size: large;
-  width: 30vh;
+  height: 6vh;
+  font-size: 2vh;
+  width: 29vh;
   margin: 1vh auto;
+}
+.my-services-button:hover {
+  color: white;
+  background-color: #2855af;
+  transition: 0.5s;
+}
+.table-header{
+  display: flex;
+  justify-content: space-around;
 }
