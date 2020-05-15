@@ -5,17 +5,28 @@
   background-color: #50afff;
   height: 75vh;
 }
+.sign-in-container {
+  width: 50vmax;
+  display: flex;
+  flex-direction: column;
+}
 .sign-in-text {
   color: white;
 }
 .registration-link {
+  margin-top: 2vh;
   color: white;
-  border: solid white 0.2rem;
+  border: solid white 0.1rem;
   border-radius: 0.8vh;
   text-decoration: none;
-  margin: 2vw 23vw 0vh 0vh;
-  height: 3vh;
-  padding: 2vh;
-  width: 18vw;
+  height: 6vh;
+  padding: 0.9vh;
+  width: 21%;
   font-weight: 700;
+  font-size: 2.5vh;
+}
+.registration-link:hover {
+  background-color: white;
+  color: #50afff;
+  text-decoration: none;
 }

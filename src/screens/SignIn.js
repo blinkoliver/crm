@@ -8,10 +8,14 @@ import { BrowserRouter as Route, NavLink } from "react-router-dom";
 const SignIn = () => {
   return (
     <div className="sign-in">
-      <h1 className="sign-in-text">Вход в Твой бизнес</h1>
-      <SignInForm />
-      <NavLink className="registration-link" to={"/registration"}>Регистрация</NavLink>
-      <Route path={"/registration"}/>
+      <div className="sign-in-container">
+        <h1 className="sign-in-text">Вход в Твой бизнес</h1>
+        <SignInForm />
+        <NavLink className="registration-link" to={"/registration"}>
+          Регистрация
+        </NavLink>
+        <Route path={"/registration"} />
+      </div>
     </div>
   );
 };

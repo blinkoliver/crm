@@ -15,24 +15,29 @@
   display: flex;
   flex-direction: column;
 }
-.my-services-button {
+.my-services .add-and-sort .add button {
   color: #2855af;
   font-weight: 700;
   padding: 1vh 3vh;
   text-decoration: none;
   border: 0.3vh solid #2855af;
-  border-radius: 2vh;
-  height: 6vh;
-  font-size: 2vh;
-  width: 29vh;
+  border-radius: 1vh;
+  height: 10vmin;
+  font-size: 2.5vmin;
+  width: 30vmin;
   margin: 1vh auto;
 }
-.my-services-button:hover {
+.my-services .add-and-sort .add button:hover {
   color: white;
   background-color: #2855af;
   transition: 0.5s;
 }
-.table-header{
+.table-header {
   display: flex;
   justify-content: space-around;
+}
+.add-services-modal {
+  width: 200px;
+  height: 200px;
+  background-color: red;
 }

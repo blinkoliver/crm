@@ -1,5 +1,6 @@
 import React from "react";
 import Service from "../components/Service";
+import AddServiceModal from "../components/AddServiceModal";
 import { services } from "../constants/services";
 import "./MyServices.scss";
 
@@ -8,7 +9,7 @@ const MyServices = () => {
     <div className="my-services">
       <div className="add-and-sort">
         <div className="add">
-          <button className="my-services-button">Добавить услугу</button>
+          <AddServiceModal/>
         </div>
         <div className="sort">
           Сортировать
@@ -25,8 +26,9 @@ const MyServices = () => {
         <p>Наименование</p>
         <p>Сумма по акту</p>
         <p>Статус</p>
-        <p>{"    "}</p>
+        <p>Действие</p>
       </div>
+
       {services.map((element) => (
         <Service
           date={element.date}

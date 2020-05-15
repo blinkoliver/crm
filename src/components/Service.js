@@ -1,5 +1,5 @@
 import React from "react";
-import "./Service.scss"
+import "./Service.scss";
 
 const Service = (props) => {
   return (
@@ -11,6 +11,7 @@ const Service = (props) => {
       <div>
         <div>изменить</div>
         <div>удалить</div>
+        <div>подробнее</div>
       </div>
     </div>
   );
