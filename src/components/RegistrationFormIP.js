@@ -2,7 +2,7 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import InputMask from "react-input-mask";
 import SelectCity from "../components/SelectCity";
-import "./RegistrationFormIP.scss"
+import "./RegistrationFormIP.scss";
 
 const RegistrationFormIP = () => {
   const { register, handleSubmit, errors, control } = useForm();
@@ -19,29 +19,42 @@ const RegistrationFormIP = () => {
         type="text"
         placeholder="Наименование ИП"
         name="IPName"
-        ref={register({ required: true, maxLength: 100 })}
+        ref={register({
+          required: true,
+          maxLength: 50,
+          minLength: 7,
+          pattern: /[а-яА-Я.]+/,
+        })}
       />
       {errors.IPName && errors.IPName.type === "required" && (
         <p>Обязательное поле</p>
       )}
       {errors.IPName && errors.IPName.type === "maxLength" && (
-        <p>This is field required max length of 100</p>
+        <p>От 7 до 50 символов кириллицей</p>
+      )}
+      {errors.IPName && errors.IPName.type === "minLength" && (
+        <p>От 7 до 50 символов кириллицей</p>
+      )}
+      {errors.IPName && errors.IPName.type === "pattern" && (
+        <p>Только кирилицей</p>
       )}
       <Controller
         as={InputMask}
         control={control}
         placeholder="УНП"
         mask="999 999 999"
-        maskChar="-"
+        maskChar="_"
         name="UNP"
-        rules={{ required: true, minLength: 9 }}
-        style={{marginBottom:"2vh"}}
+        rules={{ required: true, minLength: 11, pattern: /[0-9,/\s/g]{11}/ }}
+        style={{ marginBottom: "2vh" }}
       />
       {errors.UNP && errors.UNP.type === "required" && <p>Обязательное поле</p>}
       {errors.UNP && errors.UNP.type === "minLength" && (
         <p>УНП должен состоять из 9 цифр</p>
       )}
-
+      {errors.UNP && errors.UNP.type === "pattern" && (
+        <p>УНП должен состоять из 9 цифр</p>
+      )}
       <Controller
         as={<SelectCity />}
         control={control}
@@ -78,14 +91,19 @@ const RegistrationFormIP = () => {
         control={control}
         placeholder="Телефон"
         mask="+375 (99) 999 99 99"
-        maskChar="-"
+        maskChar="_"
         name="Telephone"
-        rules={{ required: true }}
+        rules={{ required: true, pattern: /[0-9+()/\s/g]{19}/, minLength: 19 }}
       />
       {errors.Telephone && errors.Telephone.type === "required" && (
         <p>Обязательное поле</p>
       )}
-
+      {errors.Telephone && errors.Telephone.type === "pattern" && (
+        <p>Введите корректный номер</p>
+      )}
+      {errors.Telephone && errors.Telephone.type === "minLength" && (
+        <p>Введите корректный номер</p>
+      )}
       <input
         type="text"
         placeholder="Электронный адрес"
@@ -96,18 +114,34 @@ const RegistrationFormIP = () => {
         <p>Обязательное поле</p>
       )}
       {errors.Email && errors.Email.type === "pattern" && (
-        <p>Это не похоже электронный адрес</p>
+        <p>Введите правильный электронный адрес</p>
       )}
       <input
-        type="text"
+        type="password"
         placeholder="Пароль"
         name="Password"
-        ref={register({ required: true, maxLength: 100 })}
+        ref={register({
+          required: true,
+          maxLength: 15,
+          minLength: 5,
+          pattern: /[0-9a-zA-z]/,
+        })}
       />
       {errors.Password && errors.Password.type === "required" && (
         <p>Обязательное поле</p>
       )}
-      <button className="registration-ip-submit" type="submit">Зарегистрироваться</button>
+      {errors.Password && errors.Password.type === "maxLength" && (
+        <p>От 5 до 15 символов латиницей и цифры</p>
+      )}
+      {errors.Password && errors.Password.type === "minLength" && (
+        <p>От 5 до 15 символов латиницей и цифры</p>
+      )}
+      {errors.Password && errors.Password.type === "pattern" && (
+        <p>От 5 до 15 символов латиницей и цифры</p>
+      )}
+      <button className="registration-ip-submit" type="submit">
+        Зарегистрироваться
+      </button>
     </form>
   );
 };

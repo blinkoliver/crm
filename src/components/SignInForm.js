@@ -36,16 +36,30 @@ const SignInForm = () => {
           <p>Обязательное поле</p>
         )}
         {errors.Email && errors.Email.type === "pattern" && (
-          <p>Это не похоже на электронный адрес</p>
+        <p>Введите правильный электронный адрес</p>
         )}
         <input
-          type="text"
-          placeholder="Пароль"
-          name="Password"
-          ref={register({ required: true, maxLength: 100 })}
-        />
-        {errors.Email && errors.Email.type === "required" && (
-          <p>Обязательное поле</p>
+        type="password"
+        placeholder="Пароль"
+        name="Password"
+        ref={register({
+          required: true,
+          maxLength: 15,
+          minLength: 5,
+          pattern: /[0-9a-zA-z]/,
+        })}
+      />
+      {errors.Password && errors.Password.type === "required" && (
+        <p>Обязательное поле</p>
+      )}
+      {errors.Password && errors.Password.type === "maxLength" && (
+        <p>От 5 до 15 символов латиницей и цифры</p>
+      )}
+      {errors.Password && errors.Password.type === "minLength" && (
+        <p>От 5 до 15 символов латиницей и цифры</p>
+        )}
+      {errors.Password && errors.Password.type === "pattern" && (
+        <p>От 5 до 15 символов латиницей и цифры</p>
         )}
         <button className="sign-in-submit" type="submit">Войти</button>
       </form>

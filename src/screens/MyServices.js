@@ -1,6 +1,7 @@
 import React from "react";
 import Service from "../components/Service";
 import AddServiceModal from "../components/AddServiceModal";
+import SortServices from "../components/SortServices";
 import { services } from "../constants/services";
 import "./MyServices.scss";
 
@@ -9,16 +10,10 @@ const MyServices = () => {
     <div className="my-services">
       <div className="add-and-sort">
         <div className="add">
-          <AddServiceModal/>
+          <AddServiceModal />
         </div>
         <div className="sort">
-          Сортировать
-          <select>
-            <option>По названию услуги</option>
-            <option>По дате</option>
-            <option>По цене</option>
-            <option>По статусу</option>
-          </select>
+          <SortServices />
         </div>
       </div>
       <div className="table-header">

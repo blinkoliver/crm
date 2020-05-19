@@ -4,7 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import InputMask from "react-input-mask";
 import { ownershipForm } from "../constants/registration";
 import SelectCity from "../components/SelectCity";
-import "./RegistrationFormUL.scss"
+import "./RegistrationFormUL.scss";
 
 const customStyles = {
   valueContainer: () => ({
@@ -47,23 +47,40 @@ const RegistrationFormUL = () => {
         type="text"
         placeholder="Наименование ЮЛ"
         name="ULName"
-        ref={register({ required: true, maxLength: 50 })}
+        ref={register({
+          required: true,
+          maxLength: 50,
+          minLength: 2,
+          pattern: /[а-яА-Я.]+/,
+        })}
       />
-      {errors.ULName && errors.ULName.type === "required" && (
+      {errors.IPName && errors.IPName.type === "required" && (
         <p>Обязательное поле</p>
+      )}
+      {errors.IPName && errors.IPName.type === "maxLength" && (
+        <p>От 2 до 50 символов кириллицей</p>
+      )}
+      {errors.IPName && errors.IPName.type === "minLength" && (
+        <p>От 2 до 50 символов кириллицей</p>
+      )}
+      {errors.IPName && errors.IPName.type === "pattern" && (
+        <p>Только кирилицей</p>
       )}
       <Controller
         as={InputMask}
         control={control}
         placeholder="УНП"
         mask="999 999 999"
-        maskChar="-"
+        maskChar="_"
         name="UNP"
-        rules={{ required: true, minLength: 9 }}
+        rules={{ required: true, minLength: 11, pattern: /[0-9,/\s/g]{11}/ }}
         style={{ marginBottom: "2vh" }}
       />
       {errors.UNP && errors.UNP.type === "required" && <p>Обязательное поле</p>}
       {errors.UNP && errors.UNP.type === "minLength" && (
+        <p>УНП должен состоять из 9 цифр</p>
+      )}
+      {errors.UNP && errors.UNP.type === "pattern" && (
         <p>УНП должен состоять из 9 цифр</p>
       )}
       <Controller
@@ -92,41 +109,29 @@ const RegistrationFormUL = () => {
         type="text"
         placeholder="ОКЭД"
         name="OKED"
-        ref={register({ required: true, maxLength: 100 })}
+        ref={register({ required: true, pattern: /[0-9]{5}/, maxLength: 5 })}
       />
       {errors.OKED && errors.OKED.type === "required" && (
         <p>Обязательное поле</p>
       )}
+      {errors.OKED && errors.OKED.type === "pattern" && <p>Нужно 5 цифр</p>}
+      {errors.OKED && errors.OKED.type === "maxLength" && <p>Нужно 5 цифр</p>}
+
       <input
         type="text"
         placeholder="ФИО Руководителя"
         name="OwnerName"
-        ref={register({ required: true, maxLength: 100 })}
+        ref={register({
+          required: true,
+          maxLength: 100,
+          pattern: /[а-яА-Я]+/,
+        })}
       />
       {errors.OwnerName && errors.OwnerName.type === "required" && (
         <p>Обязательное поле</p>
       )}
-
-      <Controller
-        as={InputMask}
-        control={control}
-        placeholder="Телефон"
-        mask="+375 (99) 999 99 99"
-        maskChar="_"
-        name="OwnerTelephone"
-        rules={{ required: true }}
-      />
-      {errors.OwnerTelephone && errors.OwnerTelephone.type === "required" && (
-        <p>Обязательное поле</p>
-      )}
-      <input
-        type="text"
-        placeholder="ФИО Исполнителя"
-        name="ExecutorName"
-        ref={register({ required: true, maxLength: 100 })}
-      />
-      {errors.ExecutorName && errors.ExecutorName.type === "required" && (
-        <p>Обязательное поле</p>
+      {errors.OwnerName && errors.OwnerNametype === "pattern" && (
+        <p>Только кириллица</p>
       )}
       <Controller
         as={InputMask}
@@ -134,13 +139,18 @@ const RegistrationFormUL = () => {
         placeholder="Телефон"
         mask="+375 (99) 999 99 99"
         maskChar="_"
-        name="ExecutorTelephone"
-        rules={{ required: true }}
+        name="Telephone"
+        rules={{ required: true, pattern: /[0-9+()/\s/g]{19}/, minLength: 19 }}
       />
-      {errors.ExecutorTelephone &&
-        errors.ExecutorTelephone.type === "required" && (
-          <p>Обязательное поле</p>
-        )}
+      {errors.Telephone && errors.Telephone.type === "required" && (
+        <p>Обязательное поле</p>
+      )}
+      {errors.Telephone && errors.Telephone.type === "pattern" && (
+        <p>Введите корректный номер</p>
+      )}
+      {errors.Telephone && errors.Telephone.type === "minLength" && (
+        <p>Введите корректный номер</p>
+      )}
       <input
         type="text"
         placeholder="Электронный адрес"
@@ -151,18 +161,34 @@ const RegistrationFormUL = () => {
         <p>Обязательное поле</p>
       )}
       {errors.Email && errors.Email.type === "pattern" && (
-        <p>Это не похоже электронный адрес</p>
+        <p>Введите правильный электронный адрес</p>
       )}
       <input
-        type="text"
+        type="password"
         placeholder="Пароль"
         name="Password"
-        ref={register({ required: true, maxLength: 100 })}
+        ref={register({
+          required: true,
+          maxLength: 15,
+          minLength: 5,
+          pattern: /[0-9a-zA-z]/,
+        })}
       />
       {errors.Password && errors.Password.type === "required" && (
         <p>Обязательное поле</p>
       )}
-      <button className="registration-ul-submit" type="submit">Зарегистрироваться</button>
+      {errors.Password && errors.Password.type === "maxLength" && (
+        <p>От 5 до 15 символов латиницей и цифры</p>
+      )}
+      {errors.Password && errors.Password.type === "minLength" && (
+        <p>От 5 до 15 символов латиницей и цифры</p>
+      )}
+      {errors.Password && errors.Password.type === "pattern" && (
+        <p>От 5 до 15 символов латиницей и цифры</p>
+      )}
+      <button className="registration-ul-submit" type="submit">
+        Зарегистрироваться
+      </button>
     </form>
   );
 };
