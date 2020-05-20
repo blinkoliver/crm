@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
 import InputMask from "react-input-mask";
 import SelectCity from "../components/SelectCity";
 import "./RegistrationFormIP.scss";
 
 const RegistrationFormIP = () => {
-  const { register, handleSubmit, errors, control } = useForm();
+  const { register, handleSubmit, errors, control, watch } = useForm();
+  const password = useRef({});
+  password.current = watch("password", "");
+
+  // const onSubmit = async (data) => {
+  //   alert(JSON.stringify(data));
+  //   console.log(data);
+  //   console.log(errors);
+  // };
+
   const onSubmit = (data) => console.log(data);
   console.log(errors);
 
@@ -16,6 +25,69 @@ const RegistrationFormIP = () => {
     >
       <input
         style={{ marginTop: "0px" }}
+        type="text"
+        placeholder="Электронный адрес"
+        name="Email"
+        ref={register({ required: true, pattern: /^\S+@\S+$/i })}
+      />
+      {errors.Email && errors.Email.type === "required" && (
+        <p>Обязательное поле</p>
+      )}
+      {errors.Email && errors.Email.type === "pattern" && (
+        <p>Введите правильный электронный адрес</p>
+      )}
+      <input
+        name="password"
+        type="password"
+        placeholder="Пароль"
+        ref={register({
+          required: true,
+          pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=\w*[0-9])\w{9,16}$/,
+        })}
+      />
+      {errors.password && errors.password.type === "required" && (
+        <p>
+          Обязательное поле <br /> От 9 до 15 символов латиницей и цифры
+          <br />
+          минимум 1 цифра 1 строчная и 1 заглавная буква
+        </p>
+      )}
+      {errors.password && errors.password.type === "pattern" && (
+        <p>
+          От 9 до 15 символов латиницей и цифры
+          <br />
+          минимум 1 цифра 1 строчная и 1 заглавная буква
+        </p>
+      )}
+      <input
+        name="password_repeat"
+        type="password"
+        placeholder="Повторите пароль"
+        ref={register({
+          validate: (value) =>
+            value === password.current || "Пароли не совпадают",
+        })}
+      />
+      {errors.password_repeat && <p>{errors.password_repeat.message}</p>}
+      <Controller
+        as={InputMask}
+        control={control}
+        placeholder="Телефон"
+        mask="+375 (99) 999 99 99"
+        maskChar="_"
+        name="Telephone"
+        rules={{ required: true, pattern: /[0-9+()/\s/g]{19}/, minLength: 19 }}
+      />
+      {errors.Telephone && errors.Telephone.type === "required" && (
+        <p>Обязательное поле</p>
+      )}
+      {errors.Telephone && errors.Telephone.type === "pattern" && (
+        <p>Введите корректный номер</p>
+      )}
+      {errors.Telephone && errors.Telephone.type === "minLength" && (
+        <p>Введите корректный номер</p>
+      )}
+      <input
         type="text"
         placeholder="Наименование ИП"
         name="IPName"
@@ -85,59 +157,6 @@ const RegistrationFormIP = () => {
       />
       {errors.OKED && errors.OKED.type === "required" && (
         <p>Обязательное поле</p>
-      )}
-      <Controller
-        as={InputMask}
-        control={control}
-        placeholder="Телефон"
-        mask="+375 (99) 999 99 99"
-        maskChar="_"
-        name="Telephone"
-        rules={{ required: true, pattern: /[0-9+()/\s/g]{19}/, minLength: 19 }}
-      />
-      {errors.Telephone && errors.Telephone.type === "required" && (
-        <p>Обязательное поле</p>
-      )}
-      {errors.Telephone && errors.Telephone.type === "pattern" && (
-        <p>Введите корректный номер</p>
-      )}
-      {errors.Telephone && errors.Telephone.type === "minLength" && (
-        <p>Введите корректный номер</p>
-      )}
-      <input
-        type="text"
-        placeholder="Электронный адрес"
-        name="Email"
-        ref={register({ required: true, pattern: /^\S+@\S+$/i })}
-      />
-      {errors.Email && errors.Email.type === "required" && (
-        <p>Обязательное поле</p>
-      )}
-      {errors.Email && errors.Email.type === "pattern" && (
-        <p>Введите правильный электронный адрес</p>
-      )}
-      <input
-        type="password"
-        placeholder="Пароль"
-        name="Password"
-        ref={register({
-          required: true,
-          maxLength: 15,
-          minLength: 5,
-          pattern: /[0-9a-zA-z]/,
-        })}
-      />
-      {errors.Password && errors.Password.type === "required" && (
-        <p>Обязательное поле</p>
-      )}
-      {errors.Password && errors.Password.type === "maxLength" && (
-        <p>От 5 до 15 символов латиницей и цифры</p>
-      )}
-      {errors.Password && errors.Password.type === "minLength" && (
-        <p>От 5 до 15 символов латиницей и цифры</p>
-      )}
-      {errors.Password && errors.Password.type === "pattern" && (
-        <p>От 5 до 15 символов латиницей и цифры</p>
       )}
       <button className="registration-ip-submit" type="submit">
         Зарегистрироваться

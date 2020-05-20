@@ -2,19 +2,24 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import "./AddServiceForm.scss";
 
+const addServiceFormURL = `http://altproduction.ru:8080`;
+
 const AddServiceForm = () => {
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => {
     console.log(data);
-    fetch(`http://altproduction.ru:8080`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        data: data,
-      }),
-    })
+    fetch(
+      { addServiceFormURL },
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          data: data,
+        }),
+      }
+    )
       .then((response) => response.json())
       .then((post) => {
         localStorage.setItem("JWB", post.result);

@@ -2,11 +2,13 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import "./SignInForm.scss";
 
+const signInURL = `http://altproduction.ru:8080`
+
 const SignInForm = () => {
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => {
     console.log(data);
-    fetch(`http://altproduction.ru:8080`, {
+    fetch({signInURL}, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

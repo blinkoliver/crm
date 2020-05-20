@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import AsyncSelect from "react-select/async";
 
+const selectCityURL = `http://altproduction.ru/rest/v1/city/`;
+
 const SelectCity = () => {
   const [inputValue, setInputValue] = useState({});
   const [result, setResult] = useState({});
@@ -17,17 +19,20 @@ const SelectCity = () => {
     if (!inputValue) {
       return callback([]);
     }
-    fetch(`http://altproduction.ru/rest/v1/city/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        city: `${inputValue}`,
-        limit: 7,
-        offset: 1,
-      }),
-    })
+    fetch(
+      { selectCityURL },
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          city: `${inputValue}`,
+          limit: 7,
+          offset: 1,
+        }),
+      }
+    )
       .then((response) => response.json())
       .then((posts) => {
         let results = posts.city;
@@ -54,7 +59,17 @@ const SelectCity = () => {
           valueContainer: () => ({
             height: "10vh",
             paddingLeft: "2vh",
-          })
+          }),
+          placeholder: () => ({
+            fontSize: "3vh",
+            marginTop: "10%",
+            color: "gray",
+          }),
+          singleValue: () => ({
+            color: "gray",
+            fontSize: "3vh",
+            marginTop: "3vh",
+          }),
         }}
         placeholder={"Город регистрации"}
         components={{
