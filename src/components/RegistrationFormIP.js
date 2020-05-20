@@ -9,12 +9,6 @@ const RegistrationFormIP = () => {
   const password = useRef({});
   password.current = watch("password", "");
 
-  // const onSubmit = async (data) => {
-  //   alert(JSON.stringify(data));
-  //   console.log(data);
-  //   console.log(errors);
-  // };
-
   const onSubmit = (data) => console.log(data);
   console.log(errors);
 
@@ -45,18 +39,23 @@ const RegistrationFormIP = () => {
           pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=\w*[0-9])\w{9,16}$/,
         })}
       />
-      {errors.password && errors.password.type === "required" && (
+      {errors.password === undefined ? (
         <p>
-          Обязательное поле <br /> От 9 до 15 символов латиницей и цифры
-          <br />
-          минимум 1 цифра 1 строчная и 1 заглавная буква
+          Пароль должен состоять из латинских букв и цифр (от 9 до 16 символов),
+          содержать хотя бы одну прописную и одну строчную букву, а также хотя
+          бы одну цифру.
         </p>
+      ) : (
+        <div style={{ display: "none" }}></div>
+      )}
+      {errors.password && errors.password.type === "required" && (
+        <p>Обязательное поле</p>
       )}
       {errors.password && errors.password.type === "pattern" && (
         <p>
-          От 9 до 15 символов латиницей и цифры
-          <br />
-          минимум 1 цифра 1 строчная и 1 заглавная буква
+          Пароль должен состоять из латинских букв и цифр (от 9 до 16 символов),
+          содержать хотя бы одну прописную и одну строчную букву, а также хотя
+          бы одну цифру.
         </p>
       )}
       <input
