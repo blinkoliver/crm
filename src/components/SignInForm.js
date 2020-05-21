@@ -29,7 +29,7 @@ const SignInForm = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <input
-          type="text"
+          type="email"
           placeholder="Электронный адрес"
           name="Email"
           ref={register({ required: true, pattern: /^\S+@\S+$/i })}

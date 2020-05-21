@@ -9,7 +9,7 @@
   display: block;
   flex-direction: row;
   width: 50%;
-  padding: 1vh;
+  padding: 0 1vh 0 1vh;
 }
 .registration .first-block .css-b8ldur-Input {
   position: relative;
@@ -19,6 +19,10 @@
 .registration .second-block {
   padding: 1vh;
   width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.registration .first-block form {
   display: flex;
   flex-direction: column;
 }
