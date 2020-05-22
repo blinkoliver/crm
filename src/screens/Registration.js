@@ -7,15 +7,52 @@ import RegistrationFormIP from "../components/RegistrationFormIP";
 import RegistrationFormUL from "../components/RegistrationFormUL";
 import { ownership } from "../constants/registration";
 import { reactSelectOwnershipStyle } from "../constants/componentsStyle";
+import { registrationURL } from "../constants/urls";
 import "./Registration.scss";
 
 const Registration = () => {
-  const { register, handleSubmit, errors, control, watch } = useForm();
+  const { register, handleSubmit, watch, errors, control } = useForm();
   const password = useRef({});
   password.current = watch("password", "");
 
   const onSubmit = (data) => {
-    console.log(data, errors);
+    console.log(data);
+    const updateData = {
+      email: data.email,
+      password: data.password,
+      phone: data.phone,
+      role_id: 1,
+      data: {
+        tupe: data.reactSelectOwnership.value,
+        ownershipForm: data.reactSelectOwnershipForm
+          ? data.reactSelectOwnershipForm.value
+          : "",
+        name: data.name,
+        unp: data.unp,
+        city: data.reactSelectCity ? data.reactSelectCity.value : "",
+        adress: data.adress,
+        oked: data.oked,
+        fio: data ? data.fio : "",
+      },
+    };
+    fetch(
+      { registrationURL },
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          updateData,
+        }),
+      }
+    )
+      .then((response) => response.json())
+      .then((post) => {
+        console.log(post);
+        localStorage.setItem("access_token", post.token);
+        document.cookie = post.refresh_token;
+      });
   };
 
   const [selectedValue, setSelectedValue] = useState({});
@@ -23,7 +60,7 @@ const Registration = () => {
   return (
     <div className="registration">
       <div className="first-block">
-        <form onSubmit={handleSubmit((data) => onSubmit(data))}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <input
             type="email"
             placeholder="Электронный адрес"
@@ -106,7 +143,6 @@ const Registration = () => {
             }
             onChange={([selected]) => {
               setSelectedValue(selected);
-              console.log(selected);
               return selected;
             }}
             control={control}
@@ -117,12 +153,20 @@ const Registration = () => {
             errors.reactSelectOwnership.type === "required" && (
               <p>Обязательное поле</p>
             )}
-          {(selectedValue.value === "Индивидуальный предприниматель" && (
-            <RegistrationFormIP/>
-          )) ||
-            (selectedValue.value === "Юридическое лицо" && (
-              <RegistrationFormUL />
-            ))}
+          {selectedValue.value === "Индивидуальный предприниматель" && (
+            <RegistrationFormIP
+              register={register}
+              errors={errors}
+              control={control}
+            />
+          )}
+          {selectedValue.value === "Юридическое лицо" && (
+            <RegistrationFormUL
+              register={register}
+              errors={errors}
+              control={control}
+            />
+          )}
         </form>
       </div>
     </div>

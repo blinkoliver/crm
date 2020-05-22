@@ -1,8 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import "./AddServiceForm.scss";
-
-const addServiceFormURL = `http://altproduction.ru:8080`;
+import {addServiceFormURL} from "../constants/urls"
 
 const AddServiceForm = () => {
   const { register, handleSubmit, errors } = useForm();

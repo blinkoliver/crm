@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import AsyncSelect from "react-select/async";
-
-const selectCityURL = `http://altproduction.ru/rest/v1/city/`;
+import { reactSelectCitiesStyle } from "../constants/componentsStyle";
+import {selectCityURL} from "../constants/urls"
 
 const SelectCity = () => {
   const [inputValue, setInputValue] = useState({});
@@ -12,8 +12,8 @@ const SelectCity = () => {
     const inputValue = newValue.replace(/\W/g, "");
     setInputValue(inputValue);
   };
-
-  console.log(inputValue, result);
+  
+  // console.log(inputValue, result)
 
   const loadOptions = (inputValue, callback) => {
     if (!inputValue) {
@@ -55,22 +55,7 @@ const SelectCity = () => {
         loadOptions={loadOptions}
         defaultOptions
         onInputChange={handleInputChange}
-        styles={{
-          valueContainer: () => ({
-            height: "10vh",
-            paddingLeft: "2vh",
-          }),
-          placeholder: () => ({
-            fontSize: "3vh",
-            marginTop: "10%",
-            color: "gray",
-          }),
-          singleValue: () => ({
-            color: "gray",
-            fontSize: "3vh",
-            marginTop: "3vh",
-          }),
-        }}
+        styles={reactSelectCitiesStyle}
         placeholder={"Город регистрации"}
         components={{
           IndicatorSeparator: () => null,

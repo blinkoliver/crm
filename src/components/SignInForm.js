@@ -1,8 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import "./SignInForm.scss";
-
-const signInURL = `http://altproduction.ru:8080`
+import {signInURL} from "../constants/urls"
 
 const SignInForm = () => {
   const { register, handleSubmit, errors } = useForm();
