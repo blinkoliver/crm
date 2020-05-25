@@ -42,7 +42,7 @@ const SelectCity = () => {
         setResult(cities);
       });
     };
-    httpGet(`/rest/v1/city/`);
+    httpGet(`rest/v1/city/`);
   };
 
   return (
