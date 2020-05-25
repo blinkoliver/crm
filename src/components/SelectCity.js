@@ -2,7 +2,8 @@ import React from "react";
 import { useState } from "react";
 import AsyncSelect from "react-select/async";
 import { reactSelectCitiesStyle } from "../constants/componentsStyle";
-import {selectCityURL} from "../constants/urls"
+import { hosting, selectCityPath } from "../constants/urls";
+import { Fetch } from "../utils";
 
 const SelectCity = () => {
   const [inputValue, setInputValue] = useState({});
@@ -12,40 +13,33 @@ const SelectCity = () => {
     const inputValue = newValue.replace(/\W/g, "");
     setInputValue(inputValue);
   };
-  
   // console.log(inputValue, result)
 
   const loadOptions = (inputValue, callback) => {
     if (!inputValue) {
       return callback([]);
     }
-    fetch(
-      { selectCityURL },
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          city: `${inputValue}`,
-          limit: 7,
-          offset: 1,
-        }),
-      }
-    )
-      .then((response) => response.json())
-      .then((posts) => {
-        let results = posts.city;
-        console.log(results);
-        let cities = results.map((element) => {
-          return {
-            value: `${element.type} ${element.city}, ${element.district} район, ${element.region}`,
-            label: `${element.type} ${element.city}, ${element.district} район, ${element.region}`,
-          };
-        });
-        callback(cities);
-        setResult(cities);
+    Fetch(`${hosting}${selectCityPath}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        city: `${inputValue}`,
+        limit: 7,
+        offset: 1,
+      }),
+    }).then((posts) => {
+      let results = posts.city;
+      let cities = results.map((element) => {
+        return {
+          value: `${element.city_id}`,
+          label: `${element.type} ${element.city}, ${element.district} район, ${element.region}`,
+        };
       });
+      callback(cities);
+      setResult(cities);
+    });
   };
 
   return (

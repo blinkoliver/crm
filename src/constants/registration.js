@@ -7,13 +7,13 @@ export const ownership = [
 ];
 
 export const ownershipForm = [
-  { value: "ОАО", label: "ОАО" },
-  { value: "ООО", label: "ООО" },
-  { value: "ЧУП", label: "ЧУП" },
-  { value: "ЧТУП", label: "ЧТУП" },
+  { value: 2, label: "ОАО" },
+  { value: 1, label: "ООО" },
+  { value: 3, label: "ЧУП" },
+  { value: 4, label: "ЧТУП" },
   {
-    value: "ИП (Иностранное предприятие)",
+    value: 0,
     label: "ИП (Иностранное предприятие)",
   },
-  { value: "ИНОЕ", label: "ИНОЕ" },
+  { value: 5, label: "ИНОЕ" },
 ];

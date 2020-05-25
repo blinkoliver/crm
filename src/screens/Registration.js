@@ -7,24 +7,28 @@ import RegistrationFormIP from "../components/RegistrationFormIP";
 import RegistrationFormUL from "../components/RegistrationFormUL";
 import { ownership } from "../constants/registration";
 import { reactSelectOwnershipStyle } from "../constants/componentsStyle";
-import { registrationURL } from "../constants/urls";
+import { hosting, registrationPath } from "../constants/urls";
+import { Fetch } from "../utils";
 import "./Registration.scss";
 
 const Registration = () => {
+  const [selectedValue, setSelectedValue] = useState({});
+  const [fetchError, setFetchError] = useState(false);
+
   const { register, handleSubmit, watch, errors, control } = useForm();
   const password = useRef({});
   password.current = watch("password", "");
 
   const onSubmit = (data) => {
-    console.log(data);
     const updateData = {
       email: data.email,
       password: data.password,
       phone: data.phone,
       role_id: 1,
+      fingerprint: "sdadasdsa",
       data: {
-        tupe: data.reactSelectOwnership.value,
-        ownershipForm: data.reactSelectOwnershipForm
+        type: data.reactSelectOwnership.value,
+        otype: data.reactSelectOwnershipForm
           ? data.reactSelectOwnershipForm.value
           : "",
         name: data.name,
@@ -35,27 +39,22 @@ const Registration = () => {
         fio: data ? data.fio : "",
       },
     };
-    fetch(
-      { registrationURL },
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          updateData,
-        }),
-      }
-    )
-      .then((response) => response.json())
+    Fetch(`${hosting}${registrationPath}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        updateData,
+      }),
+    })
       .then((post) => {
         console.log(post);
         localStorage.setItem("access_token", post.token);
-        document.cookie = post.refresh_token;
-      });
+        localStorage.setItem("refresh_token", post.refresh_token);
+      })
+      .catch(() => setFetchError(true));
   };
-
-  const [selectedValue, setSelectedValue] = useState({});
 
   return (
     <div className="registration">
@@ -168,6 +167,11 @@ const Registration = () => {
             />
           )}
         </form>
+        {fetchError ? (
+          <p>Пользователь с таким именем уже зарегистрирован</p>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

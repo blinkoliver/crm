@@ -1,28 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import "./AddServiceForm.scss";
-import {addServiceFormURL} from "../constants/urls"
 
 const AddServiceForm = () => {
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => {
     console.log(data);
-    fetch(
-      { addServiceFormURL },
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          data: data,
-        }),
-      }
-    )
-      .then((response) => response.json())
-      .then((post) => {
-        localStorage.setItem("JWB", post.result);
-      });
   };
   console.log(errors);
 
