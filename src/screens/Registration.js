@@ -36,11 +36,11 @@ const Registration = () => {
         city: data.reactSelectCity ? data.reactSelectCity.value : "",
         adress: data.adress,
         oked: data.oked,
-        fio: data ? data.fio : "",
+        full_name: data ? data.fio : "",
       },
     };
     const httpGet = (path) => {
-      Fetch(hosting / path, {
+      Fetch(`${hosting}/${path}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

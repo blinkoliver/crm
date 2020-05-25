@@ -13,14 +13,14 @@ const SelectCity = () => {
     const inputValue = newValue.replace(/\W/g, "");
     setInputValue(inputValue);
   };
-  console.log(inputValue, result)
+  console.log(inputValue, result);
 
   const loadOptions = (inputValue, callback) => {
     if (!inputValue) {
       return callback([]);
     }
     const httpGet = (path) => {
-      Fetch(hosting / path, {
+      Fetch(`${hosting}/${path}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

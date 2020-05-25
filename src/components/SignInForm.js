@@ -13,7 +13,7 @@ const SignInForm = () => {
       fingerprint: "sdadasdsa",
     };
     const httpGet = (path) => {
-      Fetch(hosting / path, {
+      Fetch(`${hosting}/${path}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
