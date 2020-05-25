@@ -7,7 +7,7 @@ import RegistrationFormIP from "../components/RegistrationFormIP";
 import RegistrationFormUL from "../components/RegistrationFormUL";
 import { ownership } from "../constants/registration";
 import { reactSelectOwnershipStyle } from "../constants/componentsStyle";
-import { hosting, registrationPath } from "../constants/urls";
+import { hosting } from "../constants/urls";
 import { Fetch } from "../utils";
 import "./Registration.scss";
 
@@ -39,21 +39,24 @@ const Registration = () => {
         fio: data ? data.fio : "",
       },
     };
-    Fetch(`${hosting}${registrationPath}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        updateData,
-      }),
-    })
-      .then((post) => {
-        console.log(post);
-        localStorage.setItem("access_token", post.token);
-        localStorage.setItem("refresh_token", post.refresh_token);
+    const httpGet = (path) => {
+      Fetch(hosting / path, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          updateData,
+        }),
       })
-      .catch(() => setFetchError(true));
+        .then((post) => {
+          console.log(post);
+          localStorage.setItem("access_token", post.token);
+          localStorage.setItem("refresh_token", post.refresh_token);
+        })
+        .catch(() => setFetchError(true));
+    };
+    httpGet(`rest/account/create/`);
   };
 
   return (

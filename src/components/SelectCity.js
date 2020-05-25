@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import AsyncSelect from "react-select/async";
 import { reactSelectCitiesStyle } from "../constants/componentsStyle";
-import { hosting, selectCityPath } from "../constants/urls";
+import { hosting } from "../constants/urls";
 import { Fetch } from "../utils";
 
 const SelectCity = () => {
@@ -13,33 +13,36 @@ const SelectCity = () => {
     const inputValue = newValue.replace(/\W/g, "");
     setInputValue(inputValue);
   };
-  // console.log(inputValue, result)
+  console.log(inputValue, result)
 
   const loadOptions = (inputValue, callback) => {
     if (!inputValue) {
       return callback([]);
     }
-    Fetch(`${hosting}${selectCityPath}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        city: `${inputValue}`,
-        limit: 7,
-        offset: 1,
-      }),
-    }).then((posts) => {
-      let results = posts.city;
-      let cities = results.map((element) => {
-        return {
-          value: `${element.city_id}`,
-          label: `${element.type} ${element.city}, ${element.district} район, ${element.region}`,
-        };
+    const httpGet = (path) => {
+      Fetch(hosting / path, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          city: `${inputValue}`,
+          limit: 7,
+          offset: 1,
+        }),
+      }).then((posts) => {
+        let results = posts.city;
+        let cities = results.map((element) => {
+          return {
+            value: `${element.city_id}`,
+            label: `${element.type} ${element.city}, ${element.district} район, ${element.region}`,
+          };
+        });
+        callback(cities);
+        setResult(cities);
       });
-      callback(cities);
-      setResult(cities);
-    });
+    };
+    httpGet(`/rest/v1/city/`);
   };
 
   return (
