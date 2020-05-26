@@ -7,8 +7,7 @@ import RegistrationFormIP from "../components/RegistrationFormIP";
 import RegistrationFormUL from "../components/RegistrationFormUL";
 import { ownership } from "../constants/registration";
 import { reactSelectOwnershipStyle } from "../constants/componentsStyle";
-import { hosting } from "../constants/urls";
-import { Fetch } from "../utils";
+import { httpPost } from "../utils";
 import "./Registration.scss";
 
 const Registration = () => {
@@ -39,24 +38,13 @@ const Registration = () => {
         full_name: data ? data.fio : "",
       },
     };
-    const httpGet = (path) => {
-      Fetch(`${hosting}/${path}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          updateData,
-        }),
+    httpPost(`rest/account/create/`, updateData)
+      .then((post) => {
+        console.log(post);
+        localStorage.setItem("access_token", post.token);
+        localStorage.setItem("refresh_token", post.refresh_token);
       })
-        .then((post) => {
-          console.log(post);
-          localStorage.setItem("access_token", post.token);
-          localStorage.setItem("refresh_token", post.refresh_token);
-        })
-        .catch(() => setFetchError(true));
-    };
-    httpGet(`rest/account/create/`);
+      .catch(() => setFetchError(true));
   };
 
   return (
@@ -155,14 +143,14 @@ const Registration = () => {
             errors.reactSelectOwnership.type === "required" && (
               <p>Обязательное поле</p>
             )}
-          {selectedValue.value === "Индивидуальный предприниматель" && (
+          {selectedValue.value === 0 && (
             <RegistrationFormIP
               register={register}
               errors={errors}
               control={control}
             />
           )}
-          {selectedValue.value === "Юридическое лицо" && (
+          {selectedValue.value === 1 && (
             <RegistrationFormUL
               register={register}
               errors={errors}

@@ -1,8 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import "./SignInForm.scss";
-import { hosting } from "../constants/urls";
-import { Fetch } from "../utils";
+import { httpPost } from "../utils";
 
 const SignInForm = () => {
   const { register, handleSubmit, errors } = useForm();
@@ -12,22 +11,11 @@ const SignInForm = () => {
       password: data.password,
       fingerprint: "sdadasdsa",
     };
-    const httpGet = (path) => {
-      Fetch(`${hosting}/${path}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          updateData,
-        }),
-      }).then((post) => {
-        console.log(post);
-        localStorage.setItem("access_token", post.token);
-        localStorage.setItem("refresh_token", post.refresh_token);
-      });
-    };
-    httpGet(`rest/account/login`);
+    httpPost(`rest/account/login`, updateData).then((post) => {
+      console.log(post);
+      localStorage.setItem("access_token", post.token);
+      localStorage.setItem("refresh_token", post.refresh_token);
+    });
   };
 
   return (
