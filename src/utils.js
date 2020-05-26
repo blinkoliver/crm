@@ -1,20 +1,11 @@
 import { hosting } from "../src/constants/urls";
 
-export const Fetch = (url, params) => {
-  return fetch(url).then((response) => {
-    if (response.status >= 400 && response.status < 600) {
-      throw new Error("Bad response from server");
-    }
-    return response.json();
-  });
-};
-
 export const httpGet = (path) => {
-  return Fetch(`${hosting}/${path}`).then(awaitForJsonResponse);
+  return fetch(`${hosting}/${path}`).then(awaitForJsonResponse);
 };
 
 export const httpPost = (path, params) => {
-  return Fetch(`${hosting}/${path}`, {
+  return fetch(`${hosting}/${path}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
