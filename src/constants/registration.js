@@ -1,5 +1,5 @@
 export const ownership = [
-  { value: 1, label: "Юридическое лицо" },
+  { value: 7, label: "Юридическое лицо" },
   { value: 0, label: "Индивидуальный предприниматель" },
 ];
 

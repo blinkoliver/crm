@@ -36,31 +36,6 @@ const SelectCity = () => {
         setResult(cities);
       })
       .catch((err) => console.log(result));
-
-    // const httpPost = (path) => {
-    //   Fetch(`${hosting}/${path}`, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       city: `${inputValue}`,
-    //       limit: 7,
-    //       offset: 1,
-    //     }),
-    //   })
-    //   .then((posts) => {
-    //     let results = posts.city;
-    //     let cities = results.map((element) => {
-    //       return {
-    //         value: `${element.city_id}`,
-    //         label: `${element.type} ${element.city}, ${element.district} район, ${element.region}`,
-    //       };
-    //     });
-    //     callback(cities);
-    //     setResult(cities);
-    //   });
-    // };
   };
 
   return (

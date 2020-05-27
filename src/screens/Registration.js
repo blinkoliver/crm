@@ -8,6 +8,7 @@ import RegistrationFormUL from "../components/RegistrationFormUL";
 import { ownership } from "../constants/registration";
 import { reactSelectOwnershipStyle } from "../constants/componentsStyle";
 import { httpPost } from "../utils";
+import { _getFingerprint } from "../fingerprint";
 import "./Registration.scss";
 
 const Registration = () => {
@@ -18,18 +19,27 @@ const Registration = () => {
   const password = useRef({});
   password.current = watch("password", "");
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+
+    const fingerprint = await _getFingerprint()
+    console.log(fingerprint)
+
+    const setSelect = (valueOwnership, valueOwnershipForm) =>
+      valueOwnership === 0 ? 0 : valueOwnershipForm;
+
     const updateData = {
       email: data.email,
       password: data.password,
       phone: data.phone,
       role_id: 1,
-      fingerprint: "sdadasdsa",
+      fingerprint: fingerprint,
       data: {
-        type: data.reactSelectOwnership.value,
-        otype: data.reactSelectOwnershipForm
-          ? data.reactSelectOwnershipForm.value
-          : "",
+        otype: setSelect(
+          data.reactSelectOwnership.value,
+          data.reactSelectOwnershipForm
+            ? data.reactSelectOwnershipForm.value
+            : ""
+        ),
         name: data.name,
         unp: data.unp,
         city: data.reactSelectCity ? data.reactSelectCity.value : "",
@@ -46,7 +56,6 @@ const Registration = () => {
       })
       .catch(() => setFetchError(true));
   };
-
   return (
     <div className="registration">
       <div className="first-block">
@@ -150,7 +159,7 @@ const Registration = () => {
               control={control}
             />
           )}
-          {selectedValue.value === 1 && (
+          {selectedValue.value === 7 && (
             <RegistrationFormUL
               register={register}
               errors={errors}

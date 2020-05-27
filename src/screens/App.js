@@ -6,6 +6,7 @@ import Registration from "../screens/Registration";
 import SignIn from "../screens/SignIn";
 import MyServices from "../screens/MyServices";
 import MyClients from "../screens/MyCliets";
+import MyStaff from "./MyStaff";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path={"/signIn"} component={SignIn} />
           <Route path={"/myServices"} component={MyServices} />
           <Route path={"/myClients"} component={MyClients} />
+          <Route path={"/myStaff"} component={MyStaff} />
         </main>
         <footer></footer>
       </div>

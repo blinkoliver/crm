@@ -52,16 +52,12 @@ const RegistrationFormIP = (props) => {
       <Controller
         as={<SelectCity />}
         control={props.control}
-        rules={{ required: true }}
+        rules={{ required: false }}
         onChange={([selected]) => {
           return selected;
         }}
         name="reactSelectRegistrationCity"
       />
-      {props.errors.reactSelectRegistrationCity &&
-        props.errors.reactSelectRegistrationCity.type === "required" && (
-          <p>Обязательное поле</p>
-        )}
       <input
         type="text"
         placeholder="Адрес регистрации"
@@ -74,20 +70,20 @@ const RegistrationFormIP = (props) => {
       <input
         type="text"
         placeholder="ОКЭД"
-        name="OKED"
+        name="oked"
         ref={props.register({
           required: true,
           pattern: /[0-9]{5}/,
           maxLength: 5,
         })}
       />
-      {props.errors.OKED && props.errors.OKED.type === "required" && (
+      {props.errors.oked && props.errors.oked.type === "required" && (
         <p>Обязательное поле</p>
       )}
-      {props.errors.OKED && props.errors.OKED.type === "pattern" && (
+      {props.errors.oked && props.errors.oked.type === "pattern" && (
         <p>Нужно 5 цифр</p>
       )}
-      {props.errors.OKED && props.errors.OKED.type === "maxLength" && (
+      {props.errors.oked && props.errors.oked.type === "maxLength" && (
         <p>Нужно 5 цифр</p>
       )}
       <button className="registration-ip-submit" type="submit">

@@ -59,58 +59,54 @@ const RegistrationFormUL = (props) => {
         placeholder="УНП"
         mask="999 999 999"
         maskChar="_"
-        name="UNP"
+        name="unp"
         rules={{ required: true, minLength: 11, pattern: /[0-9,/\s/g]{11}/ }}
         style={{ marginBottom: "2vh" }}
       />
-      {props.errors.UNP && props.errors.UNP.type === "required" && (
+      {props.errors.unp && props.errors.unp.type === "required" && (
         <p>Обязательное поле</p>
       )}
-      {props.errors.UNP && props.errors.UNP.type === "minLength" && (
+      {props.errors.unp && props.errors.unp.type === "minLength" && (
         <p>УНП должен состоять из 9 цифр</p>
       )}
-      {props.errors.UNP && props.errors.UNP.type === "pattern" && (
+      {props.errors.unp && props.errors.unp.type === "pattern" && (
         <p>УНП должен состоять из 9 цифр</p>
       )}
       <Controller
         as={<SelectCity />}
         control={props.control}
-        rules={{ required: true }}
+        rules={{ required: false }}
         onChange={([selected]) => {
           return selected;
         }}
         name="reactSelectRegistrationCity"
       />
-      {props.errors.reactSelectRegistrationCity &&
-        props.errors.reactSelectRegistrationCity.type === "required" && (
-          <p>Обязательное поле</p>
-        )}
       <input
         type="text"
         placeholder="Адрес регистрации"
-        name="Adress"
+        name="adress"
         ref={props.register({ required: true, maxLength: 100 })}
       />
-      {props.errors.Adress && props.errors.Adress.type === "required" && (
+      {props.errors.adress && props.errors.adress.type === "required" && (
         <p>Обязательное поле</p>
       )}
       <input
         type="text"
         placeholder="ОКЭД"
-        name="OKED"
+        name="oked"
         ref={props.register({
           required: true,
           pattern: /[0-9]{5}/,
           maxLength: 5,
         })}
       />
-      {props.errors.OKED && props.errors.OKED.type === "required" && (
+      {props.errors.oked && props.errors.oked.type === "required" && (
         <p>Обязательное поле</p>
       )}
-      {props.errors.OKED && props.errors.OKED.type === "pattern" && (
+      {props.errors.oked && props.errors.oked.type === "pattern" && (
         <p>Нужно 5 цифр</p>
       )}
-      {props.errors.OKED && props.errors.OKED.type === "maxLength" && (
+      {props.errors.oked && props.errors.oked.type === "maxLength" && (
         <p>Нужно 5 цифр</p>
       )}
       <input
