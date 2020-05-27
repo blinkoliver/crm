@@ -20,9 +20,7 @@ const Registration = () => {
   password.current = watch("password", "");
 
   const onSubmit = async (data) => {
-
-    const fingerprint = await _getFingerprint()
-    console.log(fingerprint)
+    const fingerprint = await _getFingerprint();
 
     const setSelect = (valueOwnership, valueOwnershipForm) =>
       valueOwnership === 0 ? 0 : valueOwnershipForm;
@@ -42,12 +40,13 @@ const Registration = () => {
         ),
         name: data.name,
         unp: data.unp,
-        city: data.reactSelectCity ? data.reactSelectCity.value : "",
+        city_id: data.reactSelectCity ? data.reactSelectCity.value : "",
         adress: data.adress,
         oked: data.oked,
-        full_name: data ? data.fio : "",
+        full_name: data.fio === undefined ? "" : data.fio,
       },
     };
+    console.log(updateData);
     httpPost(`rest/account/create/`, updateData)
       .then((post) => {
         console.log(post);
