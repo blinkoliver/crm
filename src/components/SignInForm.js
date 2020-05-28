@@ -1,15 +1,18 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { _getFingerprint } from "../fingerprint";
 import "./SignInForm.scss";
 import { httpPost } from "../utils";
 
-const SignInForm = () => {
+const SignInForm = async() => {
+  const fingerprint = await _getFingerprint();
+
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => {
     const updateData = {
       email: data.email,
       password: data.password,
-      fingerprint: "sdadasdsa",
+      fingerprint: fingerprint,
     };
     httpPost(`rest/account/login`, updateData).then((post) => {
       console.log(post);

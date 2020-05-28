@@ -4,7 +4,7 @@ export const services = [
     executor: "Techservice",
     price: "2300 USD",
     status: "Active",
-    taskName: "Research cleanpaste",
+    taskName: "Research",
     date: "22.02.19",
   },
   {
@@ -28,7 +28,7 @@ export const services = [
     executor: "Techservice",
     price: "2300 USD",
     status: "Active",
-    taskName: "Research cleanpaste",
+    taskName: "Cleanpaste",
     date: "22.02.19",
   },
   {
@@ -36,7 +36,7 @@ export const services = [
     executor: "Techservice",
     price: "1980 USD",
     status: "Passive",
-    taskName: "Toothpaste research",
+    taskName: "Tooth research",
     date: "22.02.19",
   },
   {
@@ -44,7 +44,7 @@ export const services = [
     executor: "Techservice",
     price: "1900 USD",
     status: "Active",
-    taskName: "Research toothpaste",
+    taskName: "Research tooth",
     date: "22.02.19",
   },
   {
@@ -60,7 +60,7 @@ export const services = [
     executor: "Techservice",
     price: "1980 USD",
     status: "Passive",
-    taskName: "Toothpaste research",
+    taskName: "Toothpastere",
     date: "22.02.19",
   },
   {
@@ -68,7 +68,7 @@ export const services = [
     executor: "Techservice",
     price: "1900 USD",
     status: "Active",
-    taskName: "Research toothpaste",
+    taskName: "Res toothpaste",
     date: "22.02.19",
   },
 ];

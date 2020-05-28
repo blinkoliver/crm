@@ -26,6 +26,7 @@ const MyServices = () => {
 
       {services.map((element) => (
         <Service
+          key={element.taskName}
           date={element.date}
           taskName={element.taskName}
           price={element.price}

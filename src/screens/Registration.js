@@ -1,5 +1,4 @@
-import React, { useRef } from "react";
-import { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import InputMask from "react-input-mask";
 import Select from "react-select";

@@ -3,6 +3,19 @@ export const ownership = [
   { value: 0, label: "Индивидуальный предприниматель" },
 ];
 
+export const clientOwnership = [
+  { value: 2, label: "Юридическое лицо" },
+  { value: 1, label: "Индивидуальный предприниматель" },
+  { value: 0, label: "Физическое лицо" },
+];
+
+export const clientDocument = [
+  { value: 0, label: "Паспорт" },
+  { value: 1, label: "Вид на жительство" },
+  { value: 2, label: "Паспорт иностранного гражданина" },
+  { value: 2, label: "Иное" },
+];
+
 export const ownershipForm = [
   { value: 1, label: "ООО" },
   { value: 2, label: "ОАО" },
