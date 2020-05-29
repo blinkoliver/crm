@@ -38,9 +38,9 @@ const Registration = () => {
             : ""
         ),
         name: data.name,
-        unp: data.unp,
+        unp: data.unp.replace(/\s+/g, ""),
         city_id: data.reactSelectCity ? data.reactSelectCity.value : "",
-        adress: data.adress,
+        address: data.address,
         oked: data.oked,
         full_name: data.fio === undefined ? "" : data.fio,
       },

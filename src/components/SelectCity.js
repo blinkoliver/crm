@@ -4,13 +4,14 @@ import AsyncSelect from "react-select/async";
 import { reactSelectCitiesStyle } from "../constants/componentsStyle";
 import { httpPost } from "../utils";
 
-const SelectCity = () => {
+const SelectCity = (props) => {
   const [inputValue, setInputValue] = useState({});
   const [result, setResult] = useState({});
 
   console.log(inputValue);
 
   const handleInputChange = (newValue) => {
+    props.onChange(newValue);
     const inputValue = newValue.replace(/\W/g, "");
     setInputValue(inputValue);
   };

@@ -61,10 +61,10 @@ const RegistrationFormIP = (props) => {
       <input
         type="text"
         placeholder="Адрес регистрации"
-        name="adress"
+        name="address"
         ref={props.register({ required: true, maxLength: 100 })}
       />
-      {props.errors.adress && props.errors.adress.type === "required" && (
+      {props.errors.address && props.errors.address.type === "required" && (
         <p>Обязательное поле</p>
       )}
       <input

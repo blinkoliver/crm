@@ -73,7 +73,7 @@ const RegistrationFormUL = (props) => {
         <p>УНП должен состоять из 9 цифр</p>
       )}
       <Controller
-        as={<SelectCity />}
+        as={<SelectCity/>}
         control={props.control}
         rules={{ required: false }}
         onChange={([selected]) => {
@@ -84,10 +84,10 @@ const RegistrationFormUL = (props) => {
       <input
         type="text"
         placeholder="Адрес регистрации"
-        name="adress"
+        name="address"
         ref={props.register({ required: true, maxLength: 100 })}
       />
-      {props.errors.adress && props.errors.adress.type === "required" && (
+      {props.errors.address && props.errors.address.type === "required" && (
         <p>Обязательное поле</p>
       )}
       <input
