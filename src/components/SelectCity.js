@@ -16,26 +16,29 @@ const SelectCity = (props) => {
   };
 
   const loadOptions = (inputValue, callback) => {
-    if (!inputValue) {
+    if (inputValue) {
       return callback([
+        { value: "zalupinsk", label: "sdfsdf" },
+        { value: "molo", label: "molo" },
       ]);
     }
     httpPost(`rest/v1/city/`, {
       city: `${inputValue}`,
       limit: 7,
       offset: 1,
-    }).then((posts) => {
-      let results = posts.city;
-      let cities = results.map((element) => {
-        return {
-          value: `${element.city_id}`,
-          label: `${element.type} ${element.city}, ${element.district} район, ${element.region}`,
-        };
-      });
-      callback(cities);
-      setResult(cities);
     })
-    .catch((err) => console.log(result));
+      .then((posts) => {
+        let results = posts.city;
+        let cities = results.map((element) => {
+          return {
+            value: `${element.city_id}`,
+            label: `${element.type} ${element.city}, ${element.district} район, ${element.region}`,
+          };
+        });
+        callback(cities);
+        setResult(cities);
+      })
+      .catch((err) => console.log(result));
   };
 
   return (
