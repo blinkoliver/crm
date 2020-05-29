@@ -17,7 +17,7 @@ const SignInForm = () => {
       fingerprint: fingerprint,
     };
     console.log(updateData)
-    httpPost(`rest/account/login`, updateData).then((post) => {
+    httpPost(`rest/account/login/`, updateData).then((post) => {
       console.log(post);
       localStorage.setItem("access_token", post.token);
       localStorage.setItem("refresh_token", post.refresh_token);
@@ -44,22 +44,14 @@ const SignInForm = () => {
         name="password"
         ref={register({
           required: true,
-          maxLength: 15,
-          minLength: 5,
-          pattern: /[0-9a-zA-z]/,
+          pattern: /^(?=.*[A-Z][А-Я])(?=.*[a-z][а-я])(?=\w*[0-9])\w{9,16}$/,
         })}
       />
-      {errors.Password && errors.Password.type === "required" && (
+      {errors.password && errors.password.type === "required" && (
         <p>Обязательное поле</p>
       )}
-      {errors.Password && errors.Password.type === "maxLength" && (
-        <p>От 5 до 15 символов латиницей и цифры</p>
-      )}
-      {errors.Password && errors.Password.type === "minLength" && (
-        <p>От 5 до 15 символов латиницей и цифры</p>
-      )}
-      {errors.Password && errors.Password.type === "pattern" && (
-        <p>От 5 до 15 символов латиницей и цифры</p>
+      {errors.password && errors.password.type === "pattern" && (
+        <p>От 9 до 16 букв и цифры</p>
       )}
       <button className="sign-in-submit" type="submit">
         Войти
