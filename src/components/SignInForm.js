@@ -4,16 +4,19 @@ import { _getFingerprint } from "../fingerprint";
 import "./SignInForm.scss";
 import { httpPost } from "../utils";
 
-const SignInForm = async() => {
-  const fingerprint = await _getFingerprint();
+const SignInForm = () => {
 
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => {
+
+  const onSubmit = async (data) => {
+    const fingerprint = await _getFingerprint();
+
     const updateData = {
       email: data.email,
       password: data.password,
       fingerprint: fingerprint,
     };
+    console.log(updateData)
     httpPost(`rest/account/login`, updateData).then((post) => {
       console.log(post);
       localStorage.setItem("access_token", post.token);
