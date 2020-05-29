@@ -44,7 +44,7 @@ const SignInForm = () => {
         name="password"
         ref={register({
           required: true,
-          pattern: /^(?=.*[A-Z][А-Я])(?=.*[a-z][а-я])(?=\w*[0-9])\w{9,16}$/,
+          pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=\w*[0-9])\w{9,16}$/,
         })}
       />
       {errors.password && errors.password.type === "required" && (
