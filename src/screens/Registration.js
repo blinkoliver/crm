@@ -8,13 +8,14 @@ import { ownership } from "../constants/registration";
 import { reactSelectOwnershipStyle } from "../constants/componentsStyle";
 import { httpPost } from "../utils";
 import { _getFingerprint } from "../fingerprint";
+import {testValues} from "../constants/testValues"
 import "./Registration.scss";
 
 const Registration = () => {
   const [selectedValue, setSelectedValue] = useState({});
   const [fetchError, setFetchError] = useState(false);
 
-  const { register, handleSubmit, watch, errors, control } = useForm();
+  const { register, handleSubmit, watch, errors, control,  } = useForm({ defaultValues: testValues });
   const password = useRef({});
   password.current = watch("password", "");
 

@@ -17,7 +17,7 @@ const SelectCity = (props) => {
 
   const loadOptions = (inputValue, callback) => {
     if (!inputValue) {
-      return callback([]);
+      return callback([ {value: "4324", label: "sdfsdf"}, { value: "2131", label: "molo"}]);
     }
     httpPost(`rest/v1/city/`, {
       city: `${inputValue}`,
@@ -28,7 +28,7 @@ const SelectCity = (props) => {
         let results = posts.city;
         let cities = results.map((element) => {
           return {
-            value: `${element.city_id}`,
+            value: `${element.id}`,
             label: `${element.type} ${element.city}, ${element.district} район, ${element.region}`,
           };
         });
