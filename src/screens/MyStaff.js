@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import AsyncSelect from "react-select/async";
 import { reactSelectCitiesStyle } from "../constants/componentsStyle";
 import { httpGet } from "../utils";
 
-const MyStaff = () => {
+const MyStaff = (props) => {
   const [inputValue, setInputValue] = useState({});
   const [result, setResult] = useState({});
 
