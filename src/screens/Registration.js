@@ -39,13 +39,13 @@ const Registration = () => {
         ),
         name: data.name,
         unp: data.unp.replace(/\s+/g, ""),
-        city_id: data.reactSelectCity ? data.reactSelectCity.value : "",
+        city_id: data.reactSelectRegistrationCity,
         address: data.address,
         oked: data.oked,
         full_name: data.fio === undefined ? "" : data.fio,
       },
     };
-    console.log(updateData);
+    console.log(data, updateData);
     httpPost(`rest/account/create/`, updateData)
       .then((post) => {
         console.log(post);
