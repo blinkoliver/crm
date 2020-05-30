@@ -8,14 +8,19 @@ import { ownership } from "../constants/registration";
 import { reactSelectOwnershipStyle } from "../constants/componentsStyle";
 import { httpPost } from "../utils";
 import { _getFingerprint } from "../fingerprint";
-import {testValues} from "../constants/testValues"
+import { testValues } from "../constants/testValues";
 import "./Registration.scss";
+import { connect } from "react-redux";
+import { getUserInfo } from "../actions/getUserInfo";
+
 
 const Registration = () => {
   const [selectedValue, setSelectedValue] = useState({});
   const [fetchError, setFetchError] = useState(false);
 
-  const { register, handleSubmit, watch, errors, control,  } = useForm({ defaultValues: testValues });
+  const { register, handleSubmit, watch, errors, control } = useForm({
+    defaultValues: testValues,
+  });
   const password = useRef({});
   password.current = watch("password", "");
 
@@ -49,9 +54,9 @@ const Registration = () => {
     console.log(data, updateData);
     httpPost(`rest/account/create/`, updateData)
       .then((post) => {
-        console.log(post);
         localStorage.setItem("access_token", post.token);
         localStorage.setItem("refresh_token", post.refresh_token);
+        this.props.getUserInfo();
       })
       .catch(() => setFetchError(true));
   };
@@ -104,9 +109,9 @@ const Registration = () => {
           />
           {errors.password === undefined ? (
             <p>
-              Пароль должен состоять из букв и цифр (от 9 до 16
-              символов), содержать хотя бы одну прописную и одну строчную букву,
-              а также хотя бы одну цифру.
+              Пароль должен состоять из букв и цифр (от 9 до 16 символов),
+              содержать хотя бы одну прописную и одну строчную букву, а также
+              хотя бы одну цифру.
             </p>
           ) : (
             errors.password &&
@@ -114,9 +119,9 @@ const Registration = () => {
           )}
           {errors.password && errors.password.type === "pattern" && (
             <p>
-              Пароль должен состоять из букв и цифр (от 9 до 16
-              символов), содержать хотя бы одну прописную и одну строчную букву,
-              а также хотя бы одну цифру.
+              Пароль должен состоять из букв и цифр (от 9 до 16 символов),
+              содержать хотя бы одну прописную и одну строчную букву, а также
+              хотя бы одну цифру.
             </p>
           )}
           <input
@@ -167,7 +172,7 @@ const Registration = () => {
           )}
         </form>
         {fetchError ? (
-          <p>Пользователь с таким именем уже зарегистрирован</p>
+          <p>Ошибка с сервера скорее всего такой пользователь есть</p>
         ) : (
           <></>
         )}
@@ -175,4 +180,12 @@ const Registration = () => {
     </div>
   );
 };
-export default Registration;
+
+const mapStateToProps = (state) => ({
+  username: state.username,
+});
+const mapDispatchToProps = (dispatch) => ({
+  getUserInfo: () => dispatch(getUserInfo()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Registration);

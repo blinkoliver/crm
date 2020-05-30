@@ -6,10 +6,11 @@ import thunk from 'redux-thunk';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "./index.css";
 import App from "../src/screens/App";
-import reducer from "../src/reducers/username"
+import reducer from "../src/reducers/getUserInfo"
 import * as serviceWorker from "./serviceWorker";
 
 const store = createStore(reducer, applyMiddleware(thunk));
+console.log(store)
 
 ReactDOM.render(
   <Provider store={store}>

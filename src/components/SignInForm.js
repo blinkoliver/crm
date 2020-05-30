@@ -1,11 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { _getFingerprint } from "../fingerprint";
+import { connect } from "react-redux";
 import "./SignInForm.scss";
 import { httpPost } from "../utils";
+import { getUserInfo } from "../actions/getUserInfo";
 
 const SignInForm = () => {
-
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = async (data) => {
@@ -16,11 +17,11 @@ const SignInForm = () => {
       password: data.password,
       fingerprint: fingerprint,
     };
-    console.log(updateData)
     httpPost(`rest/account/login/`, updateData).then((post) => {
       console.log(post);
       localStorage.setItem("access_token", post.token);
       localStorage.setItem("refresh_token", post.refresh_token);
+      this.props.getUserInfo();
     });
   };
 
@@ -59,4 +60,12 @@ const SignInForm = () => {
     </form>
   );
 };
-export default SignInForm;
+
+const mapStateToProps = (state) => ({
+  username: state.username,
+});
+const mapDispatchToProps = (dispatch) => ({
+  getUserInfo: () => dispatch(getUserInfo()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);

@@ -1,7 +1,13 @@
 import { hosting } from "../src/constants/urls";
 
 export const httpGet = (path) => {
-  return fetch(`${hosting}/${path}`).then(awaitForJsonResponse);
+  return fetch(`${hosting}/${path}`,{
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      'authorization': localStorage.getItem("access_token")
+    }
+  }).then(awaitForJsonResponse);
 };
 
 export const httpPost = (path, params) => {
