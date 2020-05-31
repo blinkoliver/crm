@@ -1,5 +1,5 @@
 const initialState = {
-  userInfo: [],
+  userInfo: {},
 };
 const userInfo = (state = initialState, action) => {
   switch (action.type) {

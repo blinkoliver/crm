@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../components/Header";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route,useHistory, withRouter  } from "react-router-dom";
 import "./App.scss";
 import { connect } from "react-redux";
 import Registration from "../screens/Registration";
@@ -11,12 +11,17 @@ import MyStaff from "./MyStaff";
 import { getUserInfo } from "../actions/getUserInfo";
 
 const App = () => {
-  if (localStorage.access_token > 0) {
-    this.props.getUserInfo();
+  let history = useHistory();
+
+  localStorage.setItem("access_token", "");
+
+  if (localStorage.getItem("access_token").length > 10) {
+    getUserInfo();
+  } else {
+    history.push("/signIn");
   }
-  console.log(localStorage.access_token);
+
   return (
-    <Router>
       <div className="app">
         <Header />
         <main className="main">
@@ -28,7 +33,6 @@ const App = () => {
         </main>
         <footer></footer>
       </div>
-    </Router>
   );
 };
 
@@ -39,4 +43,4 @@ const mapDispatchToProps = (dispatch) => ({
   getUserInfo: () => dispatch(getUserInfo()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

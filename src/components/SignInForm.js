@@ -20,8 +20,7 @@ const SignInForm = () => {
     httpPost(`rest/account/login/`, updateData).then((post) => {
       console.log(post);
       localStorage.setItem("access_token", post.token);
-      localStorage.setItem("refresh_token", post.refresh_token);
-      this.props.getUserInfo();
+      getUserInfo();
     });
   };
 
@@ -61,11 +60,8 @@ const SignInForm = () => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  username: state.username,
-});
 const mapDispatchToProps = (dispatch) => ({
   getUserInfo: () => dispatch(getUserInfo()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);
+export default connect(null, mapDispatchToProps)(SignInForm);

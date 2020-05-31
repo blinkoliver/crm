@@ -13,7 +13,6 @@ import "./Registration.scss";
 import { connect } from "react-redux";
 import { getUserInfo } from "../actions/getUserInfo";
 
-
 const Registration = () => {
   const [selectedValue, setSelectedValue] = useState({});
   const [fetchError, setFetchError] = useState(false);
@@ -55,8 +54,7 @@ const Registration = () => {
     httpPost(`rest/account/create/`, updateData)
       .then((post) => {
         localStorage.setItem("access_token", post.token);
-        localStorage.setItem("refresh_token", post.refresh_token);
-        this.props.getUserInfo();
+        getUserInfo();
       })
       .catch(() => setFetchError(true));
   };
@@ -181,11 +179,8 @@ const Registration = () => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  username: state.username,
-});
 const mapDispatchToProps = (dispatch) => ({
   getUserInfo: () => dispatch(getUserInfo()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Registration);
+export default connect(null, mapDispatchToProps)(Registration);

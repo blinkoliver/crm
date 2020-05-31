@@ -1,8 +1,8 @@
-import { httpGet } from "../utils";
+import { httpAuthorized } from "../utils";
 
 export const getUserInfo = () => {
   return (dispatch) => {
-    httpGet("rest/account/get-user").then((userInfo) =>
+    httpAuthorized("rest/account/get-user").then((userInfo) =>
       dispatch(setUserInfo(userInfo))
     );
   };
