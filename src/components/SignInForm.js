@@ -1,12 +1,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { _getFingerprint } from "../fingerprint";
+import { BrowserRouter as Router, Route, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import "./SignInForm.scss";
 import { httpPost } from "../utils";
 import { getUserInfo } from "../actions/getUserInfo";
 
-const SignInForm = () => {
+const SignInForm = (props) => {
+  let history = useHistory();
+
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = async (data) => {
@@ -22,6 +25,7 @@ const SignInForm = () => {
       localStorage.setItem("access_token", post.token);
       getUserInfo();
     });
+    history.push("/");
   };
 
   return (

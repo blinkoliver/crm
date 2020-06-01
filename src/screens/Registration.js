@@ -13,7 +13,7 @@ import "./Registration.scss";
 import { connect } from "react-redux";
 import { getUserInfo } from "../actions/getUserInfo";
 
-const Registration = () => {
+const Registration = (props) => {
   const [selectedValue, setSelectedValue] = useState({});
   const [fetchError, setFetchError] = useState(false);
 

@@ -1,11 +1,6 @@
 import React, { useEffect } from "react";
 import Header from "../components/Header";
-import {
-  BrowserRouter as Router,
-  Route,
-  useHistory,
-  withRouter,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, useHistory } from "react-router-dom";
 import "./App.scss";
 import { connect } from "react-redux";
 import Registration from "../screens/Registration";
@@ -15,20 +10,16 @@ import MyClients from "../screens/MyCliets";
 import MyStaff from "./MyStaff";
 import { getUserInfo } from "../actions/getUserInfo";
 
-const App = () => {
+const App = (props) => {
   let history = useHistory();
   localStorage.setItem("access_token", "");
-  
-  const chekUserInfo = () => {
+
+  useEffect(() => {
     if (localStorage.getItem("access_token").length > 10) {
       getUserInfo();
     } else {
       history.push("/signIn");
     }
-  };
-
-  useEffect(() => {
-    chekUserInfo();
   }, []);
 
   return (
