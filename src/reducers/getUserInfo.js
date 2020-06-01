@@ -9,7 +9,7 @@ const userInfo = (state = initialState, action) => {
         userInfo: action.userInfo,
       };
     default:
-      return state;
+      return state||[];
   }
 };
 export default userInfo;

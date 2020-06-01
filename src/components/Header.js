@@ -5,6 +5,7 @@ import "./Header.scss";
 import { connect } from "react-redux";
 
 const Header = (props) => {
+  console.log(props)
   return (
     <header className="header">
       <div className="header-logo">
@@ -24,15 +25,15 @@ const Header = (props) => {
           <li className="menu-item-signin">
             <NavLink to={"/signin"}>Вход</NavLink>
           </li>
-          {this.props.username.length > 0 && (
+          {props.userInfo.length > 0 && (
             <li>
-              <NavLink to={"/user-info"}>user mail</NavLink>
+              <NavLink to={"/user-info"}>email</NavLink>
             </li>
           )}
           <li className="menu-item-registration">
             <NavLink to={"/registration"}>Регистрация</NavLink>
           </li>
-          {this.props.username.length > 0 && (
+          {props.userInfo.length > 0 && (
             <li>
               <NavLink to={"/log-out"}>Выйти</NavLink>
             </li>
@@ -45,7 +46,7 @@ const Header = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  username: state.username,
+  userInfo: state.userInfo,
 });
 
 export default connect(mapStateToProps, null)(Header);
