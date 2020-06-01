@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../components/Header";
-import { BrowserRouter as Router, Route,useHistory, withRouter  } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  useHistory,
+  withRouter,
+} from "react-router-dom";
 import "./App.scss";
 import { connect } from "react-redux";
 import Registration from "../screens/Registration";
@@ -12,27 +17,32 @@ import { getUserInfo } from "../actions/getUserInfo";
 
 const App = () => {
   let history = useHistory();
-
   localStorage.setItem("access_token", "");
+  
+  const chekUserInfo = () => {
+    if (localStorage.getItem("access_token").length > 10) {
+      getUserInfo();
+    } else {
+      history.push("/signIn");
+    }
+  };
 
-  if (localStorage.getItem("access_token").length > 10) {
-    getUserInfo();
-  } else {
-    history.push("/signIn");
-  }
+  useEffect(() => {
+    chekUserInfo();
+  }, []);
 
   return (
-      <div className="app">
-        <Header />
-        <main className="main">
-          <Route path={"/registration"} component={Registration} />
-          <Route path={"/signIn"} component={SignIn} />
-          <Route path={"/myServices"} component={MyServices} />
-          <Route path={"/myClients"} component={MyClients} />
-          <Route path={"/myStaff"} component={MyStaff} />
-        </main>
-        <footer></footer>
-      </div>
+    <div className="app">
+      <Header />
+      <main className="main">
+        <Route path={"/registration"} component={Registration} />
+        <Route path={"/signIn"} component={SignIn} />
+        <Route path={"/myServices"} component={MyServices} />
+        <Route path={"/myClients"} component={MyClients} />
+        <Route path={"/myStaff"} component={MyStaff} />
+      </main>
+      <footer></footer>
+    </div>
   );
 };
 
@@ -43,4 +53,4 @@ const mapDispatchToProps = (dispatch) => ({
   getUserInfo: () => dispatch(getUserInfo()),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default connect(mapStateToProps, mapDispatchToProps)(App);
