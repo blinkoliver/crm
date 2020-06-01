@@ -12,7 +12,6 @@ import { getUserInfo } from "../actions/getUserInfo";
 
 const App = (props) => {
   let history = useHistory();
-  localStorage.setItem("access_token", "");
 
   useEffect(() => {
     if (localStorage.getItem("access_token").length > 10) {
@@ -37,11 +36,8 @@ const App = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  username: state.username,
-});
 const mapDispatchToProps = (dispatch) => ({
   getUserInfo: () => dispatch(getUserInfo()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);
