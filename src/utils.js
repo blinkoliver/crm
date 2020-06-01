@@ -15,8 +15,10 @@ export const httpAuthorized = (path) => {
   })
     .then(awaitForJsonResponse)
     .then((post) => {
+      console.log(post);
       if (post.message === "Token is invalid")
         httpPost("/rest/account/update/", _getFingerprint()).then((post) => {
+          console.log(post);
           localStorage.setItem("access_token", post.token);
         });
     });

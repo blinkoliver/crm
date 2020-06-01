@@ -21,7 +21,6 @@ const SignInForm = (props) => {
       fingerprint: fingerprint,
     };
     httpPost(`rest/account/login/`, updateData).then((post) => {
-      console.log(post);
       localStorage.setItem("access_token", post.token);
       getUserInfo();
     });
