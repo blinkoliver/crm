@@ -5,7 +5,7 @@ import "./Header.scss";
 import { connect } from "react-redux";
 
 const Header = (props) => {
-  console.log(props)
+  console.log(props);
   return (
     <header className="header">
       <div className="header-logo">
@@ -22,20 +22,23 @@ const Header = (props) => {
           <li className="menu-item">
             <NavLink to={"/myStaff"}>Персонал</NavLink>
           </li>
-          <li className="menu-item-signin">
-            <NavLink to={"/signin"}>Вход</NavLink>
-          </li>
-          {props.userInfo.length > 0 && (
+
+          {props.userInfo.length > 0 ? (
             <li>
               <NavLink to={"/user-info"}>email</NavLink>
             </li>
+          ) : (
+            <li className="menu-item-signin">
+              <NavLink to={"/signin"}>Вход</NavLink>
+            </li>
           )}
-          <li className="menu-item-registration">
-            <NavLink to={"/registration"}>Регистрация</NavLink>
-          </li>
-          {props.userInfo.length > 0 && (
+          {props.userInfo.length > 0 ? (
             <li>
               <NavLink to={"/log-out"}>Выйти</NavLink>
+            </li>
+          ) : (
+            <li className="menu-item-registration">
+              <NavLink to={"/registration"}>Регистрация</NavLink>
             </li>
           )}
         </ul>
