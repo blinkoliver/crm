@@ -15,7 +15,7 @@ const App = (props) => {
 
   useEffect(() => {
     if (localStorage.getItem("access_token").length > 10) {
-      getUserInfo();
+      props.getUserInfo();
     } else {
       history.push("/signIn");
     }

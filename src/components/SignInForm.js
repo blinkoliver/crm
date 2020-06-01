@@ -22,7 +22,7 @@ const SignInForm = (props) => {
     };
     httpPost(`rest/account/login/`, updateData).then((post) => {
       localStorage.setItem("access_token", post.token);
-      getUserInfo();
+      props.getUserInfo();
     });
     history.push("/");
   };
