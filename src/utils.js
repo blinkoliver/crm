@@ -5,8 +5,7 @@ export const httpGet = (path) => {
   return fetch(`${hosting}/${path}`).then(awaitForJsonResponse);
 };
 
-export const httpAuthorized = async(path) => {
-  const fingerprint = await _getFingerprint();
+export const httpAuthorized = (path) => {
   return fetch(`${hosting}/${path}`, {
     method: "GET",
     headers: {
@@ -18,10 +17,23 @@ export const httpAuthorized = async(path) => {
     .then((data) => {
       console.log(data);
       if (data.message === "Token is invalid")
-        httpPost("rest/account/update/", fingerprint).then((data) => {
-          console.log(data);
-          localStorage.setItem("access_token", data.token);
-        });
+        httpPostTokenUpdate("rest/account/update/");
+    });
+};
+
+export const httpPostTokenUpdate = async (path) => {
+  const fingerprint = await _getFingerprint();
+  return fetch(`${hosting}/${path}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(fingerprint),
+  })
+    .then(awaitForJsonResponse)
+    .then((data) => {
+      console.log(data);
+      localStorage.setItem("access_token", data.token);
     });
 };
 
