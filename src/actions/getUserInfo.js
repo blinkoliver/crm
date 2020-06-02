@@ -2,7 +2,7 @@ import { httpAuthorized } from "../utils";
 
 export const getUserInfo = () => {
   return (dispatch) => {
-    httpAuthorized("rest/account/get-user").then((userInfo) => {
+    httpAuthorized("rest/account/get-user/").then((userInfo) => {
       dispatch(setUserInfo(userInfo));
       console.log(userInfo);
     });

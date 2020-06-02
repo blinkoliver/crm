@@ -14,12 +14,12 @@ export const httpAuthorized = (path) => {
     },
   })
     .then(awaitForJsonResponse)
-    .then((post) => {
-      console.log(post);
-      if (post.message === "Token is invalid")
-        httpPost("/rest/account/update/", _getFingerprint()).then((post) => {
-          console.log(post);
-          localStorage.setItem("access_token", post.token);
+    .then((data) => {
+      console.log(data);
+      if (data.message === "Token is invalid")
+        httpPost("/rest/account/update/", _getFingerprint()).then((data) => {
+          console.log(data);
+          localStorage.setItem("access_token", data.token);
         });
     });
 };
