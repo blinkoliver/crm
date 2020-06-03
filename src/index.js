@@ -12,7 +12,6 @@ import reducer from "../src/reducers/getUserInfo";
 import * as serviceWorker from "./serviceWorker";
 
 const store = createStore(reducer, applyMiddleware(thunk));
-console.log(store);
 
 ReactDOM.render(
   <Provider store={store}>

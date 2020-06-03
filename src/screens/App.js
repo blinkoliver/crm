@@ -37,8 +37,12 @@ const App = (props) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  userInfo: state.userInfo,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   getUserInfo: () => dispatch(getUserInfo()),
 });
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

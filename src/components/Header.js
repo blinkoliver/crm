@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import App from "../screens/App";
 import { BrowserRouter as Route, NavLink } from "react-router-dom";
 import "./Header.scss";
 import { connect } from "react-redux";
 
 const Header = (props) => {
-  console.log(props);
   return (
     <header className="header">
       <div className="header-logo">
@@ -23,17 +22,17 @@ const Header = (props) => {
             <NavLink to={"/myStaff"}>Персонал</NavLink>
           </li>
 
-          {props.userInfo.length > 0 ? (
+          {Object.keys(props.userInfo).length > 0 ? (
             <li>
-              <NavLink to={"/user-info"}>email</NavLink>
+              <NavLink to={"/user-info"}>{props.userInfo.email}</NavLink>
             </li>
           ) : (
             <li className="menu-item-signin">
               <NavLink to={"/signin"}>Вход</NavLink>
             </li>
           )}
-          {props.userInfo.length > 0 ? (
-            <li>
+          {Object.keys(props.userInfo).length > 0 ? (
+            <li className="menu-item-registration">
               <NavLink to={"/log-out"}>Выйти</NavLink>
             </li>
           ) : (
