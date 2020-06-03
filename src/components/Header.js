@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import App from "../screens/App";
 import { BrowserRouter as Route, NavLink } from "react-router-dom";
 import "./Header.scss";
 import { connect } from "react-redux";
+import { logOut } from "../utils";
 
 const Header = (props) => {
   return (
@@ -32,8 +33,11 @@ const Header = (props) => {
             </li>
           )}
           {Object.keys(props.userInfo).length > 0 ? (
-            <li className="menu-item-registration">
-              <NavLink to={"/log-out"}>Выйти</NavLink>
+            <li
+              className="menu-item-registration"
+              onClick={() => localStorage.setItem("access_token", " ")}
+            >
+              <NavLink to={"/"}>Выйти</NavLink>
             </li>
           ) : (
             <li className="menu-item-registration">

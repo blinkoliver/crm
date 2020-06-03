@@ -15,7 +15,7 @@ export const httpAuthorized = (path) => {
   })
     .then(awaitForJsonResponse)
     .then((data) => {
-      console.log(data)
+      console.log(data);
       return data;
     });
 };

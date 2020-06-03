@@ -58,6 +58,7 @@ const Registration = (props) => {
     httpPost(`rest/account/create/`, updateData)
       .then((post) => {
         localStorage.setItem("access_token", post.token);
+        props.getUserInfo();
         history.push("/");
       })
       .catch(() => setFetchError(true));

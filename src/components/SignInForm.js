@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { _getFingerprint } from "../fingerprint";
 import { BrowserRouter as Router, Route, useHistory } from "react-router-dom";
@@ -10,6 +10,8 @@ import { getUserInfo } from "../actions/getUserInfo";
 const SignInForm = (props) => {
   let history = useHistory();
 
+  const [fetchError, setFetchError] = useState(false);
+
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = async (data) => {
@@ -20,10 +22,13 @@ const SignInForm = (props) => {
       password: data.password,
       fingerprint: fingerprint,
     };
-    httpPost(`rest/account/login/`, updateData).then((post) => {
-      localStorage.setItem("access_token", post.token);
-    });
-    history.push("/");
+    httpPost(`rest/account/login/`, updateData)
+      .then((post) => {
+        localStorage.setItem("access_token", post.token);
+        props.getUserInfo();
+        history.push("/");
+      })
+      .catch(() => setFetchError(true));
   };
 
   return (
@@ -58,6 +63,11 @@ const SignInForm = (props) => {
       <button className="sign-in-submit" type="submit">
         Войти
       </button>
+      {fetchError ? (
+        <p>Ошибка с сервера попробуйте войти еще раз</p>
+      ) : (
+        <></>
+      )}
     </form>
   );
 };
