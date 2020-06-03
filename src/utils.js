@@ -22,18 +22,22 @@ export const httpAuthorized = (path) => {
 
 export const httpPostTokenUpdate = async (path) => {
   const fingerprint = await _getFingerprint();
+  const data = {
+    "fingerprint": fingerprint,
+  };
   return fetch(`${hosting}/${path}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(fingerprint),
+    body: JSON.stringify(data),
   })
     .then(awaitForJsonResponse)
     .then((data) => {
       console.log(data);
       localStorage.setItem("access_token", data.token);
-    });
+    })
+    .catch(() => localStorage.setItem("access_token", " "));
 };
 
 export const httpPost = (path, params) => {

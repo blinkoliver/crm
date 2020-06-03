@@ -8,6 +8,11 @@ const userInfo = (state = initialState, action) => {
         ...state,
         userInfo: action.userInfo,
       };
+    case "USER_LOGOUT":
+      return {
+        ...state,
+        userInfo: action.userInfo,
+      };
     default:
       return state;
   }

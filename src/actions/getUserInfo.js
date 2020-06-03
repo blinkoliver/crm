@@ -5,7 +5,6 @@ export const getUserInfo = () => {
     httpAuthorized("rest/account/get-user/")
       .then((userInfo) => {
         dispatch(setUserInfo(userInfo));
-        console.log(userInfo);
       })
       .catch((data) => {
         console.log(data);
@@ -17,4 +16,15 @@ export const getUserInfo = () => {
 export const setUserInfo = (userInfo) => ({
   type: "SET_USER_INFO",
   userInfo,
+});
+
+export const userLogout = () => {
+  return (dispatch) => {
+    dispatch(setUserLogout({}));
+  };
+};
+
+export const setUserLogout = (userInfo) => ({
+  type: "USER_LOGOUT",
+  userInfo: userInfo,
 });

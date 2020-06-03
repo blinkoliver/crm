@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import App from "../screens/App";
-import { BrowserRouter as Route, NavLink } from "react-router-dom";
+import { BrowserRouter as Route, NavLink, useHistory } from "react-router-dom";
 import "./Header.scss";
 import { connect } from "react-redux";
-import { logOut } from "../utils";
+import { getUserInfo, userLogout } from "../actions/getUserInfo";
 
 const Header = (props) => {
+  let history = useHistory();
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("access_token");
+    if (accessToken && accessToken.length > 10) {
+      props.getUserInfo();
+    } else {
+      history.push("/signIn");
+    }
+  }, []);
+
   return (
     <header className="header">
       <div className="header-logo">
@@ -35,7 +46,11 @@ const Header = (props) => {
           {Object.keys(props.userInfo).length > 0 ? (
             <li
               className="menu-item-registration"
-              onClick={() => localStorage.setItem("access_token", " ")}
+              onClick={() => {
+                localStorage.setItem("access_token", " ");
+                props.userLogout();
+                history.push("/");
+              }}
             >
               <NavLink to={"/"}>Выйти</NavLink>
             </li>
@@ -54,5 +69,9 @@ const Header = (props) => {
 const mapStateToProps = (state) => ({
   userInfo: state.userInfo,
 });
+const mapDispatchToProps = (dispatch) => ({
+  getUserInfo: () => dispatch(getUserInfo()),
+  userLogout: () => dispatch(userLogout()),
+});
 
-export default connect(mapStateToProps, null)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

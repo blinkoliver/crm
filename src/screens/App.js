@@ -11,16 +11,16 @@ import MyStaff from "./MyStaff";
 import { getUserInfo } from "../actions/getUserInfo";
 
 const App = (props) => {
-  let history = useHistory();
-
-  useEffect(() => {
-    const accessToken = localStorage.getItem("access_token");
-    if (accessToken && accessToken.length > 10) {
-      props.getUserInfo();
-    } else {
-      history.push("/signIn");
-    }
-  }, []);
+  
+  // let history = useHistory();
+  // useEffect(() => {
+  //   const accessToken = localStorage.getItem("access_token");
+  //   if (accessToken && accessToken.length > 10) {
+  //     props.getUserInfo();
+  //   } else {
+  //     history.push("/signIn");
+  //   }
+  // }, []);
 
   return (
     <div className="app">
