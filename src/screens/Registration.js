@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { BrowserRouter as Router, Route, useHistory } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import InputMask from "react-input-mask";
 import Select from "react-select";
@@ -14,6 +15,8 @@ import { connect } from "react-redux";
 import { getUserInfo } from "../actions/getUserInfo";
 
 const Registration = (props) => {
+  let history = useHistory();
+
   const [selectedValue, setSelectedValue] = useState({});
   const [fetchError, setFetchError] = useState(false);
 
@@ -24,6 +27,7 @@ const Registration = (props) => {
   password.current = watch("password", "");
 
   const onSubmit = async (data) => {
+
     const fingerprint = await _getFingerprint();
 
     const setSelect = (valueOwnership, valueOwnershipForm) =>
@@ -54,7 +58,7 @@ const Registration = (props) => {
     httpPost(`rest/account/create/`, updateData)
       .then((post) => {
         localStorage.setItem("access_token", post.token);
-        props.getUserInfo();
+        history.push("/");
       })
       .catch(() => setFetchError(true));
   };

@@ -15,9 +15,8 @@ export const httpAuthorized = (path) => {
   })
     .then(awaitForJsonResponse)
     .then((data) => {
-      console.log(data);
-      if (data.message === "Token is invalid")
-        httpPostTokenUpdate("rest/account/update/");
+      console.log(data)
+      return data;
     });
 };
 
