@@ -5,17 +5,36 @@ import { Controller } from "react-hook-form";
 import "./AddServiceForm.scss";
 
 const AddClientIP = (props) => {
+
   return (
     <>
       <input
         type="text"
-        
         placeholder="ФИО"
         name="fio"
         ref={props.register({ required: true, maxLength: 100 })}
       />
       {props.errors.fio && props.errors.fio.type === "required" && (
         <p>Обязательное поле</p>
+      )}
+      <Controller
+        as={InputMask}
+        style={{ marginBottom: "2vh" }}
+        control={props.control}
+        placeholder="УНП"
+        mask="999 999 999"
+        maskChar="_"
+        name="unp"
+        rules={{ required: true, minLength: 11, pattern: /[0-9,/\s/g]{11}/ }}
+      />
+      {props.errors.unp && props.errors.unp.type === "required" && (
+        <p>Обязательное поле</p>
+      )}
+      {props.errors.unp && props.errors.unp.type === "minLength" && (
+        <p>УНП должен состоять из 9 цифр</p>
+      )}
+      {props.errors.unp && props.errors.unp.type === "pattern" && (
+        <p>УНП должен состоять из 9 цифр</p>
       )}
       <Controller
         as={<SelectCity />}
@@ -33,42 +52,6 @@ const AddClientIP = (props) => {
         ref={props.register({ required: true, maxLength: 100 })}
       />
       {props.errors.adress && props.errors.adress.type === "required" && (
-        <p>Обязательное поле</p>
-      )}
-      <input
-        type="text"
-        placeholder="Серия паспорта"
-        name="series"
-        ref={props.register({ required: true, maxLength: 100 })}
-      />
-      {props.errors.series && props.errors.series.type === "required" && (
-        <p>Обязательное поле</p>
-      )}
-      <input
-        type="text"
-        placeholder="Номер паспорта"
-        name="number"
-        ref={props.register({ required: true, maxLength: 100 })}
-      />
-      {props.errors.number && props.errors.number.type === "required" && (
-        <p>Обязательное поле</p>
-      )}
-      <input
-        type="text"
-        placeholder="Выдан"
-        name="sum"
-        ref={props.register({ required: true, maxLength: 100 })}
-      />
-      {props.errors.number && props.errors.number.type === "required" && (
-        <p>Обязательное поле</p>
-      )}
-      <input
-        type="text"
-        placeholder="Дата выдачи"
-        name="date"
-        ref={props.register({ required: true, maxLength: 100 })}
-      />
-      {props.errors.date && props.errors.date.type === "required" && (
         <p>Обязательное поле</p>
       )}
       <Controller
@@ -91,6 +74,78 @@ const AddClientIP = (props) => {
         <p>Введите корректный номер</p>
       )}
       {props.errors.phone && props.errors.phone.type === "minLength" && (
+        <p>Введите корректный номер</p>
+      )}
+      <input
+        type="text"
+        placeholder="Регистрирующий орган"
+        name="registration"
+        ref={props.register({ required: true, maxLength: 100 })}
+      />
+      {props.errors.registration &&
+        props.errors.registration.type === "required" && (
+          <p>Обязательное поле</p>
+        )}
+      <input
+        type="text"
+        placeholder="Дата государственной регистрации"
+        name="date"
+        ref={props.register({ required: true, maxLength: 100 })}
+      />
+      {props.errors.date && props.errors.date.type === "required" && (
+        <p>Обязательное поле</p>
+      )}
+      <input
+        type="text"
+        placeholder="Наименование банка"
+        name="bankName"
+        ref={props.register({ required: true, maxLength: 100 })}
+      />
+      {props.errors.bankName && props.errors.bankName.type === "required" && (
+        <p>Обязательное поле</p>
+      )}
+      <Controller
+        as={InputMask}
+        control={props.control}
+        placeholder="Расчетный счет"
+        mask="BY99 aaaa 9999 9999 9999 9999 9999"
+        maskChar="_"
+        name="checkinAccaunt"
+        rules={{
+          required: true,
+          pattern: /[0-9+()/\s/g]{34}/,
+          minLength: 34,
+        }}
+      />
+      {props.errors.checkinAccaunt && props.errors.checkinAccaunt.type === "required" && (
+        <p>Обязательное поле</p>
+      )}
+      {props.errors.checkinAccaunt && props.errors.checkinAccaunt.type === "pattern" && (
+        <p>Введите корректный номер</p>
+      )}
+      {props.errors.checkinAccaunt && props.errors.checkinAccaunt.type === "minLength" && (
+        <p>Введите корректный номер</p>
+      )}
+      <Controller
+        as={InputMask}
+        control={props.control}
+        placeholder="БИК Банка"
+        mask="BAPBBY2X"
+        maskChar="_"
+        name="bikBank"
+        rules={{
+          required: true,
+          pattern: /[0-9+()/\s/g]{19}/,
+          minLength: 19,
+        }}
+      />
+      {props.errors.bikBank && props.errors.bikBank.type === "required" && (
+        <p>Обязательное поле</p>
+      )}
+      {props.errors.bikBank && props.errors.bikBank.type === "pattern" && (
+        <p>Введите корректный номер</p>
+      )}
+      {props.errors.bikBank && props.errors.bikBank.type === "minLength" && (
         <p>Введите корректный номер</p>
       )}
       <input

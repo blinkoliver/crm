@@ -15,7 +15,6 @@ export const httpAuthorized = (path) => {
   })
     .then(awaitForJsonResponse)
     .then((data) => {
-      console.log(data);
       return data;
     });
 };
@@ -23,7 +22,7 @@ export const httpAuthorized = (path) => {
 export const httpPostTokenUpdate = async (path) => {
   const fingerprint = await _getFingerprint();
   const data = {
-    "fingerprint": fingerprint,
+    fingerprint: fingerprint,
   };
   return fetch(`${hosting}/${path}`, {
     method: "POST",
@@ -34,7 +33,6 @@ export const httpPostTokenUpdate = async (path) => {
   })
     .then(awaitForJsonResponse)
     .then((data) => {
-      console.log(data);
       localStorage.setItem("access_token", data.token);
     })
     .catch(() => localStorage.setItem("access_token", " "));

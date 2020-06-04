@@ -15,7 +15,7 @@ const Header = (props) => {
     } else {
       history.push("/signIn");
     }
-  }, []);
+  }, [history, localStorage]);
 
   return (
     <header className="header">

@@ -13,7 +13,13 @@ export const clientDocument = [
   { value: 0, label: "Паспорт" },
   { value: 1, label: "Вид на жительство" },
   { value: 2, label: "Паспорт иностранного гражданина" },
-  { value: 2, label: "Иное" },
+  { value: 3, label: "Иное" },
+];
+export const basedDocument = [
+  { value: 0, label: "Устав" },
+  { value: 1, label: "Свидетельство о государственной регистрации" },
+  { value: 2, label: "Решение" },
+  { value: 3, label: "Иное" },
 ];
 
 export const ownershipForm = [

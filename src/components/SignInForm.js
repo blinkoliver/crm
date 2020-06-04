@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { _getFingerprint } from "../fingerprint";
-import { BrowserRouter as Router, Route, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import "./SignInForm.scss";
 import { httpPost } from "../utils";
@@ -63,11 +63,7 @@ const SignInForm = (props) => {
       <button className="sign-in-submit" type="submit">
         Войти
       </button>
-      {fetchError ? (
-        <p>Ошибка с сервера попробуйте войти еще раз</p>
-      ) : (
-        <></>
-      )}
+      {fetchError ? <p>Неверный логин или пароль</p> : <></>}
     </form>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { BrowserRouter as Router, Route, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import InputMask from "react-input-mask";
 import Select from "react-select";
@@ -27,7 +27,6 @@ const Registration = (props) => {
   password.current = watch("password", "");
 
   const onSubmit = async (data) => {
-
     const fingerprint = await _getFingerprint();
 
     const setSelect = (valueOwnership, valueOwnershipForm) =>

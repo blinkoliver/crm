@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Header from "../components/Header";
-import { BrowserRouter as Router, Route, useHistory } from "react-router-dom";
+import { Route } from "react-router-dom";
 import "./App.scss";
 import { connect } from "react-redux";
 import Registration from "../screens/Registration";
@@ -11,17 +11,6 @@ import MyStaff from "./MyStaff";
 import { getUserInfo } from "../actions/getUserInfo";
 
 const App = (props) => {
-  
-  // let history = useHistory();
-  // useEffect(() => {
-  //   const accessToken = localStorage.getItem("access_token");
-  //   if (accessToken && accessToken.length > 10) {
-  //     props.getUserInfo();
-  //   } else {
-  //     history.push("/signIn");
-  //   }
-  // }, []);
-
   return (
     <div className="app">
       <Header />
