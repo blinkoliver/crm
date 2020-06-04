@@ -10,6 +10,9 @@ export const getUserInfo = () => {
         console.log(data);
         if (data.message === "Token is invalid")
           httpPostTokenUpdate("rest/account/update/");
+        httpAuthorized("rest/account/get-user/").then((userInfo) => {
+          dispatch(setUserInfo(userInfo));
+        });
       });
   };
 };

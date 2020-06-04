@@ -9,7 +9,7 @@ export const reactSelectOwnershipStyle = {
     color: "gray",
   }),
   singleValue: () => ({
-    color: "gray",
+    color: "black",
     fontSize: "3vh",
     marginTop: "3vh",
   }),
@@ -25,6 +25,11 @@ export const reactSelectOwnershipFormStyle = {
     marginTop: "10%",
     color: "gray",
   }),
+  singleValue: () => ({
+    color: "black",
+    fontSize: "3vh",
+    marginTop: "3vh",
+  }),
 };
 export const reactSelectCitiesStyle = {
   valueContainer: () => ({
@@ -34,10 +39,10 @@ export const reactSelectCitiesStyle = {
   placeholder: () => ({
     fontSize: "3vh",
     marginTop: "10%",
-    color: "gray",
+    color: "grey",
   }),
   singleValue: () => ({
-    color: "gray",
+    color: "black",
     fontSize: "3vh",
     marginTop: "3vh",
   }),
