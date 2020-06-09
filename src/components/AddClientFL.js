@@ -5,7 +5,7 @@ import Select from "react-select";
 import { clientDocument } from "../constants/registration";
 import { reactSelectOwnershipStyle } from "../constants/componentsStyle";
 import InputMask from "react-input-mask";
-import "./AddServiceForm.scss";
+import "../components/MyServices/AddServiceForm.scss";
 
 const AddClientFL = (props) => {
   return (

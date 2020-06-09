@@ -1,6 +1,6 @@
 import React from "react";
 import AddClientModal from "../components/AddClientModal";
-import SortServices from "../components/SortServices";
+import SortServices from "../components/MyServices/SortServices";
 import "./MyClients.scss";
 
 const MyClients = () => {

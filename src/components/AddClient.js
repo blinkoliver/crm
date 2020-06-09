@@ -6,7 +6,7 @@ import { reactSelectOwnershipStyle } from "../constants/componentsStyle";
 import AddClientFL from "../components/AddClientFL";
 import AddClientIP from "../components/AddClientIP";
 import AddClientUL from "../components/AddClientUL";
-import "./AddServiceForm.scss";
+import "../components/MyServices/AddServiceForm.scss";
 
 const AddClient = () => {
   const [selectedValue, setSelectedValue] = useState({});

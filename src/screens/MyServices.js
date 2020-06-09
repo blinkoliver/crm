@@ -1,11 +1,19 @@
-import React from "react";
-import Service from "../components/Service";
-import AddServiceModal from "../components/AddServiceModal";
-import SortServices from "../components/SortServices";
+import React, { useState } from "react";
+import Service from "../components/MyServices/Service";
+import AddServiceModal from "../components/MyServices/AddServiceModal";
+import SortServices from "../components/MyServices/SortServices";
 import { services } from "../constants/services";
+import { Modal, ModalBody } from "reactstrap";
+import ServiceRefactor from "../components/MyServices/ServiceRefactor";
+
 import "./MyServices.scss";
 
-const MyServices = () => {
+const MyServices = (props) => {
+  const { className } = props;
+
+  const [modal, setModal] = useState(false);
+
+  const toggle = () => setModal(!modal);
   return (
     <div className="my-services">
       <div className="add-and-sort">
@@ -16,16 +24,9 @@ const MyServices = () => {
           <SortServices />
         </div>
       </div>
-      <div className="table-header">
-        <p>Дата</p>
-        <p>Наименование</p>
-        <p>Сумма по акту</p>
-        <p>Статус</p>
-        <p>Действие</p>
-      </div>
-
       {services.map((element) => (
         <Service
+          onClick={toggle}
           key={element.taskName}
           date={element.date}
           taskName={element.taskName}
@@ -33,6 +34,11 @@ const MyServices = () => {
           status={element.status}
         />
       ))}
+      <Modal isOpen={modal} toggle={toggle} className={className}>
+        <ModalBody>
+          <ServiceRefactor />
+        </ModalBody>
+      </Modal>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { httpAuthorized, httpPostTokenUpdate } from "../utils";
 
-export const getUserInfo = () => {
+export const getUserInfo = (updateToken = true) => {
   return (dispatch) => {
     httpAuthorized("rest/account/get-user/")
       .then((userInfo) => {
@@ -8,14 +8,15 @@ export const getUserInfo = () => {
       })
       .catch((data) => {
         console.log(data);
-        if (data.message === "Token is invalid")
-          httpPostTokenUpdate("rest/account/update/");
-        httpAuthorized("rest/account/get-user/").then((userInfo) => {
-          dispatch(setUserInfo(userInfo));
-        });
+        if (data.message === "Token is invalid" && updateToken) {
+          httpPostTokenUpdate("rest/account/update/").then(() =>
+            getUserInfo(false)
+          );
+        }
       });
   };
 };
+
 export const setUserInfo = (userInfo) => ({
   type: "SET_USER_INFO",
   userInfo,

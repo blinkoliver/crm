@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import "./AddServiceForm.scss";
+import "../components/MyServices/AddServiceForm.scss";
 import SelectCity from "../components/SelectCity";
 import Select from "react-select";
 import { basedDocument } from "../constants/registration";

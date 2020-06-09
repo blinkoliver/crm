@@ -16,7 +16,6 @@ const SignInForm = (props) => {
 
   const onSubmit = async (data) => {
     const fingerprint = await _getFingerprint();
-
     const updateData = {
       email: data.email,
       password: data.password,
@@ -39,12 +38,24 @@ const SignInForm = (props) => {
         name="email"
         ref={register({ required: true, pattern: /^\S+@\S+$/i })}
       />
-      {errors.Email && errors.Email.type === "required" && (
+      {errors.email && errors.email.type === "required" && (
         <p>Обязательное поле</p>
       )}
-      {errors.Email && errors.Email.type === "pattern" && (
+      {errors.email && errors.email.type === "pattern" && (
         <p>Введите правильный электронный адрес</p>
       )}
+      {/* <Controller
+        as={InputPassword}
+        control={control}
+        placeholder="Пароль"
+        name="password"
+        rules={{
+          required: false,
+        }}
+      />
+      {errors.password && errors.password.type === "required" && (
+        <p>Обязательное поле</p>
+      )} */}
       <input
         type="password"
         placeholder="Пароль"

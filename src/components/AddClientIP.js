@@ -2,7 +2,7 @@ import React from "react";
 import InputMask from "react-input-mask";
 import SelectCity from "../components/SelectCity";
 import { Controller } from "react-hook-form";
-import "./AddServiceForm.scss";
+import "../components/MyServices/AddServiceForm.scss";
 
 const AddClientIP = (props) => {
 
