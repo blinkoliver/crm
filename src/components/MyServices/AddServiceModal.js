@@ -13,7 +13,7 @@ const AddServiceModal = (props) => {
   return (
     <div>
       <Button outline color="primary" onClick={toggle}>
-        Добавить услугу
+        Создать услугу
       </Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Создать услугу</ModalHeader>

@@ -31,3 +31,12 @@
 .add-service-submit:hover {
   background-color: #2da914;
 }
+.add-clients-input-block {
+  display: flex;
+  flex-direction: row;
+}
+.add-clients-input-block button {
+  margin: 2vh 0 0 2vh;
+  border: solid black 1px;
+  border-radius: 2vh;
+}

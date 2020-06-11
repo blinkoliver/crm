@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./AddServiceForm.scss";
 
-const AddServiceForm = () => {
+const ChangeServiceForm = () => {
   const [clients, setClients] = useState([{ id: 0, value: "" }]);
   const [executor, setExecutor] = useState([{ id: 0, value: "" }]);
 
@@ -93,9 +93,9 @@ const AddServiceForm = () => {
         <p>Обязательное поле</p>
       )}
       <button className="add-service-submit" type="submit">
-        Создать
+        Редактировать
       </button>
     </form>
   );
 };
-export default AddServiceForm;
+export default ChangeServiceForm;

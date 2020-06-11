@@ -3,7 +3,7 @@ import Service from "../components/MyServices/Service";
 import AddServiceModal from "../components/MyServices/AddServiceModal";
 import SortServices from "../components/MyServices/SortServices";
 import { services } from "../constants/services";
-import { Modal, ModalBody } from "reactstrap";
+import { Modal, ModalBody, ModalHeader } from "reactstrap";
 import ServiceRefactor from "../components/MyServices/ServiceRefactor";
 
 import "./MyServices.scss";
@@ -35,6 +35,7 @@ const MyServices = (props) => {
         />
       ))}
       <Modal isOpen={modal} toggle={toggle} className={className}>
+        <ModalHeader toggle={toggle}>Редактировать или удалить?</ModalHeader>
         <ModalBody>
           <ServiceRefactor />
         </ModalBody>
