@@ -1,5 +1,5 @@
 import React from "react";
-import SignInForm from "../components/SignInForm";
+import SignInForm from "../components/SignIn/SignInForm";
 import "./SignIn.scss";
 import { BrowserRouter as Route, NavLink } from "react-router-dom";
 

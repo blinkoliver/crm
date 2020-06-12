@@ -1,5 +1,5 @@
 import React from "react";
-import AddClientModal from "../components/AddClientModal";
+import AddClientModal from "../components/MyClients/AddClientModal";
 import SortServices from "../components/MyServices/SortServices";
 import "./MyClients.scss";
 

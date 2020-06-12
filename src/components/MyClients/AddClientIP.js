@@ -1,8 +1,8 @@
 import React from "react";
 import InputMask from "react-input-mask";
-import SelectCity from "../components/SelectCity";
+import SelectCity from "../SelectCity";
 import { Controller } from "react-hook-form";
-import "../components/MyServices/AddServiceForm.scss";
+import "./AddClientForm.scss";
 
 const AddClientIP = (props) => {
 
@@ -160,7 +160,7 @@ const AddClientIP = (props) => {
       {props.errors.email && props.errors.email.type === "pattern" && (
         <p>Введите правильный электронный адрес</p>
       )}
-      <button className="add-service-submit" type="submit">
+      <button className="add-client-form-submit" type="submit">
         Добавить клиента
       </button>
     </>

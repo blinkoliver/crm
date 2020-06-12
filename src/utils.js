@@ -1,5 +1,6 @@
 import { hosting } from "../src/constants/urls";
 import { _getFingerprint } from "./fingerprint";
+import { getUserInfo } from "./actions/getUserInfo";
 
 export const httpGet = (path) => {
   return fetch(`${hosting}/${path}`).then(awaitForJsonResponse);
@@ -16,7 +17,8 @@ export const httpAuthorized = (path) => {
     .then(awaitForJsonResponse)
     .then((data) => {
       return data;
-    });
+    })
+    .catch(httpPostTokenUpdate("rest/account/update/"));
 };
 
 export const httpPostTokenUpdate = async (path) => {
@@ -35,6 +37,8 @@ export const httpPostTokenUpdate = async (path) => {
     .then((data) => {
       localStorage.setItem("access_token", data.token);
     })
+    // .then(httpAuthorized("rest/account/get-user/"))
+    .then(getUserInfo())
     .catch(() => localStorage.setItem("access_token", " "));
 };
 

@@ -1,22 +1,16 @@
 import React from "react";
-import { useForm, Controller } from "react-hook-form";
-import "../components/MyServices/AddServiceForm.scss";
-import SelectCity from "../components/SelectCity";
+import { Controller } from "react-hook-form";
+import "./AddClientForm.scss";
+import SelectCity from "../SelectCity";
 import Select from "react-select";
-import { basedDocument } from "../constants/registration";
+import { basedDocument } from "../../constants/registration";
 import InputMask from "react-input-mask";
-import { reactSelectOwnershipFormStyle } from "../constants/componentsStyle";
-import { ownershipForm } from "../constants/registration";
+import { reactSelectOwnershipFormStyle } from "../../constants/componentsStyle";
+import { ownershipForm } from "../../constants/registration";
 
 const AddClientUL = (props) => {
-  const { handleSubmit, errors } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-  console.log(errors);
-
   return (
-    <form className="service-form" onSubmit={handleSubmit(onSubmit)}>
+    <form>
       <Controller
         as={
           <Select
@@ -126,13 +120,13 @@ const AddClientUL = (props) => {
           minLength: 19,
         }}
       />
-      {errors.phone && errors.phone.type === "required" && (
+      {props.errors.phone && props.errors.phone.type === "required" && (
         <p>Обязательное поле</p>
       )}
-      {errors.phone && errors.phone.type === "pattern" && (
+      {props.errors.phone && props.errors.phone.type === "pattern" && (
         <p>Введите корректный номер</p>
       )}
-      {errors.phone && errors.phone.type === "minLength" && (
+      {props.errors.phone && props.errors.phone.type === "minLength" && (
         <p>Введите корректный номер</p>
       )}
       <input
@@ -164,13 +158,13 @@ const AddClientUL = (props) => {
           minLength: 19,
         }}
       />
-      {errors.phone2 && errors.phone2.type === "required" && (
+      {props.errors.phone2 && props.errors.phone2.type === "required" && (
         <p>Обязательное поле</p>
       )}
-      {errors.phone2 && errors.phone2.type === "pattern" && (
+      {props.errors.phone2 && props.errors.phone2.type === "pattern" && (
         <p>Введите корректный номер</p>
       )}
-      {errors.phone2 && errors.phone2.type === "minLength" && (
+      {props.errors.phone2 && props.errors.phone2.type === "minLength" && (
         <p>Введите корректный номер</p>
       )}
       <Controller
@@ -281,7 +275,7 @@ const AddClientUL = (props) => {
         <p>Введите правильный электронный адрес</p>
       )}
 
-      <button className="add-service-submit" type="submit">
+      <button className="add-client-form-submit" type="submit">
         Добавить клиента
       </button>
     </form>

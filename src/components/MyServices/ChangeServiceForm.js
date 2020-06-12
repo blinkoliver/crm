@@ -1,25 +1,22 @@
 import React, { useState } from "react";
+import { Controller } from "react-hook-form";
+import SelectClient from "./SelectClient";
+import SelectExecutor from "./SelectExecutor";
 import { useForm } from "react-hook-form";
 import "./AddServiceForm.scss";
 
 const ChangeServiceForm = () => {
-  const [clients, setClients] = useState([{ id: 0, value: "" }]);
   const [executor, setExecutor] = useState([{ id: 0, value: "" }]);
 
   const onInputChange = (id, value) => {};
 
-  const pushClient = () => {
-    let newClient = { id: clients.length, value: "" };
-    let clientsArr = [...clients, newClient];
-    setClients(clientsArr);
-  };
   const pushExecutor = () => {
     let newExecutor = { id: executor.length, value: "" };
     let executorsArr = [...executor, newExecutor];
     setExecutor(executorsArr);
   };
 
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, control } = useForm();
   const onSubmit = (data) => {
     console.log(data);
   };
@@ -35,22 +32,18 @@ const ChangeServiceForm = () => {
       {errors.serviceName && errors.serviceName.type === "required" && (
         <p>Обязательное поле</p>
       )}
-      {clients.map((element) => (
-        <div className="add-clients-input-block">
-          <input
-            type="text"
-            value={element.value}
-            name="client"
-            onChange={(value) => onInputChange(element.id, value)}
-            placeholder="Клиент"
-            ref={register({ required: true, maxLength: 100 })}
-          />
-          <button onClick={() => pushClient()}>+</button>
-        </div>
-      ))}
-      {errors.client && errors.client.type === "required" && (
-        <p>Обязательное поле</p>
-      )}
+      <div className="add-clients-input-block">
+        <Controller
+          as={<SelectClient />}
+          control={control}
+          rules={{ required: false }}
+          onChange={([selected]) => {
+            return selected;
+          }}
+          name="reactSelectRegistrationCity"
+        />
+        <button onClick={() => pushExecutor()}>+</button>
+      </div>
       <input
         type="date"
         placeholder="Дата"
@@ -67,22 +60,18 @@ const ChangeServiceForm = () => {
         ref={register({ required: true, maxLength: 100 })}
       />
       {errors.sum && errors.sum.type === "required" && <p>Обязательное поле</p>}
-      {executor.map((element) => (
-        <div className="add-clients-input-block">
-          <input
-            type="text"
-            value={element.value}
-            name="executor"
-            onChange={(value) => onInputChange(element.id, value)}
-            placeholder="Исполнитель"
-            ref={register({ required: true, maxLength: 100 })}
-          />
-          <button onClick={() => pushExecutor()}>+</button>
-        </div>
-      ))}
-      {errors.executor && errors.executor.type === "required" && (
-        <p>Обязательное поле</p>
-      )}
+      <div className="add-clients-input-block">
+        <Controller
+          as={<SelectExecutor />}
+          control={control}
+          rules={{ required: false }}
+          onChange={([selected]) => {
+            return selected;
+          }}
+          name="reactSelectRegistrationCity"
+        />
+        <button onClick={() => pushExecutor()}>+</button>
+      </div>
       <input
         type="text"
         placeholder="Статус"

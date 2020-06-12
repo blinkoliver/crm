@@ -1,4 +1,4 @@
-.service-form input {
+.add-client-form input {
   width: -webkit-fill-available;
   border: solid grey 1px;
   margin-top: 2vh;
@@ -6,19 +6,18 @@
   height: 10vh;
   border-radius: 0.5vh;
   font-size: 3vh;
-  color: grey;
 }
-.service-form p {
+.add-client-form p {
   color: black;
   text-align: center;
 }
-.service-form {
+.add-client-form {
   width: inherit;
   display: flex;
   flex-direction: column;
 }
 
-.add-service-submit {
+.add-client-form-submit {
   margin-top: 2vh;
   height: 10vh;
   border: none;
@@ -29,19 +28,6 @@
   width: 30vh;
   align-self: flex-end;
 }
-.add-service-submit:hover {
+.add-client-form-submit:hover {
   background-color: #2da914;
-}
-.add-clients-input-block {
-  display: flex;
-  flex-direction: row;
-  margin-top: 2vh;
-}
-.add-clients-input-block button {
-  margin: 0 0 0 2vh;
-  border: solid black 1px;
-  border-radius: 2vh;
-}
-.add-clients-input-block .css-2b097c-container {
-  width: 100%;
 }

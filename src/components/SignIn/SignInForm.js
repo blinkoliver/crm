@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { _getFingerprint } from "../fingerprint";
+import { _getFingerprint } from "../../fingerprint";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import "./SignInForm.scss";
-import { httpPost } from "../utils";
-import { getUserInfo } from "../actions/getUserInfo";
+import { httpPost } from "../../utils";
+import { getUserInfo } from "../../actions/getUserInfo";
 
 const SignInForm = (props) => {
   let history = useHistory();

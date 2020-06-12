@@ -1,11 +1,11 @@
 import React from "react";
-import SelectCity from "../components/SelectCity";
+import SelectCity from "../SelectCity";
 import { Controller } from "react-hook-form";
 import Select from "react-select";
-import { clientDocument } from "../constants/registration";
-import { reactSelectOwnershipStyle } from "../constants/componentsStyle";
+import { clientDocument } from "../../constants/registration";
+import { reactSelectOwnershipStyle } from "../../constants/componentsStyle";
 import InputMask from "react-input-mask";
-import "../components/MyServices/AddServiceForm.scss";
+import "./AddClientForm.scss";
 
 const AddClientFL = (props) => {
   return (
@@ -124,7 +124,7 @@ const AddClientFL = (props) => {
       {props.errors.email && props.errors.email.type === "pattern" && (
         <p>Введите правильный электронный адрес</p>
       )}
-      <button className="add-service-submit" type="submit">
+      <button className="add-client-form-submit" type="submit">
         Добавить клиента
       </button>
     </>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import AddClient from "./AddClient";
+import "./AddClientModal.scss";
 
 const AddClientModal = (props) => {
   const { className } = props;
