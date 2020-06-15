@@ -12,24 +12,22 @@ const AddServiceForm = (props) => {
   const { className } = props;
 
   const [modal, setModal] = useState(false);
+  const [modalTitle, setModalTitle] = useState("");
+  const [modalBody, setModalBody] = useState("");
 
-  const toggle = () => setModal(!modal);
-
-  const [executor, setExecutor] = useState([{ id: 0, value: "" }]);
-
-  const pushExecutor = () => {
-    let newExecutor = { id: executor.length, value: "" };
-    let executorsArr = [...executor, newExecutor];
-    setExecutor(executorsArr);
+  const toggle = (title, body) => {
+    setModal(!modal);
+    setModalTitle(title);
+    setModalBody(body);
   };
 
   const { register, handleSubmit, errors, control } = useForm({
     defaultValues: testValues,
   });
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
   };
-
+  console.log(modalTitle.props);
   return (
     <form className="service-form" onSubmit={handleSubmit(onSubmit)}>
       <input
@@ -51,7 +49,13 @@ const AddServiceForm = (props) => {
           }}
           name="reactSelectRegistrationCity"
         />
-        <button onClick={toggle}>+</button>
+        <button
+          onClick={() =>
+            toggle(<div>Добавить нового клиента</div>, <AddClient />)
+          }
+        >
+          +
+        </button>
       </div>
       <input
         type="date"
@@ -79,7 +83,13 @@ const AddServiceForm = (props) => {
           }}
           name="reactSelectRegistrationCity"
         />
-        <button onClick={() => pushExecutor()}>+</button>
+        <button
+          onClick={() =>
+            toggle(<div>Добавить нового исполнителя</div>, <AddClient />)
+          }
+        >
+          +
+        </button>
       </div>
       <input
         type="text"
@@ -94,10 +104,8 @@ const AddServiceForm = (props) => {
         Создать
       </button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Добавить клиента</ModalHeader>
-        <ModalBody>
-          <AddClient />
-        </ModalBody>
+        <ModalHeader toggle={toggle}>{modalTitle}</ModalHeader>
+        <ModalBody>{modalBody}</ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={toggle}>
             Отмена

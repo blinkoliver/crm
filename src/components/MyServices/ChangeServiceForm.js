@@ -8,8 +8,6 @@ import "./AddServiceForm.scss";
 const ChangeServiceForm = () => {
   const [executor, setExecutor] = useState([{ id: 0, value: "" }]);
 
-  const onInputChange = (id, value) => {};
-
   const pushExecutor = () => {
     let newExecutor = { id: executor.length, value: "" };
     let executorsArr = [...executor, newExecutor];
