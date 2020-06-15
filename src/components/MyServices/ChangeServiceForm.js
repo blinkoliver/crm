@@ -3,15 +3,21 @@ import { Controller } from "react-hook-form";
 import SelectClient from "./SelectClient";
 import SelectExecutor from "./SelectExecutor";
 import { useForm } from "react-hook-form";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import AddClient from "../MyClients/AddClient";
 import "./AddServiceForm.scss";
 
-const ChangeServiceForm = () => {
-  const [executor, setExecutor] = useState([{ id: 0, value: "" }]);
+const ChangeServiceForm = (props) => {
+  const { className } = props;
 
-  const pushExecutor = () => {
-    let newExecutor = { id: executor.length, value: "" };
-    let executorsArr = [...executor, newExecutor];
-    setExecutor(executorsArr);
+  const [modalClient, setModalClient] = useState(false);
+  const [modalExecutor, setModalExecutor] = useState(false);
+
+  const toggleClient = () => {
+    setModalClient(!modalClient);
+  };
+  const toggleExecutor = () => {
+    setModalExecutor(!modalExecutor);
   };
 
   const { register, handleSubmit, errors, control } = useForm();
@@ -40,7 +46,7 @@ const ChangeServiceForm = () => {
           }}
           name="reactSelectRegistrationCity"
         />
-        <button onClick={() => pushExecutor()}>+</button>
+        <button onClick={() => toggleClient()}>+</button>
       </div>
       <input
         type="date"
@@ -59,20 +65,16 @@ const ChangeServiceForm = () => {
       />
       {errors.sum && errors.sum.type === "required" && <p>Обязательное поле</p>}
       <div className="add-clients-input-block">
-        {executor.map((element) => (
-          <>
-            <Controller
-              as={<SelectExecutor />}
-              control={control}
-              rules={{ required: false }}
-              onChange={([selected]) => {
-                return selected;
-              }}
-              name="reactSelectRegistrationCity"
-            />
-            <button onClick={() => pushExecutor()}>+</button>
-          </>
-        ))}
+        <Controller
+          as={<SelectExecutor />}
+          control={control}
+          rules={{ required: false }}
+          onChange={([selected]) => {
+            return selected;
+          }}
+          name="reactSelectRegistrationCity"
+        />
+        <button onClick={() => toggleExecutor()}>+</button>
       </div>
       <input
         type="text"
@@ -86,6 +88,33 @@ const ChangeServiceForm = () => {
       <button className="add-service-submit" type="submit">
         Редактировать
       </button>
+
+      <Modal isOpen={modalClient} toggle={toggleClient} className={className}>
+        <ModalHeader toggle={toggleClient}>Добавить клиента</ModalHeader>
+        <ModalBody>
+          <AddClient />
+        </ModalBody>
+        <ModalFooter>
+          <Button color="secondary" onClick={toggleClient}>
+            Отмена
+          </Button>
+        </ModalFooter>
+      </Modal>
+      <Modal
+        isOpen={modalExecutor}
+        toggle={toggleExecutor}
+        className={className}
+      >
+        <ModalHeader toggle={toggleExecutor}>Добавить исполнителя</ModalHeader>
+        <ModalBody>
+          <AddClient />
+        </ModalBody>
+        <ModalFooter>
+          <Button color="secondary" onClick={toggleExecutor}>
+            Отмена
+          </Button>
+        </ModalFooter>
+      </Modal>
     </form>
   );
 };
