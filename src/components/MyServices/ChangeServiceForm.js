@@ -59,16 +59,20 @@ const ChangeServiceForm = () => {
       />
       {errors.sum && errors.sum.type === "required" && <p>Обязательное поле</p>}
       <div className="add-clients-input-block">
-        <Controller
-          as={<SelectExecutor />}
-          control={control}
-          rules={{ required: false }}
-          onChange={([selected]) => {
-            return selected;
-          }}
-          name="reactSelectRegistrationCity"
-        />
-        <button onClick={() => pushExecutor()}>+</button>
+        {executor.map((element) => (
+          <>
+            <Controller
+              as={<SelectExecutor />}
+              control={control}
+              rules={{ required: false }}
+              onChange={([selected]) => {
+                return selected;
+              }}
+              name="reactSelectRegistrationCity"
+            />
+            <button onClick={() => pushExecutor()}>+</button>
+          </>
+        ))}
       </div>
       <input
         type="text"

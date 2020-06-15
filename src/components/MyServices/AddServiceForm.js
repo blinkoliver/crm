@@ -11,14 +11,14 @@ import "./AddServiceForm.scss";
 const AddServiceForm = (props) => {
   const { className } = props;
 
-  const [modal, setModal] = useState(false);
-  const [modalTitle, setModalTitle] = useState("");
-  const [modalBody, setModalBody] = useState("");
+  const [modalClient, setModalClient] = useState(false);
+  const [modalExecutor, setModalExecutor] = useState(false);
 
-  const toggle = (title, body) => {
-    setModal(!modal);
-    setModalTitle(title);
-    setModalBody(body);
+  const toggleClient = () => {
+    setModalClient(!modalClient);
+  };
+  const toggleExecutor = () => {
+    setModalExecutor(!modalExecutor);
   };
 
   const { register, handleSubmit, errors, control } = useForm({
@@ -27,7 +27,6 @@ const AddServiceForm = (props) => {
   const onSubmit = (data) => {
     // console.log(data);
   };
-  console.log(modalTitle.props);
   return (
     <form className="service-form" onSubmit={handleSubmit(onSubmit)}>
       <input
@@ -49,13 +48,7 @@ const AddServiceForm = (props) => {
           }}
           name="reactSelectRegistrationCity"
         />
-        <button
-          onClick={() =>
-            toggle(<div>Добавить нового клиента</div>, <AddClient />)
-          }
-        >
-          +
-        </button>
+        <button onClick={() => toggleClient()}>+</button>
       </div>
       <input
         type="date"
@@ -83,13 +76,7 @@ const AddServiceForm = (props) => {
           }}
           name="reactSelectRegistrationCity"
         />
-        <button
-          onClick={() =>
-            toggle(<div>Добавить нового исполнителя</div>, <AddClient />)
-          }
-        >
-          +
-        </button>
+        <button onClick={() => toggleExecutor()}>+</button>
       </div>
       <input
         type="text"
@@ -103,11 +90,28 @@ const AddServiceForm = (props) => {
       <button className="add-service-submit" type="submit">
         Создать
       </button>
-      <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>{modalTitle}</ModalHeader>
-        <ModalBody>{modalBody}</ModalBody>
+      <Modal isOpen={modalClient} toggle={toggleClient} className={className}>
+        <ModalHeader toggle={toggleClient}>Добавить клиента</ModalHeader>
+        <ModalBody>
+          <AddClient />
+        </ModalBody>
         <ModalFooter>
-          <Button color="secondary" onClick={toggle}>
+          <Button color="secondary" onClick={toggleClient}>
+            Отмена
+          </Button>
+        </ModalFooter>
+      </Modal>
+      <Modal
+        isOpen={modalExecutor}
+        toggle={toggleExecutor}
+        className={className}
+      >
+        <ModalHeader toggle={toggleExecutor}>Добавить исполнителя</ModalHeader>
+        <ModalBody>
+          <AddClient />
+        </ModalBody>
+        <ModalFooter>
+          <Button color="secondary" onClick={toggleExecutor}>
             Отмена
           </Button>
         </ModalFooter>
