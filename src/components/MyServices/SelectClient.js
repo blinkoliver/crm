@@ -50,7 +50,7 @@ const SelectClient = (props) => {
         defaultOptions
         onInputChange={handleInputChange}
         styles={reactSelectClientStyle}
-        placeholder={"Выберите клиента или добавьте вручную"}
+        placeholder={"Выберите или добавьте клиента"}
         components={{
           IndicatorSeparator: () => null,
           DropdownIndicator: () => null,

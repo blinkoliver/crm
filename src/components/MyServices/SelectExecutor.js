@@ -50,7 +50,7 @@ const SelectExecutor = (props) => {
         defaultOptions
         onInputChange={handleInputChange}
         styles={reactSelectExecutorStyle}
-        placeholder={"Выберите исполнителя или добавьте вручную"}
+        placeholder={"Выберите или добавьте исполнителя"}
         components={{
           IndicatorSeparator: () => null,
           DropdownIndicator: () => null,

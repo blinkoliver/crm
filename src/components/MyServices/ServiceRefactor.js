@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./ServiceRefactor.scss";
-import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
+import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import ChangeServiceForm from "./ChangeServiceForm";
 
 const ServiceRefactor = (props) => {
@@ -19,9 +19,6 @@ const ServiceRefactor = (props) => {
         <ModalHeader toggle={toggle}>Редактировать услугу</ModalHeader>
         <ModalBody>
           <ChangeServiceForm />
-          <Button color="secondary" onClick={toggle}>
-            Отмена
-          </Button>
         </ModalBody>
       </Modal>
     </div>

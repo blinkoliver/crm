@@ -19,9 +19,6 @@ const AddServiceModal = (props) => {
         <ModalHeader toggle={toggle}>Создать услугу</ModalHeader>
         <ModalBody>
           <AddServiceForm />
-          <Button color="secondary" onClick={toggle}>
-            Отмена
-          </Button>
         </ModalBody>
       </Modal>
     </div>

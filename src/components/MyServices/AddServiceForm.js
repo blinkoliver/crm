@@ -6,11 +6,16 @@ import SelectExecutor from "./SelectExecutor";
 import { testValues } from "../../constants/testValues";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import AddClient from "../MyClients/AddClient";
+import Select from "react-select";
+import { activities } from "../../constants/activities";
+import { reactSelectActivitiesStyle } from "../../constants/componentsStyle";
+import Transportation from "./Activities/Transportation";
 import "./AddServiceForm.scss";
 
 const AddServiceForm = (props) => {
   const { className } = props;
 
+  const [selectedValue, setSelectedValue] = useState({});
   const [modalClient, setModalClient] = useState(false);
   const [modalExecutor, setModalExecutor] = useState(false);
 
@@ -87,9 +92,33 @@ const AddServiceForm = (props) => {
       {errors.status && errors.status.type === "required" && (
         <p>Обязательное поле</p>
       )}
-      <button className="add-service-submit" type="submit">
-        Создать
-      </button>
+      <Controller
+        as={
+          <Select
+            placeholder={"Выберите форму деятельности"}
+            options={activities}
+            components={{
+              IndicatorSeparator: () => null,
+              IndicatorsContainer: () => null,
+            }}
+            styles={reactSelectActivitiesStyle}
+          />
+        }
+        onChange={([selected]) => {
+          setSelectedValue(selected);
+          return selected;
+        }}
+        control={control}
+        rules={{ required: true }}
+        name="activities"
+      />
+      {errors.activities && errors.activities.type === "required" && (
+        <p>Обязательное поле</p>
+      )}
+      {selectedValue.value === 0 && (
+        <Transportation register={register} errors={errors} control={control} />
+      )}
+
       <Modal isOpen={modalClient} toggle={toggleClient} className={className}>
         <ModalHeader toggle={toggleClient}>Добавить клиента</ModalHeader>
         <ModalBody>

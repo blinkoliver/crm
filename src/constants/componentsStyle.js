@@ -49,7 +49,7 @@ export const reactSelectCitiesStyle = {
 };
 export const reactSelectClientStyle = {
   valueContainer: () => ({
-    height: "10vh",
+    height: "9vh",
     paddingLeft: "2vh",
   }),
   placeholder: () => ({
@@ -64,16 +64,17 @@ export const reactSelectClientStyle = {
   }),
   input: () => ({
     position: "relative",
-    bottom: "9vh",
+    bottom: "8vh",
   }),
   control: () => ({
     border: "solid grey 1px",
     height: "10vh",
+    borderRadius: "0.5vh",
   }),
 };
 export const reactSelectExecutorStyle = {
   valueContainer: () => ({
-    height: "10vh",
+    height: "9vh",
     paddingLeft: "2vh",
   }),
   placeholder: () => ({
@@ -88,10 +89,37 @@ export const reactSelectExecutorStyle = {
   }),
   input: () => ({
     position: "relative",
-    bottom: "9vh",
+    bottom: "8vh",
   }),
   control: () => ({
     border: "solid grey 1px",
     height: "10vh",
+    borderRadius: "0.5vh",
+  }),
+};
+export const reactSelectActivitiesStyle = {
+  input: () => ({
+    position: "relative",
+    bottom: "8vh",
+    height: "inherit",
+  }),
+  control: () => ({
+    border: "solid grey 1px",
+    borderRadius: "0.5vh",
+    height: "10vh",
+  }),
+  valueContainer: () => ({
+    height: "7vh",
+    paddingLeft: "2vh",
+  }),
+  placeholder: () => ({
+    fontSize: "3vh",
+    marginTop: "4%",
+    color: "gray",
+  }),
+  singleValue: () => ({
+    color: "grey",
+    fontSize: "3vh",
+    marginTop: "3vh",
   }),
 };

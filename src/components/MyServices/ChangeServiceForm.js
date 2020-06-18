@@ -5,11 +5,16 @@ import SelectExecutor from "./SelectExecutor";
 import { useForm } from "react-hook-form";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import AddClient from "../MyClients/AddClient";
+import Select from "react-select";
+import { activities } from "../../constants/activities";
+import { reactSelectOwnershipStyle } from "../../constants/componentsStyle";
+import Transportation from "./Activities/Transportation";
 import "./AddServiceForm.scss";
 
 const ChangeServiceForm = (props) => {
   const { className } = props;
 
+  const [selectedValue, setSelectedValue] = useState({});
   const [modalClient, setModalClient] = useState(false);
   const [modalExecutor, setModalExecutor] = useState(false);
 
@@ -84,6 +89,29 @@ const ChangeServiceForm = (props) => {
       />
       {errors.status && errors.status.type === "required" && (
         <p>Обязательное поле</p>
+      )}
+      <Controller
+        as={
+          <Select
+            placeholder={"Выберите форму деятельности"}
+            options={activities}
+            components={{ IndicatorSeparator: () => null }}
+            styles={reactSelectOwnershipStyle}
+          />
+        }
+        onChange={([selected]) => {
+          setSelectedValue(selected);
+          return selected;
+        }}
+        control={control}
+        rules={{ required: true }}
+        name="activities"
+      />
+      {errors.activities && errors.activities.type === "required" && (
+        <p>Обязательное поле</p>
+      )}
+      {selectedValue.value === 0 && (
+        <Transportation register={register} errors={errors} control={control} />
       )}
       <button className="add-service-submit" type="submit">
         Редактировать
