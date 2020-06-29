@@ -14,11 +14,11 @@ const Transportation = (props) => {
   return (
     <>
       {routes.map((element) => (
-        <div className="add-routes-block">
+        <div className="add-routes-block" key={element.id}>
           <input
             type="text"
             value={element.value}
-            name="routes"
+            name="ROUTE"
             onChange={(value) => onInputChange(element.id, value)}
             placeholder="Маршрут"
             ref={props.register({ required: true, maxLength: 100 })}
@@ -29,33 +29,23 @@ const Transportation = (props) => {
       <input
         type="text"
         placeholder="Номер ТТН"
-        name="ttn"
+        name="TTN"
         ref={props.register({ required: true, maxLength: 100 })}
       />
-      {props.errors.ttn && props.errors.ttn.type === "required" && (
-        <p>Обязательное поле</p>
-      )}
-
       <input
         type="text"
         placeholder="Номер договора"
-        name="contract"
+        name="CONTRACT_NUMBER"
         ref={props.register({
           required: true,
         })}
       />
-      {props.errors.contract && props.errors.contract.type === "required" && (
-        <p>Обязательное поле</p>
-      )}
       <input
         type="text"
         placeholder="Путевой лист"
-        name="waybild"
+        name="WAYBILL"
         ref={props.register({ required: true, maxLength: 100 })}
       />
-      {props.errors.waybild && props.errors.waybild.type === "required" && (
-        <p>Обязательное поле</p>
-      )}
       <button className="add-service-submit" type="submit">
         Создать
       </button>

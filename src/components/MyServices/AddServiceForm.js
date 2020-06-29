@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Controller } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import SelectClient from "./SelectClient";
 import SelectExecutor from "./SelectExecutor";
@@ -8,14 +9,21 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import AddClient from "../MyClients/AddClient";
 import Select from "react-select";
 import { activities } from "../../constants/activities";
+import { status } from "../../constants/status";
+import { paid } from "../../constants/paid";
 import { reactSelectActivitiesStyle } from "../../constants/componentsStyle";
 import Transportation from "./Activities/Transportation";
+import PassengerTransportation from "./Activities/PassengerTransportation";
+import { httpPost } from "../../utils";
 import "./AddServiceForm.scss";
 
 const AddServiceForm = (props) => {
+  let history = useHistory();
+
   const { className } = props;
 
   const [selectedValue, setSelectedValue] = useState({});
+  const [fetchError, setFetchError] = useState(false);
   const [modalClient, setModalClient] = useState(false);
   const [modalExecutor, setModalExecutor] = useState(false);
 
@@ -29,18 +37,38 @@ const AddServiceForm = (props) => {
   const { register, handleSubmit, errors, control } = useForm({
     defaultValues: testValues,
   });
+
   const onSubmit = (data) => {
-    // console.log(data);
+    const updateData = {
+      name: data.name,
+      client: data.client,
+      date: data.date,
+      price: data.price,
+      performer: data.performer,
+      status: data.status.value,
+      type: data.type.value,
+      paid: data.paid.value,
+      additional_task: data.paid,
+    };
+    console.log(data, updateData);
+    httpPost(`task/create/`, updateData)
+      .then((post) => {
+        localStorage.setItem("access_token", post.token);
+        props.getUserInfo();
+        history.push("/");
+      })
+      .catch(() => setFetchError(true));
+    console.log(data);
   };
   return (
     <form className="service-form" onSubmit={handleSubmit(onSubmit)}>
       <input
         type="text"
         placeholder="Наименование"
-        name="serviceName"
+        name="name"
         ref={register({ required: true, maxLength: 100 })}
       />
-      {errors.serviceName && errors.serviceName.type === "required" && (
+      {errors.name && errors.name.type === "required" && (
         <p>Обязательное поле</p>
       )}
       <div className="add-clients-input-block">
@@ -51,7 +79,7 @@ const AddServiceForm = (props) => {
           onChange={([selected]) => {
             return selected;
           }}
-          name="reactSelectRegistrationCity"
+          name="client"
         />
         <button onClick={() => toggleClient()}>+</button>
       </div>
@@ -67,10 +95,12 @@ const AddServiceForm = (props) => {
       <input
         type="number"
         placeholder="Сумма"
-        name="sum"
+        name="price"
         ref={register({ required: true, maxLength: 100 })}
       />
-      {errors.sum && errors.sum.type === "required" && <p>Обязательное поле</p>}
+      {errors.price && errors.price.type === "required" && (
+        <p>Обязательное поле</p>
+      )}
       <div className="add-clients-input-block">
         <Controller
           as={<SelectExecutor />}
@@ -79,17 +109,54 @@ const AddServiceForm = (props) => {
           onChange={([selected]) => {
             return selected;
           }}
-          name="reactSelectRegistrationCity"
+          name="performer"
         />
         <button onClick={() => toggleExecutor()}>+</button>
       </div>
-      <input
-        type="text"
-        placeholder="Статус"
+      <Controller
+        as={
+          <Select
+            placeholder={"Статус"}
+            options={status}
+            components={{
+              IndicatorSeparator: () => null,
+              IndicatorsContainer: () => null,
+            }}
+            styles={reactSelectActivitiesStyle}
+          />
+        }
+        onChange={([selected]) => {
+          setSelectedValue(selected);
+          return selected;
+        }}
+        control={control}
+        rules={{ required: true }}
         name="status"
-        ref={register({ required: true, maxLength: 100 })}
       />
       {errors.status && errors.status.type === "required" && (
+        <p>Обязательное поле</p>
+      )}
+      <Controller
+        as={
+          <Select
+            placeholder={"Платеж"}
+            options={paid}
+            components={{
+              IndicatorSeparator: () => null,
+              IndicatorsContainer: () => null,
+            }}
+            styles={reactSelectActivitiesStyle}
+          />
+        }
+        onChange={([selected]) => {
+          setSelectedValue(selected);
+          return selected;
+        }}
+        control={control}
+        rules={{ required: true }}
+        name="paid"
+      />
+      {errors.paid && errors.paid.type === "required" && (
         <p>Обязательное поле</p>
       )}
       <Controller
@@ -110,13 +177,20 @@ const AddServiceForm = (props) => {
         }}
         control={control}
         rules={{ required: true }}
-        name="activities"
+        name="type"
       />
-      {errors.activities && errors.activities.type === "required" && (
+      {errors.type && errors.type.type === "required" && (
         <p>Обязательное поле</p>
       )}
       {selectedValue.value === 0 && (
         <Transportation register={register} errors={errors} control={control} />
+      )}
+      {selectedValue.value === 1 && (
+        <PassengerTransportation
+          register={register}
+          errors={errors}
+          control={control}
+        />
       )}
 
       <Modal isOpen={modalClient} toggle={toggleClient} className={className}>
@@ -145,6 +219,7 @@ const AddServiceForm = (props) => {
           </Button>
         </ModalFooter>
       </Modal>
+      {fetchError ? <p>Услуга не создана, ошибка сервера</p> : <></>}
     </form>
   );
 };
