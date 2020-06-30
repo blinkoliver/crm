@@ -34,7 +34,7 @@ const Header = (props) => {
             <NavLink to={"/myStaff"}>Персонал</NavLink>
           </li>
 
-          {Object.keys(props.userInfo).length > 0 ? (
+          {Object.keys(props.userInfo).length > 3 ? (
             <li>
               <NavLink to={"/user-info"}>{props.userInfo.email}</NavLink>
             </li>
@@ -43,7 +43,7 @@ const Header = (props) => {
               <NavLink to={"/signin"}>Вход</NavLink>
             </li>
           )}
-          {Object.keys(props.userInfo).length > 0 ? (
+          {Object.keys(props.userInfo).length > 3 ? (
             <li
               className="menu-item-registration"
               onClick={() => {

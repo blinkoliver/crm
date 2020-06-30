@@ -53,12 +53,11 @@ const AddServiceForm = (props) => {
     console.log(data, updateData);
     httpPost(`task/create/`, updateData)
       .then((post) => {
-        localStorage.setItem("access_token", post.token);
-        props.getUserInfo();
-        history.push("/");
+        history.push("/myServices");
+        const task = post.id;
+        console.log("usluga uspeshno sozdana",task);
       })
       .catch(() => setFetchError(true));
-    console.log(data);
   };
   return (
     <form className="service-form" onSubmit={handleSubmit(onSubmit)}>

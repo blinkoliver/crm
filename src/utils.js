@@ -18,7 +18,6 @@ export const httpAuthorized = (path) => {
     .then((data) => {
       return data;
     })
-    .catch(httpPostTokenUpdate("rest/account/update/"));
 };
 
 export const httpPostTokenUpdate = async (path) => {
