@@ -3,18 +3,25 @@ import { Controller } from "react-hook-form";
 import SelectClient from "./SelectClient";
 import SelectExecutor from "./SelectExecutor";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import AddClient from "../MyClients/AddClient";
 import Select from "react-select";
 import { activities } from "../../constants/activities";
-import { reactSelectOwnershipStyle } from "../../constants/componentsStyle";
+import { reactSelectActivitiesStyle } from "../../constants/componentsStyle";
+import PassengerTransportation from "./Activities/PassengerTransportation";
+import { paid } from "../../constants/paid";
+
 import Transportation from "./Activities/Transportation";
+import { httpPost } from "../../utils";
 import "./AddServiceForm.scss";
 
 const ChangeServiceForm = (props) => {
+  let history = useHistory();
   const { className } = props;
 
   const [selectedValue, setSelectedValue] = useState({});
+  const [fetchError, setFetchError] = useState(false);
   const [modalClient, setModalClient] = useState(false);
   const [modalExecutor, setModalExecutor] = useState(false);
 
@@ -27,6 +34,25 @@ const ChangeServiceForm = (props) => {
 
   const { register, handleSubmit, errors, control } = useForm();
   const onSubmit = (data) => {
+    const updateData = {
+      task_id: props.id,
+      name: data.name,
+      client: data.client,
+      date: data.date,
+      price: data.price,
+      performer: data.performer,
+      status: data.status.value,
+      type: data.type.value,
+      paid: data.paid.value,
+      additional_task: data.paid,
+    };
+    console.log(data, updateData);
+    httpPost(`/task/update_task/`, updateData)
+      .then((post) => {
+        history.push("/myServices");
+        console.log("usluga uspeshno izmenena", post);
+      })
+      .catch(() => setFetchError(true));
     console.log(data);
   };
 
@@ -35,10 +61,10 @@ const ChangeServiceForm = (props) => {
       <input
         type="text"
         placeholder="Наименование"
-        name="serviceName"
+        name="name"
         ref={register({ required: true, maxLength: 100 })}
       />
-      {errors.serviceName && errors.serviceName.type === "required" && (
+      {errors.name && errors.name.type === "required" && (
         <p>Обязательное поле</p>
       )}
       <div className="add-clients-input-block">
@@ -49,7 +75,7 @@ const ChangeServiceForm = (props) => {
           onChange={([selected]) => {
             return selected;
           }}
-          name="reactSelectRegistrationCity"
+          name="client"
         />
         <button onClick={() => toggleClient()}>+</button>
       </div>
@@ -65,10 +91,12 @@ const ChangeServiceForm = (props) => {
       <input
         type="number"
         placeholder="Сумма"
-        name="sum"
+        name="price"
         ref={register({ required: true, maxLength: 100 })}
       />
-      {errors.sum && errors.sum.type === "required" && <p>Обязательное поле</p>}
+      {errors.price && errors.price.type === "required" && (
+        <p>Обязательное поле</p>
+      )}
       <div className="add-clients-input-block">
         <Controller
           as={<SelectExecutor />}
@@ -77,7 +105,7 @@ const ChangeServiceForm = (props) => {
           onChange={([selected]) => {
             return selected;
           }}
-          name="reactSelectRegistrationCity"
+          name="performer"
         />
         <button onClick={() => toggleExecutor()}>+</button>
       </div>
@@ -93,10 +121,13 @@ const ChangeServiceForm = (props) => {
       <Controller
         as={
           <Select
-            placeholder={"Выберите форму деятельности"}
-            options={activities}
-            components={{ IndicatorSeparator: () => null }}
-            styles={reactSelectOwnershipStyle}
+            placeholder={"Платеж"}
+            options={paid}
+            components={{
+              IndicatorSeparator: () => null,
+              IndicatorsContainer: () => null,
+            }}
+            styles={reactSelectActivitiesStyle}
           />
         }
         onChange={([selected]) => {
@@ -105,13 +136,43 @@ const ChangeServiceForm = (props) => {
         }}
         control={control}
         rules={{ required: true }}
-        name="activities"
+        name="paid"
       />
-      {errors.activities && errors.activities.type === "required" && (
+      {errors.paid && errors.paid.type === "required" && (
+        <p>Обязательное поле</p>
+      )}
+      <Controller
+        as={
+          <Select
+            placeholder={"Выберите форму деятельности"}
+            options={activities}
+            components={{
+              IndicatorSeparator: () => null,
+              IndicatorsContainer: () => null,
+            }}
+            styles={reactSelectActivitiesStyle}
+          />
+        }
+        onChange={([selected]) => {
+          setSelectedValue(selected);
+          return selected;
+        }}
+        control={control}
+        rules={{ required: true }}
+        name="type"
+      />
+      {errors.type && errors.type.type === "required" && (
         <p>Обязательное поле</p>
       )}
       {selectedValue.value === 0 && (
         <Transportation register={register} errors={errors} control={control} />
+      )}
+      {selectedValue.value === 1 && (
+        <PassengerTransportation
+          register={register}
+          errors={errors}
+          control={control}
+        />
       )}
       <button className="add-service-submit" type="submit">
         Редактировать
@@ -143,6 +204,7 @@ const ChangeServiceForm = (props) => {
           </Button>
         </ModalFooter>
       </Modal>
+      {fetchError ? <p>Услуга не изменена, ошибка сервера</p> : <></>}
     </form>
   );
 };

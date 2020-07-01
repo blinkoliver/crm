@@ -6,6 +6,7 @@ export const services = [
     status: "Active",
     taskName: "Research",
     date: "22.02.19",
+    id: 1,
   },
   {
     customer: "OOO Procter&Gamble",
@@ -14,6 +15,7 @@ export const services = [
     status: "Passive",
     taskName: "Toothpaste research",
     date: "22.02.19",
+    id: 2,
   },
   {
     customer: "OOO Procter&Gamble",
@@ -22,6 +24,7 @@ export const services = [
     status: "Active",
     taskName: "Research toothpaste",
     date: "22.02.19",
+    id: 3,
   },
   {
     customer: "OOO Procter&Gamble",
@@ -30,6 +33,7 @@ export const services = [
     status: "Active",
     taskName: "Cleanpaste",
     date: "22.02.19",
+    id: 4,
   },
   {
     customer: "OOO Procter&Gamble",
@@ -38,6 +42,7 @@ export const services = [
     status: "Passive",
     taskName: "Tooth research",
     date: "22.02.19",
+    id: 5,
   },
   {
     customer: "OOO Procter&Gamble",
@@ -46,6 +51,7 @@ export const services = [
     status: "Active",
     taskName: "Research tooth",
     date: "22.02.19",
+    id: 6,
   },
   {
     customer: "OOO Procter&Gamble",
@@ -54,6 +60,7 @@ export const services = [
     status: "Active",
     taskName: "Research cleanpaste",
     date: "22.02.19",
+    id: 7,
   },
   {
     customer: "OOO Procter&Gamble",
@@ -62,6 +69,7 @@ export const services = [
     status: "Passive",
     taskName: "Toothpastere",
     date: "22.02.19",
+    id: 8,
   },
   {
     customer: "OOO Procter&Gamble",
@@ -70,5 +78,6 @@ export const services = [
     status: "Active",
     taskName: "Res toothpaste",
     date: "22.02.19",
+    id: 9,
   },
 ];

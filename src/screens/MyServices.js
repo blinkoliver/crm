@@ -13,6 +13,7 @@ const MyServices = (props) => {
   const { className } = props;
 
   const [tasks, setTasks] = useState([]);
+  const [currentServiceId, setCurrentServiceId] = useState([]);
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
@@ -24,7 +25,10 @@ const MyServices = (props) => {
       console.log(tasks);
     });
   }, [tasks]);
-  const toggle = () => setModal(!modal);
+
+  const toggle = () => {
+    setModal(!modal);
+  };
 
   return (
     <div className="my-services">
@@ -36,9 +40,9 @@ const MyServices = (props) => {
           <SortServices />
         </div>
       </div>
-      {tasks.map((element) => (
+      {/* {tasks.map((element) => (
         <Service
-          onClick={toggle}
+          onClick={toggle(element.id)}
           key={element.id}
           taskName={element.name}
           client={element.client}
@@ -49,21 +53,26 @@ const MyServices = (props) => {
           type={element.type}
           paid={element.paid}
         />
-      ))}
+      ))} */}
       {services.map((element) => (
         <Service
-          onClick={toggle}
+          onClick={() => {
+            setCurrentServiceId(element.id);
+            toggle();
+          }}
+          // onClick={toggle}
           key={element.taskName}
           date={element.date}
           taskName={element.taskName}
           price={element.price}
           status={element.status}
+          id={element.id}
         />
       ))}
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Редактировать или удалить?</ModalHeader>
         <ModalBody>
-          <ServiceRefactor />
+          <ServiceRefactor id={currentServiceId}/>
         </ModalBody>
       </Modal>
     </div>
