@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Service from "../components/MyServices/Service";
 import AddServiceModal from "../components/MyServices/AddServiceModal";
 import SortServices from "../components/MyServices/SortServices";
-import { services } from "../constants/services";
 import Loading from "../components/Loading";
 import { Modal, ModalBody, ModalHeader } from "reactstrap";
 import ServiceRefactor from "../components/MyServices/ServiceRefactor";
@@ -18,7 +17,7 @@ const MyServices = (props) => {
   const [servicesLoading, setServicesLoading] = useState(false);
   const [modal, setModal] = useState(false);
 
-  console.log(tasks)
+  console.log(tasks);
 
   useEffect(() => {
     setServicesLoading(true);
@@ -28,8 +27,6 @@ const MyServices = (props) => {
     })
       .then((post) => {
         setTasks(post.tasks);
-        console.log(post);
-        console.log(tasks);
       })
       .then(setServicesLoading(false));
   }, []);
@@ -50,9 +47,12 @@ const MyServices = (props) => {
           <SortServices />
         </div>
       </div>
-      {/* {tasks.map((element) => (
+      {tasks.map((element) => (
         <Service
-          onClick={toggle(element.id)}
+          onClick={() => {
+            setCurrentServiceId(element.id);
+            toggle();
+          }}
           key={element.id}
           taskName={element.name}
           client={element.client}
@@ -63,22 +63,7 @@ const MyServices = (props) => {
           type={element.type}
           paid={element.paid}
         />
-      ))} */}
-      {/* {services.map((element) => (
-        <Service
-          onClick={() => {
-            setCurrentServiceId(element.id);
-            toggle();
-          }}
-          // onClick={toggle}
-          key={element.id}
-          date={element.date}
-          taskName={element.name}
-          price={element.price}
-          status={element.status}
-          id={element.id}
-        />
-      ))} */}
+      ))}
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Редактировать или удалить?</ModalHeader>
         <ModalBody>
