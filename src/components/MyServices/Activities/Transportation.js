@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./Transportation.scss";
-import { ListGroupItem } from "reactstrap";
 
 const Transportation = (props) => {
   const [transportationInfo, setTransportationInfo] = useState();
@@ -16,41 +15,31 @@ const Transportation = (props) => {
     setRoutes(routesArr);
   };
 
-
-  // {
-  //   ROUTE: [
-  //     {
-  //       CITY: uuid, 
-  //       address:"", 
-  //       point: int 
-  //     },
-  //   ],
-  //   TTN: "",
-  //   CONTRACT_NUMBER: "",
-  //   WAYBILL: "" 
-  // }
-
   const onSubmit = (data) => {
     const updateData = {
-      ROUTE: data.name,
-      TTN: data.TTN,
-      CONTRACT_NUMBER: data.CONTRACT_NUMBER,
-      WAYBILL: data.WAYBILL,
+      route: [
+        { city: "0", address: "0", point: 0 },
+        { city: "0", address: "0", point: 0 },
+      ],
+      ttn: data.ttn,
+      contract_number: data.contract_number,
+      waybill: data.waybill,
     };
     console.log(data, updateData);
   };
 
   return (
-    <form className="service-form" onSubmit={handleSubmit(onSubmit)}>
+    <>
+       {/* form className="service-form" onSubmit={handleSubmit(onSubmit)}> */}
       {routes.map((element) => (
         <div className="add-routes-block" key={element.id}>
           <input
             type="text"
-            value={element.value}
-            name="ROUTE"
-            onChange={(value) => onInputChange(element.id, value)}
+            // value={element.value}
+            name="route"
+            // onChange={(value) => onInputChange(element.id, value)}
             placeholder="Маршрут"
-            ref={register({ required: true, maxLength: 100 })}
+            ref={props.register({ required: true, maxLength: 100 })}
           />
           <button onClick={() => pushRoute()}>+</button>
         </div>
@@ -58,27 +47,28 @@ const Transportation = (props) => {
       <input
         type="text"
         placeholder="Номер ТТН"
-        name="TTN"
-        ref={register({ required: true, maxLength: 100 })}
+        name="ttn"
+        ref={props.register({ required: true, maxLength: 100 })}
       />
       <input
         type="text"
         placeholder="Номер договора"
-        name="CONTRACT_NUMBER"
-        ref={register({
+        name="contract_number"
+        ref={props.register({
           required: true,
         })}
       />
       <input
         type="text"
         placeholder="Путевой лист"
-        name="WAYBILL"
-        ref={register({ required: true, maxLength: 100 })}
+        name="waybill"
+        ref={props.register({ required: true, maxLength: 100 })}
       />
       <button className="add-service-submit" type="submit">
         Создать
       </button>
-    </form>
+      {/* </form> */}
+    </>
   );
 };
 export default Transportation;

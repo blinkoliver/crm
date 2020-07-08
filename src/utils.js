@@ -17,7 +17,7 @@ export const httpAuthorized = (path) => {
     .then(awaitForJsonResponse)
     .then((data) => {
       return data;
-    })
+    });
 };
 
 export const httpPostTokenUpdate = async (path) => {
@@ -25,20 +25,22 @@ export const httpPostTokenUpdate = async (path) => {
   const data = {
     fingerprint: fingerprint,
   };
-  return fetch(`${hosting}/${path}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then(awaitForJsonResponse)
-    .then((data) => {
-      localStorage.setItem("access_token", data.token);
+  return (
+    fetch(`${hosting}/${path}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
     })
-    // .then(httpAuthorized("rest/account/get-user/"))
-    .then(getUserInfo())
-    .catch(() => localStorage.setItem("access_token", " "));
+      .then(awaitForJsonResponse)
+      .then((data) => {
+        localStorage.setItem("access_token", data.token);
+      })
+      // .then(httpAuthorized("rest/account/get-user/"))
+      .then(getUserInfo())
+      .catch(() => localStorage.setItem("access_token", " "))
+  );
 };
 
 export const httpPost = (path, params) => {
@@ -46,6 +48,7 @@ export const httpPost = (path, params) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      authorization: localStorage.getItem("access_token"),
     },
     body: JSON.stringify(params),
   }).then(awaitForJsonResponse);

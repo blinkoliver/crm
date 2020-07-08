@@ -17,12 +17,10 @@ const MyServices = (props) => {
   const [servicesLoading, setServicesLoading] = useState(false);
   const [modal, setModal] = useState(false);
 
-  console.log(tasks);
-
   useEffect(() => {
     setServicesLoading(true);
     httpPost("rest/task/get_task_list/", {
-      limit: 10,
+      limit: 100,
       offset: 0,
     })
       .then((post) => {
@@ -54,9 +52,9 @@ const MyServices = (props) => {
             toggle();
           }}
           key={element.id}
-          taskName={element.name}
+          name={element.name}
           client={element.client}
-          date={element.date}
+          date={element.date.slice(0, 10)}
           price={element.price}
           performer={element.performer}
           status={element.status}

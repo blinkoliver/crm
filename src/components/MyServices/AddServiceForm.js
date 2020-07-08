@@ -38,17 +38,26 @@ const AddServiceForm = (props) => {
   const onSubmit = (data) => {
     const updateData = {
       name: data.name,
-      client: data.client,
+      client: "1b99a4c0-c679-4245-a00c-7be79799f98e",
       date: data.date,
       price: data.price,
-      performer: data.performer,
+      performer: "8adac476-098d-4622-bce3-8bcfeae7f8c0",
       status: data.status.value,
       type: data.type.value,
       paid: data.paid.value,
-      additional_task: data.paid,
+      customer_id: null,
+      additional_task: {
+        route: [
+          { city: "0", address: "0", point: 0 },
+          { city: "1", address: "1", point: 1 },
+        ],
+        ttn: data.ttn,
+        contract_number: data.contract_number,
+        waybill: data.waybill,
+      },
     };
     console.log(data, updateData);
-    httpPost(`task/create/`, updateData)
+    httpPost(`rest/task/create_task/`, updateData)
       .then((post) => {
         history.push("/myServices");
         const task = post.id;
