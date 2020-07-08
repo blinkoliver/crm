@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import SelectClient from "./SelectClient";
 import SelectExecutor from "./SelectExecutor";
-import { testValues } from "../../constants/testValues";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import AddClient from "../MyClients/AddClient";
 import Select from "react-select";
@@ -34,9 +33,7 @@ const AddServiceForm = (props) => {
     setModalExecutor(!modalExecutor);
   };
 
-  const { register, handleSubmit, errors, control } = useForm({
-    defaultValues: testValues,
-  });
+  const { register, handleSubmit, errors, control } = useForm();
 
   const onSubmit = (data) => {
     const updateData = {
@@ -55,7 +52,7 @@ const AddServiceForm = (props) => {
       .then((post) => {
         history.push("/myServices");
         const task = post.id;
-        console.log("usluga uspeshno sozdana",task);
+        console.log("usluga uspeshno sozdana", task);
       })
       .catch(() => setFetchError(true));
   };
