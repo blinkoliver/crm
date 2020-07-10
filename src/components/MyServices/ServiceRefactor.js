@@ -11,7 +11,7 @@ const ServiceRefactor = (props) => {
   const [task, setTask] = useState([]);
 
   useEffect(() => {
-    httpPost("/task/get_task/", {
+    httpPost("/rest/task/get_task/", {
       task_id: props.id,
     }).then((post) => {
       setTask(post);
@@ -23,20 +23,6 @@ const ServiceRefactor = (props) => {
   return (
     <div className="service-refactor">
       <div>{props.id}</div>
-      <div>
-        {
-          (task.id,
-          task.name,
-          task.client,
-          task.date,
-          task.price,
-          task.performer,
-          task.status,
-          task.type,
-          task.paid)
-        }
-      </div>
-
       <button className="change" onClick={toggle}>
         Редактировать
       </button>

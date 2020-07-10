@@ -9,7 +9,6 @@ import { ownership } from "../constants/registration";
 import { reactSelectOwnershipStyle } from "../constants/componentsStyle";
 import { httpPost } from "../utils";
 import { _getFingerprint } from "../fingerprint";
-import { testValues } from "../constants/testValues";
 import "./Registration.scss";
 import { connect } from "react-redux";
 import { getUserInfo } from "../actions/getUserInfo";
@@ -20,9 +19,7 @@ const Registration = (props) => {
   const [selectedValue, setSelectedValue] = useState({});
   const [fetchError, setFetchError] = useState(false);
 
-  const { register, handleSubmit, watch, errors, control } = useForm({
-    defaultValues: testValues,
-  });
+  const { register, handleSubmit, watch, errors, control } = useForm();
   const password = useRef({});
   password.current = watch("password", "");
 

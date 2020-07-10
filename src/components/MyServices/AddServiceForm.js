@@ -14,6 +14,7 @@ import { reactSelectActivitiesStyle } from "../../constants/componentsStyle";
 import Transportation from "./Activities/Transportation";
 import PassengerTransportation from "./Activities/PassengerTransportation";
 import { httpPost } from "../../utils";
+import {testValues} from "../../constants/testValues"
 import "./AddServiceForm.scss";
 
 const AddServiceForm = (props) => {
@@ -25,6 +26,7 @@ const AddServiceForm = (props) => {
   const [fetchError, setFetchError] = useState(false);
   const [modalClient, setModalClient] = useState(false);
   const [modalExecutor, setModalExecutor] = useState(false);
+  
 
   const toggleClient = () => {
     setModalClient(!modalClient);
@@ -33,7 +35,9 @@ const AddServiceForm = (props) => {
     setModalExecutor(!modalExecutor);
   };
 
-  const { register, handleSubmit, errors, control } = useForm();
+  const { register, handleSubmit, errors, control } = useForm({
+    defaultValues: testValues,
+  });
 
   const onSubmit = (data) => {
     const updateData = {
@@ -48,8 +52,8 @@ const AddServiceForm = (props) => {
       customer_id: null,
       additional_task: {
         route: [
-          { city: "0", address: "0", point: 0 },
-          { city: "1", address: "1", point: 1 },
+          { city: data.city, address: data.address, point: data.point },
+          { city: data.city, address: data.address, point: data.point },
         ],
         ttn: data.ttn,
         contract_number: data.contract_number,
@@ -94,9 +98,6 @@ const AddServiceForm = (props) => {
         name="date"
         ref={register({ required: true, maxLength: 100 })}
       />
-      {errors.date && errors.date.type === "required" && (
-        <p>Обязательное поле</p>
-      )}
       <input
         type="number"
         placeholder="Сумма"

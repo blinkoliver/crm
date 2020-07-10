@@ -1,8 +1,11 @@
 export const testValues = {
-  address: "Богдановича 68",
   email: "borovko28@gmail.com",
   fio: "Антон Боровко",
-  name: "Антон Боровко",
+  name: "Перевозка",
+  price: 123,
+  status: 1,
+  paid: 1,
+  date: "02/02/2020",
   oked: "12345",
   password: "qwerQWER1234",
   password_repeat: "qwerQWER1234",

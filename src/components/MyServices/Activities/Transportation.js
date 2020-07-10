@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller } from "react-hook-form";
+import SelectCity from "../../../components/SelectCity";
 import "./Transportation.scss";
 
 const Transportation = (props) => {
-  const [transportationInfo, setTransportationInfo] = useState();
   const [routes, setRoutes] = useState([{ id: 0, value: "" }]);
-  const { register, handleSubmit } = useForm();
-
-  const onInputChange = (id, value) => {};
 
   const pushRoute = () => {
     let newRoute = { id: routes.length, value: "" };
@@ -15,30 +12,29 @@ const Transportation = (props) => {
     setRoutes(routesArr);
   };
 
-  const onSubmit = (data) => {
-    const updateData = {
-      route: [
-        { city: "0", address: "0", point: 0 },
-        { city: "0", address: "0", point: 0 },
-      ],
-      ttn: data.ttn,
-      contract_number: data.contract_number,
-      waybill: data.waybill,
-    };
-    console.log(data, updateData);
-  };
-
   return (
     <>
-       {/* form className="service-form" onSubmit={handleSubmit(onSubmit)}> */}
       {routes.map((element) => (
         <div className="add-routes-block" key={element.id}>
+          <Controller
+            as={<SelectCity />}
+            control={props.control}
+            rules={{ required: false }}
+            onChange={([selected]) => {
+              return selected;
+            }}
+            name="city"
+          />
           <input
             type="text"
-            // value={element.value}
-            name="route"
-            // onChange={(value) => onInputChange(element.id, value)}
-            placeholder="Маршрут"
+            placeholder="Адрес"
+            name="address"
+            ref={props.register({ required: true, maxLength: 100 })}
+          />
+          <input
+            type="text"
+            value={element.id}
+            name="point"
             ref={props.register({ required: true, maxLength: 100 })}
           />
           <button onClick={() => pushRoute()}>+</button>
@@ -67,7 +63,6 @@ const Transportation = (props) => {
       <button className="add-service-submit" type="submit">
         Создать
       </button>
-      {/* </form> */}
     </>
   );
 };
