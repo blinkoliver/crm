@@ -23,18 +23,18 @@ const Transportation = (props) => {
             onChange={([selected]) => {
               return selected;
             }}
-            name="city"
+            name={"city" + element.id}
           />
           <input
             type="text"
             placeholder="Адрес"
-            name="address"
+            name={"address" + element.id}
             ref={props.register({ required: true, maxLength: 100 })}
           />
           <input
             type="text"
             value={element.id}
-            name="point"
+            name={"point" + element.id}
             ref={props.register({ required: true, maxLength: 100 })}
           />
           <button onClick={() => pushRoute()}>+</button>

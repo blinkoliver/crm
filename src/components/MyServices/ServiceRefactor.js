@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { httpPost } from "../../utils";
+import React, { useState } from "react";
 import "./ServiceRefactor.scss";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import ChangeServiceForm from "./ChangeServiceForm";
@@ -8,16 +7,6 @@ const ServiceRefactor = (props) => {
   const { className } = props;
 
   const [modal, setModal] = useState(false);
-  const [task, setTask] = useState([]);
-
-  useEffect(() => {
-    httpPost("/rest/task/get_task/", {
-      task_id: props.id,
-    }).then((post) => {
-      setTask(post);
-      console.log(task);
-    });
-  }, []);
 
   const toggle = () => setModal(!modal);
   return (
@@ -28,9 +17,11 @@ const ServiceRefactor = (props) => {
       </button>
       <button className="delete">Удалить</button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Редактировать услугу</ModalHeader>
+        <ModalHeader toggle={toggle}>
+          Редактировать услугу {props.id}
+        </ModalHeader>
         <ModalBody>
-          <ChangeServiceForm />
+          <ChangeServiceForm id={props.id} />
         </ModalBody>
       </Modal>
     </div>

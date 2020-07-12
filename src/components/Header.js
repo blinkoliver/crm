@@ -7,15 +7,15 @@ import { getUserInfo, userLogout } from "../actions/getUserInfo";
 
 const Header = (props) => {
   let history = useHistory();
-
+  const { getUserInfo } = props
   useEffect(() => {
     const accessToken = localStorage.getItem("access_token");
     if (accessToken && accessToken.length > 10) {
-      props.getUserInfo();
+      getUserInfo();
     } else {
       history.push("/signIn");
     }
-  }, [history, localStorage]);
+  }, [history, getUserInfo]);
 
   return (
     <header className="header">

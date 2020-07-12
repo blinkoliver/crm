@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Controller } from "react-hook-form";
 import SelectClient from "./SelectClient";
 import SelectExecutor from "./SelectExecutor";
@@ -11,7 +11,6 @@ import { activities } from "../../constants/activities";
 import { reactSelectActivitiesStyle } from "../../constants/componentsStyle";
 import PassengerTransportation from "./Activities/PassengerTransportation";
 import { paid } from "../../constants/paid";
-
 import Transportation from "./Activities/Transportation";
 import { httpPost } from "../../utils";
 import "./AddServiceForm.scss";
@@ -21,9 +20,30 @@ const ChangeServiceForm = (props) => {
   const { className } = props;
 
   const [selectedValue, setSelectedValue] = useState({});
+  const [task, setTask] = useState([]);
   const [fetchError, setFetchError] = useState(false);
   const [modalClient, setModalClient] = useState(false);
   const [modalExecutor, setModalExecutor] = useState(false);
+  const currentValues = {
+    id: task.id,
+    name: task.name,
+    client: task.client,
+    date: task.date,
+    price: task.price,
+    performer: task.performer,
+    status: task.status,
+    type: task.type,
+    paid: task.paid,
+    additional_task: task.paid,
+  };
+
+  useEffect(() => {
+    httpPost("/rest/task/get_task/", {
+      task_id: props.id,
+    }).then((post) => {
+      setTask(post);
+    });
+  }, [props.id]);
 
   const toggleClient = () => {
     setModalClient(!modalClient);
@@ -32,7 +52,9 @@ const ChangeServiceForm = (props) => {
     setModalExecutor(!modalExecutor);
   };
 
-  const { register, handleSubmit, errors, control } = useForm();
+  const { register, handleSubmit, errors, control } = useForm({
+    defaultValues: currentValues,
+  });
   const onSubmit = (data) => {
     const updateData = {
       task_id: props.id,
@@ -55,6 +77,8 @@ const ChangeServiceForm = (props) => {
       .catch(() => setFetchError(true));
     console.log(data);
   };
+  
+  console.log(task);
 
   return (
     <form className="service-form" onSubmit={handleSubmit(onSubmit)}>

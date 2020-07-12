@@ -20,7 +20,7 @@ const Service = (props) => {
       default:
         console.log("Нет таких значений");
     }
-  }, []);
+  }, [props.status]);
 
   return (
     <div className="service-card" onClick={props.onClick}>

@@ -14,7 +14,7 @@ import { reactSelectActivitiesStyle } from "../../constants/componentsStyle";
 import Transportation from "./Activities/Transportation";
 import PassengerTransportation from "./Activities/PassengerTransportation";
 import { httpPost } from "../../utils";
-import {testValues} from "../../constants/testValues"
+import { testValues } from "../../constants/testValues";
 import "./AddServiceForm.scss";
 
 const AddServiceForm = (props) => {
@@ -22,11 +22,12 @@ const AddServiceForm = (props) => {
 
   const { className } = props;
 
-  const [selectedValue, setSelectedValue] = useState({});
+  const [selectedStatus, setSelectedStatus] = useState({});
+  const [selectedPaid, setSelectedPaid] = useState({});
+  const [selectedType, setSelectedType] = useState({});
   const [fetchError, setFetchError] = useState(false);
   const [modalClient, setModalClient] = useState(false);
   const [modalExecutor, setModalExecutor] = useState(false);
-  
 
   const toggleClient = () => {
     setModalClient(!modalClient);
@@ -40,34 +41,66 @@ const AddServiceForm = (props) => {
   });
 
   const onSubmit = (data) => {
-    const updateData = {
-      name: data.name,
-      client: "1b99a4c0-c679-4245-a00c-7be79799f98e",
-      date: data.date,
-      price: data.price,
-      performer: "8adac476-098d-4622-bce3-8bcfeae7f8c0",
-      status: data.status.value,
-      type: data.type.value,
-      paid: data.paid.value,
-      customer_id: null,
-      additional_task: {
-        route: [
-          { city: data.city, address: data.address, point: data.point },
-          { city: data.city, address: data.address, point: data.point },
-        ],
-        ttn: data.ttn,
-        contract_number: data.contract_number,
-        waybill: data.waybill,
-      },
-    };
-    console.log(data, updateData);
-    httpPost(`rest/task/create_task/`, updateData)
-      .then((post) => {
-        history.push("/myServices");
-        const task = post.id;
-        console.log("usluga uspeshno sozdana", task);
-      })
-      .catch(() => setFetchError(true));
+    switch (data.type.value) {
+      case 0:
+        let routes = [];
+        Object.keys(data).map((key) => {
+          if (key.startsWith("address")) {
+            const index = key[key.length - 1];
+            const newRoute = {
+              city: data[`city${index}`],
+              address: data[`address${index}`],
+              point: data[`point${index}`],
+            };
+            routes = [...routes, newRoute];
+          }
+          return routes;
+        });
+        const transportation = {
+          name: data.name,
+          client: "1b99a4c0-c679-4245-a00c-7be79799f98e",
+          date: data.date,
+          price: data.price,
+          performer: "8adac476-098d-4622-bce3-8bcfeae7f8c0",
+          status: data.status.value,
+          type: data.type.value,
+          paid: data.paid.value,
+          customer_id: null,
+          additional_task: {
+            route: routes,
+            ttn: data.ttn,
+            contract_number: data.contract_number,
+            waybill: data.waybill,
+          },
+        };
+        console.log(transportation);
+        httpPost(`rest/task/create_task/`, transportation)
+          .then((post) => {
+            history.push("/myServices");
+            const task = post.id;
+            console.log("usluga uspeshno sozdana", task);
+          })
+          .catch((error) => {
+            console.log(error);
+            setFetchError(true);
+          });
+        break;
+      case 1:
+        const passengerTransportation = {};
+        httpPost(`rest/task/create_task/`, passengerTransportation)
+          .then((post) => {
+            history.push("/myServices");
+            const task = post.id;
+            console.log("usluga uspeshno sozdana", task);
+          })
+          .catch((error) => {
+            console.log(error);
+            setFetchError(true);
+          });
+        break;
+      default:
+        console.log("net takogo varianta");
+    }
   };
   return (
     <form className="service-form" onSubmit={handleSubmit(onSubmit)}>
@@ -96,7 +129,7 @@ const AddServiceForm = (props) => {
         type="date"
         placeholder="Дата"
         name="date"
-        ref={register({ required: true, maxLength: 100 })}
+        ref={register({ required: false })}
       />
       <input
         type="number"
@@ -128,15 +161,15 @@ const AddServiceForm = (props) => {
               IndicatorSeparator: () => null,
               IndicatorsContainer: () => null,
             }}
+            value={selectedStatus.label}
             styles={reactSelectActivitiesStyle}
           />
         }
         onChange={([selected]) => {
-          setSelectedValue(selected);
+          setSelectedStatus(selected);
           return selected;
         }}
         control={control}
-        rules={{ required: true }}
         name="status"
       />
       {errors.status && errors.status.type === "required" && (
@@ -151,15 +184,15 @@ const AddServiceForm = (props) => {
               IndicatorSeparator: () => null,
               IndicatorsContainer: () => null,
             }}
+            value={selectedPaid.label}
             styles={reactSelectActivitiesStyle}
           />
         }
         onChange={([selected]) => {
-          setSelectedValue(selected);
+          setSelectedPaid(selected);
           return selected;
         }}
         control={control}
-        rules={{ required: true }}
         name="paid"
       />
       {errors.paid && errors.paid.type === "required" && (
@@ -174,11 +207,12 @@ const AddServiceForm = (props) => {
               IndicatorSeparator: () => null,
               IndicatorsContainer: () => null,
             }}
+            value={selectedType.label}
             styles={reactSelectActivitiesStyle}
           />
         }
         onChange={([selected]) => {
-          setSelectedValue(selected);
+          setSelectedType(selected);
           return selected;
         }}
         control={control}
@@ -188,10 +222,10 @@ const AddServiceForm = (props) => {
       {errors.type && errors.type.type === "required" && (
         <p>Обязательное поле</p>
       )}
-      {selectedValue.value === 0 && (
+      {selectedType.value === 0 && (
         <Transportation register={register} errors={errors} control={control} />
       )}
-      {selectedValue.value === 1 && (
+      {selectedType.value === 1 && (
         <PassengerTransportation
           register={register}
           errors={errors}
