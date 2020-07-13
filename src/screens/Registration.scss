@@ -12,12 +12,16 @@
   padding: 0 1vh 0 1vh;
 }
 .registration .first-block .css-b8ldur-Input {
-  position: relative;
+  position: absolute;
   height: 5vh;
   bottom: 1vh;
 }
+.registration .first-block .css-b8ldur-Input > div {
+  position: absolute;
+  bottom: -7px;
+}
 .registration .first-block .css-1g6gooi {
-  position: relative;
+  position: absolute;
   height: 9vh;
   bottom: 7vh;
 }

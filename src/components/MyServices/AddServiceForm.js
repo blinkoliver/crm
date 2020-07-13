@@ -223,7 +223,12 @@ const AddServiceForm = (props) => {
         <p>Обязательное поле</p>
       )}
       {selectedType.value === 0 && (
-        <Transportation register={register} errors={errors} control={control} />
+        <Transportation
+          register={register}
+          errors={errors}
+          control={control}
+          closeModal={props.closeModal}
+        />
       )}
       {selectedType.value === 1 && (
         <PassengerTransportation

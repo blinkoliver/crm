@@ -49,7 +49,7 @@ export const reactSelectCitiesStyle = {
 };
 export const reactSelectClientStyle = {
   valueContainer: () => ({
-    height: "9vh",
+    height: "7vh",
     paddingLeft: "2vh",
   }),
   placeholder: () => ({
@@ -63,8 +63,8 @@ export const reactSelectClientStyle = {
     marginTop: "3vh",
   }),
   input: () => ({
-    position: "relative",
-    bottom: "8vh",
+    position: "absolute",
+    height: "10vh",
   }),
   control: () => ({
     border: "solid grey 1px",
@@ -114,7 +114,7 @@ export const reactSelectActivitiesStyle = {
   }),
   placeholder: () => ({
     fontSize: "3vh",
-    marginTop: "4%",
+    marginTop: "2%",
     color: "gray",
   }),
   singleValue: () => ({

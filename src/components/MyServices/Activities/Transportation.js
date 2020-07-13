@@ -60,7 +60,11 @@ const Transportation = (props) => {
         name="waybill"
         ref={props.register({ required: true, maxLength: 100 })}
       />
-      <button className="add-service-submit" type="submit">
+      <button
+        className="add-service-submit"
+        type="submit"
+        onClick={props.closeModal}
+      >
         Создать
       </button>
     </>

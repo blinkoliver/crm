@@ -32,7 +32,6 @@ const MyServices = (props) => {
   const toggle = () => {
     setModal(!modal);
   };
-
   return servicesLoading ? (
     <Loading />
   ) : (
@@ -65,7 +64,10 @@ const MyServices = (props) => {
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Редактировать или удалить?</ModalHeader>
         <ModalBody>
-          <ServiceRefactor id={currentServiceId} />
+          <ServiceRefactor
+            id={currentServiceId}
+            closeModal={() => setModal(false)}
+          />
         </ModalBody>
       </Modal>
     </div>
