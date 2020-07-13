@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Controller } from "react-hook-form";
 import SelectClient from "./SelectClient";
 import SelectExecutor from "./SelectExecutor";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import AddClient from "../MyClients/AddClient";
 import Select from "react-select";
@@ -14,36 +13,16 @@ import { paid } from "../../constants/paid";
 import Transportation from "./Activities/Transportation";
 import { httpPost } from "../../utils";
 import "./AddServiceForm.scss";
+import { status } from "../../constants/status";
 
 const ChangeServiceForm = (props) => {
-  let history = useHistory();
   const { className } = props;
 
   const [selectedValue, setSelectedValue] = useState({});
-  const [task, setTask] = useState([]);
+  const [selectedStatus, setSelectedStatus] = useState({});
   const [fetchError, setFetchError] = useState(false);
   const [modalClient, setModalClient] = useState(false);
   const [modalExecutor, setModalExecutor] = useState(false);
-  const currentValues = {
-    id: task.id,
-    name: task.name,
-    client: task.client,
-    date: task.date,
-    price: task.price,
-    performer: task.performer,
-    status: task.status,
-    type: task.type,
-    paid: task.paid,
-    additional_task: task.paid,
-  };
-
-  useEffect(() => {
-    httpPost("/rest/task/get_task/", {
-      task_id: props.id,
-    }).then((post) => {
-      setTask(post);
-    });
-  }, [props.id]);
 
   const toggleClient = () => {
     setModalClient(!modalClient);
@@ -53,7 +32,7 @@ const ChangeServiceForm = (props) => {
   };
 
   const { register, handleSubmit, errors, control } = useForm({
-    defaultValues: currentValues,
+    defaultValues: props.currentTask,
   });
   const onSubmit = (data) => {
     const updateData = {
@@ -69,16 +48,13 @@ const ChangeServiceForm = (props) => {
       additional_task: data.paid,
     };
     console.log(data, updateData);
-    httpPost(`/task/update_task/`, updateData)
+    httpPost(`task/update_task/`, updateData)
       .then((post) => {
-        history.push("/myServices");
         console.log("usluga uspeshno izmenena", post);
       })
       .catch(() => setFetchError(true));
     console.log(data);
   };
-  
-  console.log(task);
 
   return (
     <form className="service-form" onSubmit={handleSubmit(onSubmit)}>
@@ -133,11 +109,25 @@ const ChangeServiceForm = (props) => {
         />
         <button onClick={() => toggleExecutor()}>+</button>
       </div>
-      <input
-        type="text"
-        placeholder="Статус"
+      <Controller
+        as={
+          <Select
+            placeholder={"Статус"}
+            options={status}
+            components={{
+              IndicatorSeparator: () => null,
+              IndicatorsContainer: () => null,
+            }}
+            value={selectedStatus.label}
+            styles={reactSelectActivitiesStyle}
+          />
+        }
+        onChange={([selected]) => {
+          setSelectedStatus(selected);
+          return selected;
+        }}
+        control={control}
         name="status"
-        ref={register({ required: true, maxLength: 100 })}
       />
       {errors.status && errors.status.type === "required" && (
         <p>Обязательное поле</p>

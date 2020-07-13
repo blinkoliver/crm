@@ -17,6 +17,16 @@ const MyServices = (props) => {
   const [servicesLoading, setServicesLoading] = useState(false);
   const [modal, setModal] = useState(false);
 
+  const deleteService = (id) => {
+    httpPost(`rest/task/delete_task/`, { task_id: id })
+      .then(() => {
+        console.log("usluga udalena");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     setServicesLoading(true);
     httpPost("rest/task/get_task_list/", {
@@ -67,6 +77,7 @@ const MyServices = (props) => {
           <ServiceRefactor
             id={currentServiceId}
             closeModal={() => setModal(false)}
+            deleteService={() => deleteService(currentServiceId)}
           />
         </ModalBody>
       </Modal>
