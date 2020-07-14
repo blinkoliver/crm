@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./ServiceRefactor.scss";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
-import ChangeServiceForm from "./ChangeServiceForm";
+import TransportationForm from "./TransportationForm";
 import { httpPost } from "../../utils";
 
 const ServiceRefactor = (props) => {
   const { className } = props;
 
   const [modal, setModal] = useState(false);
+  const [routes, setRoutes] = useState();
   const [statusLabel, setStatusLabel] = useState();
   const [paidLabel, setPaidLabel] = useState();
+  const [type, setType] = useState();
   const [currentTask, setCurrentTask] = useState([]);
 
   const toggle = () => setModal(!modal);
@@ -18,6 +20,22 @@ const ServiceRefactor = (props) => {
     httpPost("rest/task/get_task/", {
       task_id: props.id,
     }).then((post) => {
+      setRoutes(
+        post.task.additional_task.route.filter(
+          (element) => element.id.length > 3
+        )
+      );
+
+      switch (post.task.type) {
+        case 0:
+          setType("Грузоперевозки");
+          break;
+        case 1:
+          setType("Пасажироперевозки");
+          break;
+        default:
+          console.log("Нет таких значений");
+      }
       switch (post.task.status) {
         case 0:
           setStatusLabel("К выполнению");
@@ -34,7 +52,7 @@ const ServiceRefactor = (props) => {
         default:
           console.log("Нет таких значений");
       }
-      post.task.paid === false
+      post.task.paid === 0
         ? setPaidLabel("Не оплачено")
         : setPaidLabel("Оплачено");
 
@@ -46,14 +64,20 @@ const ServiceRefactor = (props) => {
         price: post.task.price,
         performer: post.task.performer,
         status: { label: statusLabel, value: post.task.status },
-        type: { label: "Грузоперевозки", value: 0 },
+        type: { label: type, value: post.task.type },
         paid: { label: paidLabel, value: post.task.paid },
-        additional_task: post.task.paid,
+        ttn: post.task.additional_task.ttn,
+        contract_number: post.task.additional_task.contract_number,
+        waybill: post.task.additional_task.waybill,
+        city1: "1234",
+        address1: "Qwe",
+        city2: "1234",
+        address2: "Qwe",
       };
       setCurrentTask(task);
     });
-  }, [props.id, statusLabel, paidLabel]);
-
+  }, [props.id, statusLabel, paidLabel, type]);
+  console.log(routes);
   return (
     <div className="service-refactor">
       <button className="change" onClick={toggle}>
@@ -71,7 +95,10 @@ const ServiceRefactor = (props) => {
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Редактировать услугу</ModalHeader>
         <ModalBody>
-          <ChangeServiceForm currentTask={currentTask} />
+          {type === "Грузоперевозки" && (
+            <TransportationForm currentTask={currentTask} routes={routes} />
+          )}
+          {type === "Пасажироперевозки" && <TransportationForm />}
         </ModalBody>
       </Modal>
     </div>

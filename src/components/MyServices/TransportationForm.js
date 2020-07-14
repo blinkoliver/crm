@@ -8,21 +8,28 @@ import AddClient from "../MyClients/AddClient";
 import Select from "react-select";
 import { activities } from "../../constants/activities";
 import { reactSelectActivitiesStyle } from "../../constants/componentsStyle";
-import PassengerTransportation from "./Activities/PassengerTransportation";
 import { paid } from "../../constants/paid";
-import Transportation from "./Activities/Transportation";
 import { httpPost } from "../../utils";
+import SelectCity from "../../components/SelectCity";
 import "./AddServiceForm.scss";
 import { status } from "../../constants/status";
 
-const ChangeServiceForm = (props) => {
+const TransportationForm = (props) => {
   const { className } = props;
 
-  const [selectedValue, setSelectedValue] = useState({});
+  const [routes, setRoutes] = useState([{ id: 1, value: "" }]);
   const [selectedStatus, setSelectedStatus] = useState({});
+  const [selectedPaid, setSelectedPaid] = useState({});
+  const [selectedType, setSelectedType] = useState({});
   const [fetchError, setFetchError] = useState(false);
   const [modalClient, setModalClient] = useState(false);
   const [modalExecutor, setModalExecutor] = useState(false);
+
+  const pushRoute = () => {
+    let newRoute = { id: routes.length + 1, value: "" };
+    let routesArr = [...routes, newRoute];
+    setRoutes(routesArr);
+  };
 
   const toggleClient = () => {
     setModalClient(!modalClient);
@@ -55,7 +62,6 @@ const ChangeServiceForm = (props) => {
       .catch(() => setFetchError(true));
     console.log(data);
   };
-
   return (
     <form className="service-form" onSubmit={handleSubmit(onSubmit)}>
       <input
@@ -141,11 +147,12 @@ const ChangeServiceForm = (props) => {
               IndicatorSeparator: () => null,
               IndicatorsContainer: () => null,
             }}
+            value={selectedPaid.label}
             styles={reactSelectActivitiesStyle}
           />
         }
         onChange={([selected]) => {
-          setSelectedValue(selected);
+          setSelectedPaid(selected);
           return selected;
         }}
         control={control}
@@ -164,11 +171,12 @@ const ChangeServiceForm = (props) => {
               IndicatorSeparator: () => null,
               IndicatorsContainer: () => null,
             }}
+            value={selectedType.label}
             styles={reactSelectActivitiesStyle}
           />
         }
         onChange={([selected]) => {
-          setSelectedValue(selected);
+          setSelectedType(selected);
           return selected;
         }}
         control={control}
@@ -178,16 +186,52 @@ const ChangeServiceForm = (props) => {
       {errors.type && errors.type.type === "required" && (
         <p>Обязательное поле</p>
       )}
-      {selectedValue.value === 0 && (
-        <Transportation register={register} errors={errors} control={control} />
-      )}
-      {selectedValue.value === 1 && (
-        <PassengerTransportation
-          register={register}
-          errors={errors}
-          control={control}
-        />
-      )}
+      {props.routes.map((element) => (
+        <div className="add-routes-block" key={element.id}>
+          <Controller
+            as={<SelectCity />}
+            control={control}
+            rules={{ required: false }}
+            onChange={([selected]) => {
+              return selected;
+            }}
+            name={"city" + element.point}
+          />
+          <input
+            type="text"
+            placeholder="Адрес"
+            name={"address" + element.point}
+            ref={register({ required: true, maxLength: 100 })}
+          />
+          <input
+            type="text"
+            value={element.point}
+            name={"point" + element.point}
+            ref={register({ required: true, maxLength: 100 })}
+          />
+          <button onClick={() => pushRoute()}>+</button>
+        </div>
+      ))}
+      <input
+        type="text"
+        placeholder="Номер ТТН"
+        name="ttn"
+        ref={register({ required: true, maxLength: 100 })}
+      />
+      <input
+        type="text"
+        placeholder="Номер договора"
+        name="contract_number"
+        ref={register({
+          required: true,
+        })}
+      />
+      <input
+        type="text"
+        placeholder="Путевой лист"
+        name="waybill"
+        ref={register({ required: true, maxLength: 100 })}
+      />
       <button className="add-service-submit" type="submit">
         Редактировать
       </button>
@@ -222,4 +266,4 @@ const ChangeServiceForm = (props) => {
     </form>
   );
 };
-export default ChangeServiceForm;
+export default TransportationForm;

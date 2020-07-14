@@ -4,10 +4,10 @@ import SelectCity from "../../../components/SelectCity";
 import "./Transportation.scss";
 
 const Transportation = (props) => {
-  const [routes, setRoutes] = useState([{ id: 0, value: "" }]);
+  const [routes, setRoutes] = useState([{ id: 1, value: "" }]);
 
   const pushRoute = () => {
-    let newRoute = { id: routes.length, value: "" };
+    let newRoute = { id: routes.length + 1, value: "" };
     let routesArr = [...routes, newRoute];
     setRoutes(routesArr);
   };

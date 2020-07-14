@@ -98,7 +98,6 @@ const AddServiceForm = (props) => {
         console.log("net takogo varianta");
     }
   };
-  console.log(props);
   return (
     <form className="service-form" onSubmit={handleSubmit(onSubmit)}>
       <input
