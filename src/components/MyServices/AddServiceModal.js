@@ -18,7 +18,10 @@ const AddServiceModal = (props) => {
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Создать услугу</ModalHeader>
         <ModalBody>
-          <AddServiceForm closeModal={() => setModal(false)} />
+          <AddServiceForm
+            closeModal={() => setModal(false)}
+            fetchAfterSubmit={props.fetchAfterSubmit}
+          />
         </ModalBody>
       </Modal>
     </div>

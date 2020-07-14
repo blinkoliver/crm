@@ -47,7 +47,7 @@ const ChangeServiceForm = (props) => {
       paid: data.paid.value,
       additional_task: data.paid,
     };
-    console.log(data, updateData);
+    console.log(data);
     httpPost(`task/update_task/`, updateData)
       .then((post) => {
         console.log("usluga uspeshno izmenena", post);

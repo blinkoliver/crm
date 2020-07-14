@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Controller } from "react-hook-form";
-import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import SelectClient from "./SelectClient";
 import SelectExecutor from "./SelectExecutor";
@@ -18,8 +17,6 @@ import { testValues } from "../../constants/testValues";
 import "./AddServiceForm.scss";
 
 const AddServiceForm = (props) => {
-  let history = useHistory();
-
   const { className } = props;
 
   const [selectedStatus, setSelectedStatus] = useState({});
@@ -76,10 +73,10 @@ const AddServiceForm = (props) => {
         console.log(transportation);
         httpPost(`rest/task/create_task/`, transportation)
           .then((post) => {
-            history.push("/myServices");
             const task = post.id;
             console.log("usluga uspeshno sozdana", task);
           })
+          .then(props.fetchAfterSubmit())
           .catch((error) => {
             console.log(error);
             setFetchError(true);
@@ -89,7 +86,6 @@ const AddServiceForm = (props) => {
         const passengerTransportation = {};
         httpPost(`rest/task/create_task/`, passengerTransportation)
           .then((post) => {
-            history.push("/myServices");
             const task = post.id;
             console.log("usluga uspeshno sozdana", task);
           })
@@ -102,6 +98,7 @@ const AddServiceForm = (props) => {
         console.log("net takogo varianta");
     }
   };
+  console.log(props);
   return (
     <form className="service-form" onSubmit={handleSubmit(onSubmit)}>
       <input

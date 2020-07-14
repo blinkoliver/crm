@@ -8,6 +8,8 @@ const ServiceRefactor = (props) => {
   const { className } = props;
 
   const [modal, setModal] = useState(false);
+  const [statusLabel, setStatusLabel] = useState();
+  const [paidLabel, setPaidLabel] = useState();
   const [currentTask, setCurrentTask] = useState([]);
 
   const toggle = () => setModal(!modal);
@@ -16,24 +18,41 @@ const ServiceRefactor = (props) => {
     httpPost("rest/task/get_task/", {
       task_id: props.id,
     }).then((post) => {
-      console.log(post);
+      switch (post.task.status) {
+        case 0:
+          setStatusLabel("К выполнению");
+          break;
+        case 1:
+          setStatusLabel("В работе");
+          break;
+        case 2:
+          setStatusLabel("Завершён");
+          break;
+        case 3:
+          setStatusLabel("Отменен");
+          break;
+        default:
+          console.log("Нет таких значений");
+      }
+      post.task.paid === false
+        ? setPaidLabel("Не оплачено")
+        : setPaidLabel("Оплачено");
+
       const task = {
         id: post.task.id,
         name: post.task.name,
         client: post.task.client,
-        date: post.task.date,
+        date: post.task.date.slice(0, 10),
         price: post.task.price,
         performer: post.task.performer,
-        status: post.task.status,
-        type: post.task.type,
-        paid: post.task.paid,
+        status: { label: statusLabel, value: post.task.status },
+        type: { label: "Грузоперевозки", value: 0 },
+        paid: { label: paidLabel, value: post.task.paid },
         additional_task: post.task.paid,
       };
       setCurrentTask(task);
     });
-  }, [props.id]);
-
-  console.log(currentTask);
+  }, [props.id, statusLabel, paidLabel]);
 
   return (
     <div className="service-refactor">
