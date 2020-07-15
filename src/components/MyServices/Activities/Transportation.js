@@ -4,10 +4,10 @@ import SelectCity from "../../../components/SelectCity";
 import "./Transportation.scss";
 
 const Transportation = (props) => {
-  const [routes, setRoutes] = useState([{ id: 1, value: "" }]);
+  const [routes, setRoutes] = useState([{ id: 0, value: "" }]);
 
   const pushRoute = () => {
-    let newRoute = { id: routes.length + 1, value: "" };
+    let newRoute = { id: routes.length, value: "" };
     let routesArr = [...routes, newRoute];
     setRoutes(routesArr);
   };
@@ -17,7 +17,7 @@ const Transportation = (props) => {
       {routes.map((element) => (
         <div className="add-routes-block" key={element.id}>
           <Controller
-            as={<SelectCity />}
+            as={<SelectCity placeholder={"Населенный пункт"} />}
             control={props.control}
             rules={{ required: false }}
             onChange={([selected]) => {

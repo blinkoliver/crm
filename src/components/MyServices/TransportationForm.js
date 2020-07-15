@@ -17,7 +17,6 @@ import { status } from "../../constants/status";
 const TransportationForm = (props) => {
   const { className } = props;
 
-  const [routes, setRoutes] = useState([{ id: 1, value: "" }]);
   const [selectedStatus, setSelectedStatus] = useState({});
   const [selectedPaid, setSelectedPaid] = useState({});
   const [selectedType, setSelectedType] = useState({});
@@ -26,9 +25,9 @@ const TransportationForm = (props) => {
   const [modalExecutor, setModalExecutor] = useState(false);
 
   const pushRoute = () => {
-    let newRoute = { id: routes.length + 1, value: "" };
-    let routesArr = [...routes, newRoute];
-    setRoutes(routesArr);
+    let newRoute = { id: props.routes.length + 1, value: "" };
+    let routesArr = [...props.routes, newRoute];
+    console.log(routesArr);
   };
 
   const toggleClient = () => {
@@ -186,10 +185,10 @@ const TransportationForm = (props) => {
       {errors.type && errors.type.type === "required" && (
         <p>Обязательное поле</p>
       )}
-      {props.routes.map((element) => (
+      {props.routesForMap.map((element) => (
         <div className="add-routes-block" key={element.id}>
           <Controller
-            as={<SelectCity />}
+            as={<SelectCity placeholder={"Населенный пункт"} />}
             control={control}
             rules={{ required: false }}
             onChange={([selected]) => {

@@ -50,7 +50,7 @@ const RegistrationFormIP = (props) => {
         <p>УНП должен состоять из 9 цифр</p>
       )}
       <Controller
-        as={<SelectCity />}
+        as={<SelectCity placeholder={"Город регистрации"}/>}
         control={props.control}
         rules={{ required: false }}
         onChange={([selected]) => {

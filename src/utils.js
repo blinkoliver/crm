@@ -35,11 +35,15 @@ export const httpPostTokenUpdate = async (path) => {
     })
       .then(awaitForJsonResponse)
       .then((data) => {
+        console.log(data);
         localStorage.setItem("access_token", data.token);
       })
       // .then(httpAuthorized("rest/account/get-user/"))
       .then(getUserInfo())
-      .catch(() => localStorage.setItem("access_token", " "))
+      .catch((error) => {
+        localStorage.setItem("access_token", " ");
+        console.log(error);
+      })
   );
 };
 

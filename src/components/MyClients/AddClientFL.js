@@ -20,7 +20,7 @@ const AddClientFL = (props) => {
         <p>Обязательное поле</p>
       )}
       <Controller
-        as={<SelectCity />}
+        as={<SelectCity placeholder={"Город регистрации"} />}
         control={props.control}
         rules={{ required: false }}
         onChange={([selected]) => {

@@ -17,7 +17,10 @@ const SelectCity = (props) => {
 
   const loadOptions = (inputValue, callback) => {
     if (!inputValue) {
-      return callback([ {value: "4324", label: "Minsk"}, { value: "2131", label: "Vitebsk"}]);
+      return callback([
+        { value: "4324", label: "Minsk" },
+        { value: "2131", label: "Vitebsk" },
+      ]);
     }
     httpPost(`rest/v1/city/`, {
       city: `${inputValue}`,
@@ -37,7 +40,7 @@ const SelectCity = (props) => {
       })
       .catch((err) => console.log(result));
   };
-
+console.log(props)
   return (
     <div>
       <AsyncSelect
@@ -47,7 +50,7 @@ const SelectCity = (props) => {
         defaultOptions
         onInputChange={handleInputChange}
         styles={reactSelectCitiesStyle}
-        placeholder={"Город регистрации"}
+        placeholder={props.placeholder}
         components={{
           IndicatorSeparator: () => null,
           DropdownIndicator: () => null,

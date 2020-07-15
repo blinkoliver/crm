@@ -8,11 +8,11 @@ const ServiceRefactor = (props) => {
   const { className } = props;
 
   const [modal, setModal] = useState(false);
-  const [routes, setRoutes] = useState();
   const [statusLabel, setStatusLabel] = useState();
   const [paidLabel, setPaidLabel] = useState();
   const [type, setType] = useState();
   const [currentTask, setCurrentTask] = useState([]);
+  const [routesForMap, setRoutesForMap] = useState([]);
 
   const toggle = () => setModal(!modal);
 
@@ -20,7 +20,7 @@ const ServiceRefactor = (props) => {
     httpPost("rest/task/get_task/", {
       task_id: props.id,
     }).then((post) => {
-      setRoutes(
+      setRoutesForMap(
         post.task.additional_task.route.filter(
           (element) => element.id.length > 3
         )
@@ -56,28 +56,51 @@ const ServiceRefactor = (props) => {
         ? setPaidLabel("Не оплачено")
         : setPaidLabel("Оплачено");
 
-      const task = {
-        id: post.task.id,
-        name: post.task.name,
-        client: post.task.client,
-        date: post.task.date.slice(0, 10),
-        price: post.task.price,
-        performer: post.task.performer,
-        status: { label: statusLabel, value: post.task.status },
-        type: { label: type, value: post.task.type },
-        paid: { label: paidLabel, value: post.task.paid },
-        ttn: post.task.additional_task.ttn,
-        contract_number: post.task.additional_task.contract_number,
-        waybill: post.task.additional_task.waybill,
-        city1: "1234",
-        address1: "Qwe",
-        city2: "1234",
-        address2: "Qwe",
-      };
-      setCurrentTask(task);
+      // let routes = post.task.additional_task.route.map(
+      //   ({ id, city, address, point }, index) => {
+      //     const replacement = {
+      //       city: "city" + index,
+      //       id: "id" + index,
+      //       address: "address" + index,
+      //       point: "point" + index,
+      //     };
+      //     const replaced = Object.keys({ id, city, address, point }).map(
+      //       (key) => {
+      //         const newKey = replacement[key] || key;
+      //         return { [newKey]: { id, city, address, point }[key] };
+      //       }
+      //     );
+      //     const routes = replaced.reduce((a, b) => Object.assign({}, a, b));
+
+      //     return routes;
+      //   }
+      // );
+
+      const taskForFill = {};
+      taskForFill["id"] = post.task.id;
+      taskForFill["name"] = post.task.name;
+      taskForFill["client"] = post.task.client;
+      taskForFill["date"] = post.task.date.slice(0, 10);
+      taskForFill["price"] = post.task.price;
+      taskForFill["performer"] = post.task.performer;
+      taskForFill["status"] = { label: statusLabel, value: post.task.status };
+      taskForFill["type"] = { label: type, value: post.task.type };
+      taskForFill["paid"] = { label: paidLabel, value: post.task.paid };
+      taskForFill["ttn"] = post.task.additional_task.ttn;
+      taskForFill["contract_number"] =
+        post.task.additional_task.contract_number;
+      taskForFill["waybill"] = post.task.additional_task.waybill;
+      post.task.additional_task.route.forEach((route, index) => {
+        taskForFill[`address${index}`] = route.address;
+        taskForFill[`city${index}`] = { label: route.city, value: route.city };
+        taskForFill[`route${index}`] = route.point;
+        taskForFill[`id${index}`] = route.id;
+      });
+      setCurrentTask(taskForFill);
     });
   }, [props.id, statusLabel, paidLabel, type]);
-  console.log(routes);
+
+  console.log(currentTask);
   return (
     <div className="service-refactor">
       <button className="change" onClick={toggle}>
@@ -96,7 +119,10 @@ const ServiceRefactor = (props) => {
         <ModalHeader toggle={toggle}>Редактировать услугу</ModalHeader>
         <ModalBody>
           {type === "Грузоперевозки" && (
-            <TransportationForm currentTask={currentTask} routes={routes} />
+            <TransportationForm
+              currentTask={currentTask}
+              routesForMap={routesForMap}
+            />
           )}
           {type === "Пасажироперевозки" && <TransportationForm />}
         </ModalBody>
