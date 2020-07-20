@@ -33,7 +33,7 @@ export const reactSelectOwnershipFormStyle = {
 };
 export const reactSelectCitiesStyle = {
   valueContainer: () => ({
-    height: "10vh",
+    height: "fitContent",
     paddingLeft: "2vh",
   }),
   placeholder: () => ({

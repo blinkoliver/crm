@@ -38,10 +38,10 @@ export const httpPostTokenUpdate = async (path) => {
         console.log(data);
         localStorage.setItem("access_token", data.token);
       })
-      // .then(httpAuthorized("rest/account/get-user/"))
+      .then(httpAuthorized("rest/account/get-user/"))
       .then(getUserInfo())
       .catch((error) => {
-        localStorage.setItem("access_token", " ");
+        // localStorage.setItem("access_token", " ");
         console.log(error);
       })
   );
