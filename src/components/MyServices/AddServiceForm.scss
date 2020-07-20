@@ -19,13 +19,13 @@
 
 .add-service-submit {
   margin-top: 2vh;
-  height: 10vh;
+  height: fit-content;
   border: none;
   border-radius: 5px;
   background-color: #3cd719;
   color: white;
   font-size: large;
-  width: 30vh;
+  width: fit-content;
   align-self: flex-end;
 }
 .add-service-submit:hover {

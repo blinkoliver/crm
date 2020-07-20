@@ -13,6 +13,7 @@ const ServiceRefactor = (props) => {
   const [type, setType] = useState();
   const [currentTask, setCurrentTask] = useState([]);
   const [routesForMap, setRoutesForMap] = useState([]);
+  const [originalData, setOriginalData] = useState([]);
 
   const toggle = () => setModal(!modal);
 
@@ -20,11 +21,8 @@ const ServiceRefactor = (props) => {
     httpPost("rest/task/get_task/", {
       task_id: props.id,
     }).then((post) => {
-      setRoutesForMap(
-        post.task.additional_task.route.filter(
-          (element) => element.id.length > 3
-        )
-      );
+      setOriginalData(post.task);
+      setRoutesForMap(post.task.additional_task.route);
 
       switch (post.task.type) {
         case 0:
@@ -56,26 +54,6 @@ const ServiceRefactor = (props) => {
         ? setPaidLabel("Не оплачено")
         : setPaidLabel("Оплачено");
 
-      // let routes = post.task.additional_task.route.map(
-      //   ({ id, city, address, point }, index) => {
-      //     const replacement = {
-      //       city: "city" + index,
-      //       id: "id" + index,
-      //       address: "address" + index,
-      //       point: "point" + index,
-      //     };
-      //     const replaced = Object.keys({ id, city, address, point }).map(
-      //       (key) => {
-      //         const newKey = replacement[key] || key;
-      //         return { [newKey]: { id, city, address, point }[key] };
-      //       }
-      //     );
-      //     const routes = replaced.reduce((a, b) => Object.assign({}, a, b));
-
-      //     return routes;
-      //   }
-      // );
-
       const taskForFill = {};
       taskForFill["id"] = post.task.id;
       taskForFill["name"] = post.task.name;
@@ -100,7 +78,6 @@ const ServiceRefactor = (props) => {
     });
   }, [props.id, statusLabel, paidLabel, type]);
 
-  console.log(currentTask);
   return (
     <div className="service-refactor">
       <button className="change" onClick={toggle}>
@@ -122,6 +99,7 @@ const ServiceRefactor = (props) => {
             <TransportationForm
               currentTask={currentTask}
               routesForMap={routesForMap}
+              originalData={originalData}
             />
           )}
           {type === "Пасажироперевозки" && <TransportationForm />}

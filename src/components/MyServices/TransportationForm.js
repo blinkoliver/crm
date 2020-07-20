@@ -23,11 +23,12 @@ const TransportationForm = (props) => {
   const [fetchError, setFetchError] = useState(false);
   const [modalClient, setModalClient] = useState(false);
   const [modalExecutor, setModalExecutor] = useState(false);
+  const [routesForMap, setRoutesForMap] = useState(props.routesForMap);
 
   const pushRoute = () => {
-    let newRoute = { id: props.routes.length + 1, value: "" };
-    let routesArr = [...props.routes, newRoute];
-    console.log(routesArr);
+    let newRoute = { id: routesForMap.length + 1, value: "" };
+    let routesArr = [...routesForMap, newRoute];
+    setRoutesForMap(routesArr);
   };
 
   const toggleClient = () => {
@@ -41,26 +42,48 @@ const TransportationForm = (props) => {
     defaultValues: props.currentTask,
   });
   const onSubmit = (data) => {
+    let routes = [];
+    Object.keys(data).map((key) => {
+      if (key.startsWith("address")) {
+        const index = key[key.length - 1];
+        const newRoute = {
+          city: data[`city${index}`],
+          address: data[`address${index}`],
+          point: data[`point${index}`],
+        };
+        routes = [...routes, newRoute];
+      }
+      return routes;
+    });
     const updateData = {
-      task_id: props.id,
       name: data.name,
-      client: data.client,
+      client: "1b99a4c0-c679-4245-a00c-7be79799f98e",
       date: data.date,
       price: data.price,
-      performer: data.performer,
+      performer: "8adac476-098d-4622-bce3-8bcfeae7f8c0",
       status: data.status.value,
       type: data.type.value,
       paid: data.paid.value,
-      additional_task: data.paid,
+      customer_id: null,
+      additional_task: {
+        route: routes,
+        ttn: data.ttn,
+        contract_number: data.contract_number,
+        waybill: data.waybill,
+      },
     };
-    console.log(data);
-    httpPost(`task/update_task/`, updateData)
+    console.log(updateData);
+    httpPost(`rest/task/update_task/`, updateData)
       .then((post) => {
         console.log("usluga uspeshno izmenena", post);
       })
-      .catch(() => setFetchError(true));
-    console.log(data);
+      .catch((error) => {
+        setFetchError(true);
+        console.log(error);
+      });
   };
+  console.log(props.originalData);
+
   return (
     <form className="service-form" onSubmit={handleSubmit(onSubmit)}>
       <input
@@ -185,7 +208,7 @@ const TransportationForm = (props) => {
       {errors.type && errors.type.type === "required" && (
         <p>Обязательное поле</p>
       )}
-      {props.routesForMap.map((element) => (
+      {routesForMap.map((element) => (
         <div className="add-routes-block" key={element.id}>
           <Controller
             as={<SelectCity placeholder={"Населенный пункт"} />}
