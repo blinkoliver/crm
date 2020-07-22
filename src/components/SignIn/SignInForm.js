@@ -15,6 +15,7 @@ const SignInForm = (props) => {
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = async (data) => {
+    localStorage.setItem("access_token", "");
     const fingerprint = await _getFingerprint();
     const updateData = {
       email: data.email,

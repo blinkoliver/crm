@@ -59,7 +59,7 @@ const TransportationForm = (props) => {
       name: data.name,
       client: "1b99a4c0-c679-4245-a00c-7be79799f98e",
       date: data.date,
-      price: data.price,
+      price: parseInt(data.price, 10),
       performer: "8adac476-098d-4622-bce3-8bcfeae7f8c0",
       status: data.status.value,
       type: data.type.value,
@@ -72,8 +72,15 @@ const TransportationForm = (props) => {
         waybill: data.waybill,
       },
     };
-    console.log(updateData);
-    httpPost(`rest/task/update_task/`, updateData)
+    let difference = {};
+    Object.keys(props.originalData).forEach((key) => {
+      if (props.originalData[key] !== updateData[key]) {
+        difference[key] = updateData[key];
+      }
+    });
+    console.log(difference);
+
+    httpPost(`rest/task/update_task/`, difference)
       .then((post) => {
         console.log("usluga uspeshno izmenena", post);
       })
@@ -81,9 +88,8 @@ const TransportationForm = (props) => {
         setFetchError(true);
         console.log(error);
       });
+    console.log(data);
   };
-  console.log(props.originalData);
-
   return (
     <form className="service-form" onSubmit={handleSubmit(onSubmit)}>
       <input

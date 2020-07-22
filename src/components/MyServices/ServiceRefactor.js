@@ -58,7 +58,7 @@ const ServiceRefactor = (props) => {
       taskForFill["id"] = post.task.id;
       taskForFill["name"] = post.task.name;
       taskForFill["client"] = post.task.client;
-      taskForFill["date"] = post.task.date.slice(0, 10);
+      taskForFill["date"] = post.task.date.slice(0,10);
       taskForFill["price"] = post.task.price;
       taskForFill["performer"] = post.task.performer;
       taskForFill["status"] = { label: statusLabel, value: post.task.status };
