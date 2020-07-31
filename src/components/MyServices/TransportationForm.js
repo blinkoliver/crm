@@ -23,7 +23,9 @@ const TransportationForm = (props) => {
   const [fetchError, setFetchError] = useState(false);
   const [modalClient, setModalClient] = useState(false);
   const [modalExecutor, setModalExecutor] = useState(false);
-  const [routesForMap, setRoutesForMap] = useState(props.routesForMap);
+  const [routesForMap, setRoutesForMap] = useState(
+    props.originalData.additional_task.route
+  );
 
   const pushRoute = () => {
     let newRoute = { id: routesForMap.length + 1, value: "" };
@@ -39,7 +41,7 @@ const TransportationForm = (props) => {
   };
 
   const { register, handleSubmit, errors, control } = useForm({
-    defaultValues: props.currentTask,
+    defaultValues: props.taskForFill,
   });
   const onSubmit = (data) => {
     let routes = [];

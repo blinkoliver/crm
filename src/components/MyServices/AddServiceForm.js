@@ -70,7 +70,7 @@ const AddServiceForm = (props) => {
             waybill: data.waybill,
           },
         };
-        console.log(transportation);
+        // console.log(transportation);
         httpPost(`rest/task/create_task/`, transportation)
           .then((post) => {
             const task = post.id;

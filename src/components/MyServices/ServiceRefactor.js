@@ -11,8 +11,7 @@ const ServiceRefactor = (props) => {
   const [statusLabel, setStatusLabel] = useState();
   const [paidLabel, setPaidLabel] = useState();
   const [type, setType] = useState();
-  const [currentTask, setCurrentTask] = useState([]);
-  const [routesForMap, setRoutesForMap] = useState([]);
+  const [taskForFill, setTaskForFill] = useState([]);
   const [originalData, setOriginalData] = useState([]);
 
   const toggle = () => setModal(!modal);
@@ -21,8 +20,8 @@ const ServiceRefactor = (props) => {
     httpPost("rest/task/get_task/", {
       task_id: props.id,
     }).then((post) => {
+      // console.log(post);
       setOriginalData(post.task);
-      setRoutesForMap(post.task.additional_task.route);
 
       switch (post.task.type) {
         case 0:
@@ -58,7 +57,7 @@ const ServiceRefactor = (props) => {
       taskForFill["id"] = post.task.id;
       taskForFill["name"] = post.task.name;
       taskForFill["client"] = post.task.client;
-      taskForFill["date"] = post.task.date.slice(0,10);
+      taskForFill["date"] = post.task.date.slice(0, 10);
       taskForFill["price"] = post.task.price;
       taskForFill["performer"] = post.task.performer;
       taskForFill["status"] = { label: statusLabel, value: post.task.status };
@@ -69,12 +68,21 @@ const ServiceRefactor = (props) => {
         post.task.additional_task.contract_number;
       taskForFill["waybill"] = post.task.additional_task.waybill;
       post.task.additional_task.route.forEach((route, index) => {
+        httpPost("rest/v1/city_by_id/", {
+          id: route.city,
+        }).then(
+          (cityes) =>
+            (taskForFill[`city${index}`] = {
+              label: cityes.city,
+              value: cityes.id,
+            })
+        );
         taskForFill[`address${index}`] = route.address;
-        taskForFill[`city${index}`] = { label: route.city, value: route.city };
         taskForFill[`route${index}`] = route.point;
         taskForFill[`id${index}`] = route.id;
       });
-      setCurrentTask(taskForFill);
+      setTaskForFill(taskForFill);
+      console.log(taskForFill);
     });
   }, [props.id, statusLabel, paidLabel, type]);
 
@@ -97,8 +105,7 @@ const ServiceRefactor = (props) => {
         <ModalBody>
           {type === "Грузоперевозки" && (
             <TransportationForm
-              currentTask={currentTask}
-              routesForMap={routesForMap}
+              taskForFill={taskForFill}
               originalData={originalData}
             />
           )}

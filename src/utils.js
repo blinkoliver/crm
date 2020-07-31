@@ -25,26 +25,25 @@ export const httpPostTokenUpdate = async (path) => {
   const data = {
     fingerprint: fingerprint,
   };
-  return (
-    fetch(`${hosting}/${path}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
+  console.log(data)
+  return fetch(`${hosting}/${path}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then(awaitForJsonResponse)
+    .then((data) => {
+      console.log(data);
+      localStorage.setItem("access_token", data.token);
     })
-      .then(awaitForJsonResponse)
-      .then((data) => {
-        console.log(data);
-        localStorage.setItem("access_token", data.token);
-      })
-      .then(httpAuthorized("rest/account/get-user/"))
-      .then(getUserInfo())
-      .catch((error) => {
-        // localStorage.setItem("access_token", " ");
-        console.log(error);
-      })
-  );
+    .then(httpAuthorized("rest/account/get-user/"))
+    .then(getUserInfo())
+    .catch((error) => {
+      console.log(error);
+      localStorage.setItem("access_token", " ");
+    });
 };
 
 export const httpPost = (path, params) => {
@@ -60,7 +59,6 @@ export const httpPost = (path, params) => {
 
 const awaitForJsonResponse = async (res) => {
   const jsonRes = await res.json();
-
   if (res.status >= 400) {
     throw jsonRes;
   } else {

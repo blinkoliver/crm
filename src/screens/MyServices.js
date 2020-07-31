@@ -7,7 +7,6 @@ import { Modal, ModalBody, ModalHeader } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import ServiceRefactor from "../components/MyServices/ServiceRefactor";
 import { httpPost, httpPostTokenUpdate } from "../utils";
-
 import "./MyServices.scss";
 
 const MyServices = (props) => {
@@ -63,7 +62,6 @@ const MyServices = (props) => {
       .then((post) => {
         setTasks(post.tasks);
       })
-      .then(setServicesLoading(false))
       .catch((post) => {
         switch (post.message) {
           case "Token is invalid":
@@ -75,7 +73,8 @@ const MyServices = (props) => {
           default:
             console.log("net takoj oshibki");
         }
-      });
+      })
+      .then(setServicesLoading(false));
   }, [history]);
 
   const toggle = () => {
