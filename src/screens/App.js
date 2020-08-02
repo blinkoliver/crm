@@ -21,7 +21,7 @@ const App = (props) => {
         <Route path={"/myClients"} component={MyClients} />
         <Route path={"/myStaff"} component={MyStaff} />
       </main>
-      <footer></footer>
+      <footer className="footer"></footer>
     </div>
   );
 };

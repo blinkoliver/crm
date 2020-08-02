@@ -1,8 +1,19 @@
 .app {
   text-align: center;
   min-height: 100vh;
+  width: 1920px;
+  height: 1000px;
   background-color: white;
-  color: darkslateblue
+  color: darkslateblue;
+  display: grid;
+  grid-template-columns: 1fr repeat(8, minmax(auto, 10em)) 1fr;
+  grid-template-rows: minmax(1em, auto) 1fr auto minmax(1em, auto);
 }
-.main{
+.main {
+  grid-column: 2/10;
+}
+.footer {
+  grid-column: span 10;
+  background: linear-gradient(0deg, #4f5a4d, #4f5a4d), #000000;
+  height: 121px;
 }

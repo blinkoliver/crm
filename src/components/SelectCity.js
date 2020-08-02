@@ -42,7 +42,7 @@ const SelectCity = (props) => {
   };
 console.log(props)
   return (
-    <div>
+    <>
       <AsyncSelect
         cacheOptions
         onChange={(city) => props.onChange(city.value)}
@@ -56,7 +56,7 @@ console.log(props)
           DropdownIndicator: () => null,
         }}
       />
-    </div>
+    </>
   );
 };
 export default SelectCity;

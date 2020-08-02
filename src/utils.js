@@ -25,7 +25,7 @@ export const httpPostTokenUpdate = async (path) => {
   const data = {
     fingerprint: fingerprint,
   };
-  console.log(data)
+  console.log(data);
   return fetch(`${hosting}/${path}`, {
     method: "POST",
     headers: {
@@ -33,7 +33,7 @@ export const httpPostTokenUpdate = async (path) => {
     },
     body: JSON.stringify(data),
   })
-    .then(awaitForJsonResponse)
+    .then((response) => response.json())
     .then((data) => {
       console.log(data);
       localStorage.setItem("access_token", data.token);

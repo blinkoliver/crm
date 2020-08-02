@@ -1,66 +1,100 @@
 .header {
-  background-color: white;
-  display: flex;
-  flex-direction: row;
-  font-size: 2vmax;
-  color: #2855af;
-  justify-content: space-between;
+  grid-column: span 10;
+  display: grid;
+  grid-template-columns: 1fr repeat(8, minmax(auto, 10em)) 1fr;
+  grid-template-rows: 100%;
+  background: linear-gradient(0deg, #6bbe5a, #6bbe5a), #000000;
+  height: 87px;
 }
+
 .header-logo {
-  margin: 1em;
+  grid-column: 2/3;
+  padding: 1em 2em;
 }
-.header-logo a {
-  color: #2855af;
+.header-logo a:hover {
   text-decoration: none;
-  font-weight: 700;
+  transition: 0.1s;
 }
+.header-logo a p {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+  margin: 0;
+}
+.header-logo a p:nth-child(2) {
+  color: #ffffff;
+}
+
 .header-menu {
-  width: 80%;
+  grid-column: 3/8;
+  padding: 1em 1em;
 }
 .menu {
   list-style: none;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(auto, auto));
+  padding: 1em 1em;
+  margin: 0;
+}
+.menu-item {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 16px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin: 1em;
+  align-items: center;
 }
 .menu-item a {
-  color: #2855af;
-  text-decoration: none;
-  font-weight: 700;
+  color: #161616;
 }
 .menu-item :hover {
-  border-bottom: solid #2855af 0.3vh;
+  color: #ffffff;
   transition: 0.1s;
-}
-.menu-item-signin a {
-  color: #2855af;
-  font-size: 2vmax;
-  font-weight: 700;
-  padding: 1vh 3vh;
   text-decoration: none;
-  border: 0.3vh solid #2855af;
+}
+.header-login {
+  grid-column: 8/9;
+  padding: 2em 0em;
+}
+.menu-item-signin {
+  padding: 0.5em 0.5em 0.5em 0;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 16px;
+  color: #ffffff;
+}
+.menu-item-signin:hover {
+  transition: 0.1s;
+  text-decoration: none;
+  color: #161616;
+}
+.menu-item-registration {
+  padding: 0.5em ;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 16px;
+  color: #ffffff;
+  border: 0.3vh solid #ffffff;
   border-radius: 1vh;
 }
-.menu-item-signin a:hover {
-  color: white;
-  background-color: #2855af;
-  transition: 1s;
-}
-.menu-item-registration a {
-  font-size: 2vmax;
-  color: #2855af;
-  font-weight: 700;
-  padding: 1vh 3vh;
+.menu-item-registration:hover {
   text-decoration: none;
-  border: 0.3vh solid #2855af;
-  border-radius: 1vh;
-  color: #fff;
-  background-color: #2855af;
+  transition: 0.1s;
+  color: #161616;
+  border: 0.3vh solid #161616;
 }
-.menu-item-registration a:hover {
-  color: #fff;
-  background-color: #234187;
-  border-color: #234187;
-  transition: 1s;
+
+.header-language {
+  grid-column: 9/10;
+  padding: 1em 1em;
 }
