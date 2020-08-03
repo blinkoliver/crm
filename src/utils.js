@@ -33,9 +33,8 @@ export const httpPostTokenUpdate = async (path) => {
     },
     body: JSON.stringify(data),
   })
-    .then((response) => response.json())
+    .then(awaitForJsonResponse)
     .then((data) => {
-      console.log(data);
       localStorage.setItem("access_token", data.token);
     })
     .then(httpAuthorized("rest/account/get-user/"))

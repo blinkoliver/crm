@@ -20,7 +20,7 @@ const Header = (props) => {
   return (
     <header className="header">
       <div className="header-logo">
-        <NavLink to={"/"}>
+        <NavLink to={"/home"}>
           <p>Business</p>
           <p>Helper</p>
         </NavLink>

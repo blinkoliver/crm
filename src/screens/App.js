@@ -8,6 +8,7 @@ import SignIn from "../screens/SignIn";
 import MyServices from "../screens/MyServices";
 import MyClients from "../screens/MyCliets";
 import MyStaff from "./MyStaff";
+import Home from "./Home";
 import { getUserInfo } from "../actions/getUserInfo";
 
 const App = (props) => {
@@ -20,6 +21,7 @@ const App = (props) => {
         <Route path={"/myServices"} component={MyServices} />
         <Route path={"/myClients"} component={MyClients} />
         <Route path={"/myStaff"} component={MyStaff} />
+        <Route path={"/home"} component={Home} />
       </main>
       <footer className="footer"></footer>
     </div>
