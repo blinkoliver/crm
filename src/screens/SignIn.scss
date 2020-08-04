@@ -1,14 +1,12 @@
 .sign-in {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #50afff;
-  height: 75vh;
+  display: grid;
+  grid-column: span 10;
+  background-color: grey;
+  grid-template-columns: 1fr repeat(8, minmax(auto, 10em)) 1fr;
+  grid-template-rows: 1fr;
 }
 .sign-in-container {
-  width: 50vmax;
-  display: flex;
-  flex-direction: column;
+  grid-column: 3/9;
 }
 .sign-in-text {
   color: white;

@@ -59,8 +59,10 @@
   text-decoration: none;
 }
 .header-login {
+  grid-template-columns: 1fr 1fr;
+  display: grid;
   grid-column: 8/9;
-  padding: 2em 0em;
+  padding: 1.5em 0em;
 }
 .menu-item-signin {
   padding: 0.5em 0.5em 0.5em 0;
@@ -97,4 +99,14 @@
 .header-language {
   grid-column: 9/10;
   padding: 1em 1em;
+  text-align: right;
+}
+.modal-title {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 28px;
+  text-align: center;
+  color: #000000;
 }

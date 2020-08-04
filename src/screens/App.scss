@@ -16,7 +16,52 @@
   grid-template-rows: 1fr;
 }
 .footer {
+  display: grid;
   grid-column: span 10;
   background: linear-gradient(0deg, #4f5a4d, #4f5a4d), #000000;
+  grid-template-columns: 1fr repeat(8, minmax(auto, 10em)) 1fr;
+  grid-template-rows: 100%;
   height: 121px;
+}
+.aboutUs {
+  grid-column: 2/4;
+  text-align: left;
+  margin: auto 0;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 28px;
+  color: #ffffff;
+}
+.aboutUs p {
+  margin: 0 auto;
+}
+.contactUs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: left;
+  grid-column: 4/9;
+}
+.contactUs div {
+  margin: auto 0;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+.contactUs a {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 28px;
+  color: #ffffff;
+  text-align: left;
+}
+.social {
+  grid-column: 9/10;
+  text-align: right;
+  margin: auto 0;
+}
+.social a img {
+  padding: 0 0 0 0.5em;
 }

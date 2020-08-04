@@ -1,12 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import App from "../screens/App";
+import Registration from "../screens/Registration";
 import { BrowserRouter as Route, NavLink, useHistory } from "react-router-dom";
 import "./Header.scss";
+import { Modal, ModalBody, ModalHeader } from "reactstrap";
 import { connect } from "react-redux";
 import { getUserInfo, userLogout } from "../actions/getUserInfo";
 
 const Header = (props) => {
+  const { className } = props;
+
   let history = useHistory();
+  const [modal, setModal] = useState(false);
+
   const { getUserInfo } = props;
   useEffect(() => {
     const accessToken = localStorage.getItem("access_token");
@@ -16,6 +22,10 @@ const Header = (props) => {
       history.push("/signIn");
     }
   }, [history, getUserInfo]);
+
+  const toggle = () => {
+    setModal(!modal);
+  };
 
   return (
     <header className="header">
@@ -49,7 +59,9 @@ const Header = (props) => {
       </nav>
       <div className="header-login">
         {Object.keys(props.userInfo).length > 3 ? (
-          <NavLink to={"/user-info"}>{props.userInfo.email}</NavLink>
+          <NavLink className="menu-item-signin" to={"/user-info"}>
+            {props.userInfo.email}
+          </NavLink>
         ) : (
           <NavLink className="menu-item-signin" to={"/signin"}>
             Войти
@@ -61,20 +73,31 @@ const Header = (props) => {
             onClick={() => {
               localStorage.setItem("access_token", " ");
               props.userLogout();
-              history.push("/");
+              history.push("/home");
             }}
             to={"/"}
           >
             Выйти
           </NavLink>
         ) : (
-          <NavLink className="menu-item-registration" to={"/registration"}>
+          <p
+            className="menu-item-registration"
+            outline
+            color="primary"
+            onClick={toggle}
+          >
             Регистрация
-          </NavLink>
+          </p>
         )}
       </div>
       <div className="header-language">lang</div>
       <Route exact path="/" component={App} />
+      <Modal isOpen={modal} toggle={toggle} className={className}>
+        <ModalHeader toggle={toggle}>Регистрация</ModalHeader>
+        <ModalBody>
+          <Registration />
+        </ModalBody>
+      </Modal>
     </header>
   );
 };

@@ -26,7 +26,7 @@ const SignInForm = (props) => {
       .then((post) => {
         localStorage.setItem("access_token", post.token);
         props.getUserInfo();
-        history.push("/");
+        history.push("/home");
       })
       .catch(() => setFetchError(true));
   };
