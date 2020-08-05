@@ -1,51 +1,110 @@
 export const reactSelectOwnershipStyle = {
+  container: () => ({
+    marginBottom: "18px",
+  }),
+  control: () => ({
+    height: "48px",
+    border: "2px solid #c9c9c9",
+    display: "flex",
+    justifyContent: "space-between",
+  }),
   valueContainer: () => ({
-    height: "10vh",
+    height: "inherit",
     paddingLeft: "2vh",
   }),
   placeholder: () => ({
-    fontSize: "3vh",
-    marginTop: "6%",
-    color: "gray",
+    fontFamily: "Open Sans",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "20px",
+    lineHeight: "28px",
+    color: "#787878",
+    marginTop: "10px",
   }),
   singleValue: () => ({
-    color: "black",
-    fontSize: "3vh",
-    marginTop: "3vh",
+    fontFamily: "Open Sans",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "20px",
+    lineHeight: "28px",
+    color: "#787878",
+    marginTop: "10px",
   }),
+  menu: () => ({
+    border: "1px solid #c9c9c9",
+    borderRadius: "4px",
+    margin: "8px 0",
+  }),
+  menuList: () => ({
+    width: "100%",
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isSelected ? "#6bbe5a" : "transparent",
+  }),
+  input: () => ({ height: "inherit", position: "relative", bottom: "40px" }),
 };
 
 export const reactSelectOwnershipFormStyle = {
+  control: () => ({
+    height: "48px",
+    border: "2px solid #c9c9c9",
+    display: "flex",
+    justifyContent: "space-between",
+  }),
   valueContainer: () => ({
-    height: "10vh",
+    height: "inherit",
     paddingLeft: "2vh",
   }),
   placeholder: () => ({
-    fontSize: "3vh",
-    marginTop: "10%",
-    color: "gray",
+    fontFamily: "Open Sans",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "20px",
+    lineHeight: "28px",
+    color: "#787878",
+    marginTop: "10px",
   }),
   singleValue: () => ({
-    color: "black",
-    fontSize: "3vh",
-    marginTop: "3vh",
+    fontFamily: "Open Sans",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "20px",
+    lineHeight: "28px",
+    color: "#787878",
+    marginTop: "10px",
   }),
+  input: () => ({ height: "inherit", position: "relative", bottom: "40px" }),
 };
 export const reactSelectCitiesStyle = {
+  control: () => ({
+    height: "48px",
+    border: "2px solid #c9c9c9",
+    display: "flex",
+  }),
   valueContainer: () => ({
     height: "fitContent",
     paddingLeft: "2vh",
   }),
   placeholder: () => ({
-    fontSize: "3vh",
-    marginTop: "10%",
-    color: "grey",
+    fontFamily: "Open Sans",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "20px",
+    lineHeight: "28px",
+    color: "#787878",
+    marginTop: "10px",
   }),
   singleValue: () => ({
-    color: "black",
-    fontSize: "3vh",
-    marginTop: "3vh",
+    fontFamily: "Open Sans",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "20px",
+    lineHeight: "28px",
+    color: "#787878",
+    marginTop: "10px",
   }),
+  input: () => ({ height: "inherit", position: "relative", bottom: "40px" }),
 };
 export const reactSelectClientStyle = {
   valueContainer: () => ({
@@ -61,6 +120,7 @@ export const reactSelectClientStyle = {
     color: "black",
     fontSize: "3vh",
     marginTop: "3vh",
+    paddingLeft: "2vh",
   }),
   input: () => ({
     position: "absolute",

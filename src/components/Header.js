@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 import { getUserInfo, userLogout } from "../actions/getUserInfo";
 
 const Header = (props) => {
-  const { className } = props;
 
   let history = useHistory();
   const [modal, setModal] = useState(false);
@@ -92,8 +91,8 @@ const Header = (props) => {
       </div>
       <div className="header-language">lang</div>
       <Route exact path="/" component={App} />
-      <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Регистрация</ModalHeader>
+      <Modal isOpen={modal} toggle={toggle} className="custom-modal-content">
+        <ModalHeader toggle={toggle} className="custom-modal-header">Регистрация</ModalHeader>
         <ModalBody>
           <Registration />
         </ModalBody>

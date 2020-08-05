@@ -101,12 +101,32 @@
   padding: 1em 1em;
   text-align: right;
 }
-.modal-title {
+.modal-dialog .modal-content {
+  display: grid;
+  grid-template-columns: 1fr 352px 1fr;
+  border: none;
+}
+.custom-modal-header {
+  display: grid;
+  grid-template-columns: 1fr 352px 1fr;
+  grid-column: span 3;
+  border: none;
+}
+.custom-modal-header h5 {
+  grid-column: 2/3;
   font-family: Montserrat;
+  padding-top: 1em;
   font-style: normal;
   font-weight: 800;
   font-size: 36px;
   line-height: 28px;
   text-align: center;
   color: #000000;
+}
+.custom-modal-header button {
+  grid-column: 3/4;
+}
+.modal-body {
+  grid-column: 2/3;
+  padding: 0;
 }

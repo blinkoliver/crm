@@ -17,6 +17,7 @@ const RegistrationFormIP = (props) => {
           minLength: 7,
           pattern: /[а-яА-Я.]+/,
         })}
+        style={{ marginTop: "0" }}
       />
       {props.errors.name && props.errors.name.type === "required" && (
         <p>Обязательное поле</p>
@@ -32,7 +33,7 @@ const RegistrationFormIP = (props) => {
       )}
       <Controller
         as={InputMask}
-        style={{ marginBottom: "2vh" }}
+        style={{ marginBottom: "18px" }}
         control={props.control}
         placeholder="УНП"
         mask="999 999 999"
@@ -50,7 +51,7 @@ const RegistrationFormIP = (props) => {
         <p>УНП должен состоять из 9 цифр</p>
       )}
       <Controller
-        as={<SelectCity placeholder={"Город регистрации"}/>}
+        as={<SelectCity placeholder={"Город регистрации"} />}
         control={props.control}
         rules={{ required: false }}
         onChange={([selected]) => {
@@ -87,7 +88,10 @@ const RegistrationFormIP = (props) => {
         <p>Нужно 5 цифр</p>
       )}
       <button className="registration-ip-submit" type="submit">
-        Зарегистрироваться
+        Регистрирация
+      </button>
+      <button className="registration-ip-login" type="submit">
+        Логин
       </button>
     </>
   );

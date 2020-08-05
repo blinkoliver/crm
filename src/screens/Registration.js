@@ -65,7 +65,7 @@ const Registration = (props) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             type="email"
-            placeholder="Электронный адрес"
+            placeholder="E-mail"
             name="email"
             ref={register({ required: true, pattern: /^\S+@\S+$/i })}
           />
@@ -100,7 +100,7 @@ const Registration = (props) => {
           <input
             name="password"
             type="password"
-            placeholder="Пароль"
+            placeholder="Придумайте пароль"
             ref={register({
               required: true,
               pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=\w*[0-9])\w{9,16}$/,
@@ -118,13 +118,13 @@ const Registration = (props) => {
           )}
           {errors.password && errors.password.type === "pattern" && (
             <p>
-              Пароль должен состоять из букв и цифр (от 9 до 16 символов),
-              содержать хотя бы одну прописную и одну строчную букву, а также
-              хотя бы одну цифру.
+              Пароль должен состоять из цифр и букв латинского алфавита (от 9 до
+              16 символов), содержать хотя бы одну прописную и одну строчную
+              букву, а также хотя бы одну цифру.
             </p>
           )}
           <input
-            style={{ marginBottom: "2vh" }}
+            style={{ marginBottom: "18px" }}
             name="password_repeat"
             type="password"
             placeholder="Повторите пароль"
@@ -137,9 +137,11 @@ const Registration = (props) => {
           <Controller
             as={
               <Select
-                placeholder={"Выберите форму деятельности"}
+                placeholder={"Форма деятельности"}
                 options={ownership}
-                components={{ IndicatorSeparator: () => null }}
+                components={{
+                  IndicatorSeparator: () => null,
+                }}
                 styles={reactSelectOwnershipStyle}
               />
             }

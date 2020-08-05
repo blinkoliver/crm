@@ -61,7 +61,7 @@ const RegistrationFormUL = (props) => {
         maskChar="_"
         name="unp"
         rules={{ required: true, minLength: 11, pattern: /[0-9,/\s/g]{11}/ }}
-        style={{ marginBottom: "2vh" }}
+        style={{ marginBottom: "18px" }}
       />
       {props.errors.unp && props.errors.unp.type === "required" && (
         <p>Обязательное поле</p>
@@ -73,7 +73,7 @@ const RegistrationFormUL = (props) => {
         <p>УНП должен состоять из 9 цифр</p>
       )}
       <Controller
-        as={<SelectCity placeholder={"Город регистрации"}/>}
+        as={<SelectCity placeholder={"Город регистрации"} />}
         control={props.control}
         rules={{ required: false }}
         onChange={([selected]) => {
@@ -126,7 +126,10 @@ const RegistrationFormUL = (props) => {
         <p>Только кириллица</p>
       )}
       <button className="registration-ul-submit" type="submit">
-        Зарегистрироваться
+        Регистрирация
+      </button>
+      <button className="registration-ul-login" type="submit">
+        Логин
       </button>
     </>
   );
