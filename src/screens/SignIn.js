@@ -6,7 +6,7 @@ const SignIn = () => {
   return (
     <div className="sign-in">
       <div className="sign-in-container">
-        <h1 className="sign-in-text">Вход в Твой бизнес</h1>
+        <h1 className="sign-in-text">Business Helper</h1>
         <SignInForm />
       </div>
     </div>

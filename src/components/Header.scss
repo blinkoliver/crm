@@ -6,7 +6,6 @@
   background: linear-gradient(0deg, #6bbe5a, #6bbe5a), #000000;
   height: 87px;
 }
-
 .header-logo {
   grid-column: 2/3;
   padding: 1em 2em 1em 0;
@@ -58,6 +57,10 @@
   transition: 0.1s;
   text-decoration: none;
 }
+.humburger {
+  display: none;
+}
+
 .header-login {
   grid-template-columns: 1fr 1fr;
   display: grid;
@@ -129,4 +132,77 @@
 .modal-body {
   grid-column: 2/3;
   padding: 0;
+}
+.humburger-close {
+  display: none;
+}
+@media screen and (max-width: 1020px) {
+  .header {
+    grid-column: span 8;
+    grid-template-columns: 1fr repeat(6, minmax(auto, 10em)) 1fr;
+  }
+  .header-logo {
+    grid-column: 2/3;
+  }
+  .header-menu {
+    grid-column: 3/6;
+    padding: 1em 0;
+  }
+  .header-login {
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+    grid-column: 6/7;
+  }
+  .header-language {
+    grid-column: 7/8;
+    text-align: right;
+  }
+  .menu {
+    display: none;
+  }
+  .humburger-close {
+    display: block;
+    margin: 13px 0 0 0;
+    padding: 0;
+  }
+  .humburger-close li {
+    border-bottom: solid black 3px;
+    list-style-type: none;
+    width: 24px;
+    padding: 3px 0 3px 0;
+  }
+  .humburger-open {
+    display: block;
+    margin: 13px 0 0 0;
+    padding: 0;
+  }
+  .humburger-open li {
+    border-bottom: solid black 3px;
+    transform: rotate(45deg);
+    list-style-type: none;
+    width: 24px;
+    padding: 3px 0 3px 0;
+  }
+  .menu-vertical {
+    position: relative;
+    width: 1020px;
+    top: 30px;
+    right: 190px;
+    background: linear-gradient(0deg, #f0f0f0, #f0f0f0), #000000;
+    height: 302px;
+  }
+  .menu-vertical a {
+    height: 49px;
+    padding-left: 30px;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 48px;
+    color: #000000;
+  }
+  .menu-vertical a:hover {
+    background: linear-gradient(0deg, #dcdcdc, #dcdcdc), #000000;
+    text-decoration: none;
+  }
 }

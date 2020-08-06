@@ -8,9 +8,16 @@ import { connect } from "react-redux";
 import { getUserInfo, userLogout } from "../actions/getUserInfo";
 
 const Header = (props) => {
-
   let history = useHistory();
   const [modal, setModal] = useState(false);
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+
+  let showMenu = () => {
+    setMenuIsOpen(true);
+  };
+  let hideMenu = () => {
+    setMenuIsOpen(false);
+  };
 
   const { getUserInfo } = props;
   useEffect(() => {
@@ -55,6 +62,53 @@ const Header = (props) => {
             <NavLink to={"/auto"}>Авто</NavLink>
           </li>
         </ul>
+        {menuIsOpen ? (
+          <>
+            <ul className="humburger-open" onClick={hideMenu}>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+            <div className="menu-vertical">
+              <NavLink
+                className="menu-item"
+                to={"/statistic"}
+                onClick={hideMenu}
+              >
+                Статистика
+              </NavLink>
+              <NavLink
+                className="menu-item"
+                to={"/myServices"}
+                onClick={hideMenu}
+              >
+                Мои услуги
+              </NavLink>
+              <NavLink
+                className="menu-item"
+                to={"/myClients"}
+                onClick={hideMenu}
+              >
+                Мои Клиенты
+              </NavLink>
+              <NavLink className="menu-item" to={"/myStaff"} onClick={hideMenu}>
+                Персонал
+              </NavLink>
+              <NavLink className="menu-item" to={"/bank"} onClick={hideMenu}>
+                Банк
+              </NavLink>
+              <NavLink className="menu-item" to={"/auto"} onClick={hideMenu}>
+                Авто
+              </NavLink>
+            </div>
+          </>
+        ) : (
+          <ul className="humburger-close" onClick={showMenu}>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        )}
       </nav>
       <div className="header-login">
         {Object.keys(props.userInfo).length > 3 ? (
@@ -89,10 +143,12 @@ const Header = (props) => {
           </p>
         )}
       </div>
-      <div className="header-language">lang</div>
+      <div className="header-language"></div>
       <Route exact path="/" component={App} />
       <Modal isOpen={modal} toggle={toggle} className="custom-modal-content">
-        <ModalHeader toggle={toggle} className="custom-modal-header">Регистрация</ModalHeader>
+        <ModalHeader toggle={toggle} className="custom-modal-header">
+          Регистрация
+        </ModalHeader>
         <ModalBody>
           <Registration />
         </ModalBody>

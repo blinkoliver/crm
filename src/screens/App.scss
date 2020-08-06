@@ -65,3 +65,12 @@
 .social a img {
   padding: 0 0 0 0.5em;
 }
+@media screen and (max-width: 1020px) {
+  .app {
+    width: 1020px;
+    height: 1000px;
+    display: grid;
+    grid-template-columns: 1fr repeat(6, minmax(auto, 10em)) 1fr;
+    grid-template-rows: minmax(1em, auto) 1fr minmax(1em, auto);
+  }
+}

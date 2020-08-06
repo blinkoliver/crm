@@ -74,16 +74,22 @@ export const reactSelectOwnershipFormStyle = {
     color: "#787878",
     marginTop: "10px",
   }),
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isSelected ? "#6bbe5a" : "transparent",
+  }),
   input: () => ({ height: "inherit", position: "relative", bottom: "40px" }),
 };
 export const reactSelectCitiesStyle = {
   control: () => ({
-    height: "48px",
+    height: "78px",
     border: "2px solid #c9c9c9",
     display: "flex",
   }),
   valueContainer: () => ({
-    height: "fitContent",
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gridTemplateRows: "100%",
     paddingLeft: "2vh",
   }),
   placeholder: () => ({
@@ -94,6 +100,8 @@ export const reactSelectCitiesStyle = {
     lineHeight: "28px",
     color: "#787878",
     marginTop: "10px",
+    gridColumn: "1/2",
+    gridRow: "1/2",
   }),
   singleValue: () => ({
     fontFamily: "Open Sans",
@@ -103,8 +111,14 @@ export const reactSelectCitiesStyle = {
     lineHeight: "28px",
     color: "#787878",
     marginTop: "10px",
+    gridColumn: "1/3",
+    gridRow: "1/2",
   }),
-  input: () => ({ height: "inherit", position: "relative", bottom: "40px" }),
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isSelected ? "#6bbe5a" : "transparent",
+  }),
+  input: () => ({ height: "inherit", gridColumn: "1/3", gridRow: "1/2" }),
 };
 export const reactSelectClientStyle = {
   valueContainer: () => ({
