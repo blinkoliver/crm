@@ -68,9 +68,39 @@
 @media screen and (max-width: 1020px) {
   .app {
     width: 1020px;
-    height: 1000px;
     display: grid;
     grid-template-columns: 1fr repeat(6, minmax(auto, 10em)) 1fr;
     grid-template-rows: minmax(1em, auto) 1fr minmax(1em, auto);
+  }
+  .main {
+    grid-column: span 8;
+    display: grid;
+    grid-template-columns: 1fr repeat(6, minmax(auto, 10em)) 1fr;
+    grid-template-rows: 1fr;
+  }
+  .footer {
+    grid-column: span 8;
+    display: grid;
+    grid-template-columns: 1fr repeat(6, minmax(auto, 10em)) 1fr;
+    grid-template-rows: 1fr;
+  }
+  .aboutUs {
+    grid-column: 2/4;
+    margin: auto 0;
+  }
+  .contactUs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: left;
+    grid-column: 4/6;
+  }
+  .contactUs div:nth-of-type(3) {
+    display: none;
+  }
+
+  .social {
+    grid-column: 6/8;
+    text-align: right;
+    margin: auto 0;
   }
 }

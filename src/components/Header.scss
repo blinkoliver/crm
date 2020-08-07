@@ -89,8 +89,8 @@
   font-size: 18px;
   line-height: 16px;
   color: #ffffff;
-  border: 0.3vh solid #ffffff;
-  border-radius: 1vh;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
 }
 .menu-item-registration:hover {
   text-decoration: none;
@@ -185,6 +185,7 @@
   }
   .menu-vertical {
     position: relative;
+    z-index: 1;
     width: 1020px;
     top: 30px;
     right: 190px;
