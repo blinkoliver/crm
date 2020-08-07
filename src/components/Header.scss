@@ -206,4 +206,37 @@
     background: linear-gradient(0deg, #dcdcdc, #dcdcdc), #000000;
     text-decoration: none;
   }
+  @media screen and (max-width: 480px) {
+    .header {
+      grid-column: 1/4;
+      grid-row: 1/1;
+      display: grid;
+      grid-template-columns: 1fr repeat(6, minmax(auto, 10em)) 1fr;
+      grid-template-rows: 1fr;
+    }
+    .header-logo {
+      grid-column: 3/3;
+      grid-row: 1/1;
+    }
+    .header-menu {
+      grid-column: 4/4;
+      grid-row: 1/1;
+      padding: 1em 0;
+    }
+    .header-login {
+      grid-template-columns: 1fr 1fr;
+      display: grid;
+      grid-column: 5/5;
+      grid-row: 1/1;
+    }
+    .header-login a {
+      display: none;
+    }
+    .header-language {
+      grid-column: 6/6;
+      grid-row: 1/1;
+
+      text-align: right;
+    }
+  }
 }

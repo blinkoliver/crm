@@ -104,3 +104,37 @@
     margin: auto 0;
   }
 }
+@media screen and (max-width: 480px) {
+  .app {
+    width: 480px;
+    display: grid;
+    grid-template-columns: 1fr minmax(auto, 10em) 1fr;
+    grid-template-rows: minmax(1em, auto) 1fr minmax(1em, auto);
+  }
+  .main {
+    grid-column: 1/4;
+    grid-row: 2/3;
+    display: grid;
+    grid-template-columns: 1fr minmax(auto, 10em) 1fr;
+    grid-template-rows: 1fr;
+  }
+  .footer {
+    grid-column: 1/4;
+    grid-row: 3/4;
+    display: grid;
+    grid-template-columns: 1fr repeat(6, minmax(auto, 10em)) 1fr;
+    grid-template-rows: 1fr;
+  }
+  .aboutUs {
+    grid-column: 3/5;
+    margin: auto 0;
+  }
+  .contactUs {
+    display: none;
+  }
+  .social {
+    grid-column: 5/7;
+    text-align: right;
+    margin: auto 0;
+  }
+}
