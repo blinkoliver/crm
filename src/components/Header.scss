@@ -145,6 +145,7 @@
     grid-column: 2/3;
   }
   .header-menu {
+    text-align: left;
     grid-column: 3/6;
     padding: 1em 0;
   }
@@ -215,13 +216,29 @@
       grid-template-rows: 1fr;
     }
     .header-logo {
-      grid-column: 3/3;
+      grid-column: 4/4;
       grid-row: 1/1;
     }
     .header-menu {
-      grid-column: 4/4;
+      text-align: -webkit-center;
+      height: 87px;
+      width: 80px;
+      background: linear-gradient(0deg, #498c3b, #498c3b), #000000;
+      grid-column: 3/3;
       grid-row: 1/1;
       padding: 1em 0;
+    }
+    .header-menu .humburger-close li {
+      border-bottom: solid white 3px;
+    }
+    .header-menu .menu-vertical {
+      position: relative;
+      z-index: 1;
+      width: 480px;
+      top: 30px;
+      right: 18px;
+      background: linear-gradient(0deg, #f0f0f0, #f0f0f0), #000000;
+      height: 300px;
     }
     .header-login {
       grid-template-columns: 1fr 1fr;

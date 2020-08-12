@@ -2,7 +2,6 @@
   text-align: center;
   min-height: 100vh;
   width: 1920px;
-  height: 1000px;
   background-color: white;
   color: darkslateblue;
   display: grid;
@@ -107,6 +106,7 @@
 @media screen and (max-width: 480px) {
   .app {
     width: 480px;
+    height: auto;
     display: grid;
     grid-template-columns: 1fr minmax(auto, 10em) 1fr;
     grid-template-rows: minmax(1em, auto) 1fr minmax(1em, auto);
