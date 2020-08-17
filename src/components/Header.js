@@ -64,11 +64,7 @@ const Header = (props) => {
         </ul>
         {menuIsOpen ? (
           <>
-            <ul className="humburger-open" onClick={hideMenu}>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
+            <div className="humburger-open" onClick={hideMenu}></div>
             <div className="menu-vertical">
               <NavLink
                 className="menu-item"

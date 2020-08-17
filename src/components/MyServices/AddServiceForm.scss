@@ -12,14 +12,13 @@
   text-align: center;
 }
 .service-form {
+  padding: 0px 18px 18px 18px;
   width: inherit;
   display: flex;
   flex-direction: column;
 }
-
 .add-service-submit {
   margin-top: 18px;
-
   height: fit-content;
   border: none;
   border-radius: 5px;

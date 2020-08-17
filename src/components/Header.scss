@@ -104,11 +104,6 @@
   padding: 1em 1em;
   text-align: right;
 }
-.modal-dialog .modal-content {
-  display: grid;
-  grid-template-columns: 1fr 352px 1fr;
-  border: none;
-}
 .custom-modal-header {
   display: grid;
   grid-template-columns: 1fr 352px 1fr;
@@ -172,17 +167,11 @@
     width: 24px;
     padding: 3px 0 3px 0;
   }
-  .humburger-open {
-    display: block;
-    margin: 13px 0 0 0;
-    padding: 0;
-  }
-  .humburger-open li {
-    border-bottom: solid black 3px;
-    transform: rotate(45deg);
-    list-style-type: none;
-    width: 24px;
-    padding: 3px 0 3px 0;
+  .humburger-open:after {
+    display: inline-block;
+    content: "\00d7";
+    color: white;
+    font-size: xxx-large;
   }
   .menu-vertical {
     position: relative;
@@ -235,8 +224,8 @@
       position: relative;
       z-index: 1;
       width: 480px;
-      top: 30px;
-      right: 18px;
+      top: 0;
+      right: 42px;
       background: linear-gradient(0deg, #f0f0f0, #f0f0f0), #000000;
       height: 300px;
     }

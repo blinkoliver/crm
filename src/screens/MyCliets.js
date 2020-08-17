@@ -1,6 +1,5 @@
 import React from "react";
 import AddClientModal from "../components/MyClients/AddClientModal";
-import SortServices from "../components/MyServices/SortServices";
 import "./MyClients.scss";
 
 const MyClients = () => {
@@ -10,9 +9,7 @@ const MyClients = () => {
         <div className="add">
           <AddClientModal />
         </div>
-        <div className="sort">
-          <SortServices />
-        </div>
+        <div className="sort"></div>
       </div>
       <div className="table-header">
         <p>Форма собственности кллиента</p>

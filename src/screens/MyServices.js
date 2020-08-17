@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Service from "../components/MyServices/Service";
 import AddServiceModal from "../components/MyServices/AddServiceModal";
-import SortServices from "../components/MyServices/SortServices";
 import Loading from "../components/Loading";
 import { Modal, ModalBody, ModalHeader } from "reactstrap";
 import { useHistory } from "react-router-dom";
@@ -88,9 +87,7 @@ const MyServices = (props) => {
         <div className="add">
           <AddServiceModal fetchAfterSubmit={() => fetchAfterSubmit()} />
         </div>
-        <div className="sort">
-          <SortServices />
-        </div>
+        <div className="sort"></div>
       </div>
       {tasks.map((element) => (
         <Service

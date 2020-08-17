@@ -1,13 +1,28 @@
 .service-card {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  display: grid;
   align-self: center;
+  text-align: left;
   border: solid 1px;
-  width: 90vw;
+  width: 100%;
   height: fit-content;
   border-radius: 1vh;
   margin: 1vh 0;
   padding: 1vh 0;
-  justify-content: space-around;
+}
+.service-card div {
+  padding-left: 1vw;
+}
+.date {
+  grid-column: 1/2;
+}
+.task-name {
+  grid-column: 2/3;
+}
+.price {
+  grid-column: 3/4;
+}
+.status {
+  grid-column: 4/5;
 }

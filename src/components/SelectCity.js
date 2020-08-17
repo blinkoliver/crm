@@ -40,10 +40,11 @@ const SelectCity = (props) => {
       })
       .catch((err) => console.log(result));
   };
-console.log(props)
+  console.log(props);
   return (
     <>
       <AsyncSelect
+        value={props.value}
         cacheOptions
         onChange={(city) => props.onChange(city.value)}
         loadOptions={loadOptions}

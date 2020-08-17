@@ -1,26 +1,19 @@
 .my-services {
   display: flex;
+  grid-column: 2/10;
   flex-direction: column;
-  color: #2855af;
-  width: 80%;
-  margin: 0 auto;
+  color: #6bbe5a;
 }
 .add-and-sort {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 2vh 0;
-}
-.sort {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-column: 2/3;
 }
 .my-services .add-and-sort .add button {
   color: #2855af;
   font-weight: 700;
   padding: 1vh 3vh;
   text-decoration: none;
-  border: 0.3vh solid #2855af;
+  border: 0.3vh solid #6bbe5a;
   border-radius: 1vh;
   height: 10vmin;
   font-size: 2.5vmin;
@@ -29,10 +22,19 @@
 }
 .my-services .add-and-sort .add button:hover {
   color: white;
-  background-color: #2855af;
+  background-color: #6bbe5a;
   transition: 0.5s;
 }
-.table-header {
-  display: flex;
-  justify-content: space-around;
+@media screen and (max-width: 480px) {
+  .my-services {
+    grid-column: 2/3;
+    display: grid;
+    grid-template-columns: 1fr minmax(auto, 10em) 1fr;
+    grid-template-rows: 3fr;
+    color: #6bbe5a;
+  }
+  .add-and-sort {
+    display: grid;
+    grid-column: 2/3;
+  }
 }
