@@ -1,24 +1,26 @@
 .app {
   text-align: center;
   min-height: 100vh;
-  width: 1920px;
   background-color: white;
   color: darkslateblue;
   display: grid;
-  grid-template-columns: 1fr repeat(8, minmax(auto, 10em)) 1fr;
+  grid-template-columns: minmax(20px, 352px) minmax(1100px, 1280px) minmax(
+      20px,
+      352px
+    );
   grid-template-rows: minmax(1em, auto) 1fr minmax(1em, auto);
 }
 .main {
-  grid-column: span 10;
+  grid-column: 1/-1;
   display: grid;
-  grid-template-columns: 1fr repeat(8, minmax(auto, 10em)) 1fr;
+  grid-template-columns: auto repeat(8, minmax(auto, 10em)) auto;
   grid-template-rows: 1fr;
 }
 .footer {
   display: grid;
-  grid-column: span 10;
+  grid-column: 1/-1;
   background: linear-gradient(0deg, #4f5a4d, #4f5a4d), #000000;
-  grid-template-columns: 1fr repeat(8, minmax(auto, 10em)) 1fr;
+  grid-template-columns: auto repeat(8, minmax(auto, 10em)) auto;
   grid-template-rows: 100%;
   height: 121px;
 }
@@ -66,7 +68,6 @@
 }
 @media screen and (max-width: 1020px) {
   .app {
-    width: 1020px;
     display: grid;
     grid-template-columns: 1fr repeat(6, minmax(auto, 10em)) 1fr;
     grid-template-rows: minmax(1em, auto) 1fr minmax(1em, auto);
@@ -105,7 +106,6 @@
 }
 @media screen and (max-width: 480px) {
   .app {
-    width: 480px;
     height: auto;
     display: grid;
     grid-template-columns: 1fr minmax(auto, 10em) 1fr;
