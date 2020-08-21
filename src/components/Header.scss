@@ -12,7 +12,7 @@
 .header-content {
   grid-column: 2/3;
   display: grid;
-  grid-template-columns: 1fr 0.2fr 5fr 0.2fr 1.8fr 0.2fr 1.8fr;
+  grid-template-columns: 1fr 0.2fr 5fr 0.2fr 2fr 0.2fr 0.8fr;
   grid-template-rows: 100%;
 }
 .header-logo {
@@ -143,6 +143,7 @@
 }
 
 .header-language {
+  justify-content: flex-end;
   grid-column: 7/8;
   padding: 1em 1em;
   text-align: right;

@@ -16,12 +16,13 @@ input {
   height: 10vh;
   border: none;
   border-radius: 5px;
-  background-color: #3cd719;
+  background-color: #6bbe5a;
   color: white;
   font-size: x-large;
   width: inherit;
 }
 .sign-in-submit:hover {
+  transition: 1s;
   background-color: #2da914;
 }
 form p {

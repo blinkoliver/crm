@@ -13,19 +13,30 @@
 .main {
   grid-column: 1/-1;
   display: grid;
-  grid-template-columns: auto repeat(8, minmax(auto, 10em)) auto;
-  grid-template-rows: 1fr;
+  grid-template-columns: minmax(20px, 352px) minmax(1100px, 1280px) minmax(
+      20px,
+      352px
+    );
+  grid-template-rows: 100%;
 }
 .footer {
   display: grid;
   grid-column: 1/-1;
   background: linear-gradient(0deg, #4f5a4d, #4f5a4d), #000000;
-  grid-template-columns: auto repeat(8, minmax(auto, 10em)) auto;
+  grid-template-columns: minmax(20px, 352px) minmax(1100px, 1280px) minmax(
+      20px,
+      352px
+    );
   grid-template-rows: 100%;
   height: 121px;
 }
+.footer-content {
+  grid-column: 2/3;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+}
 .aboutUs {
-  grid-column: 2/4;
+  grid-column: 1/2;
   text-align: left;
   margin: auto 0;
   font-family: Open Sans;
@@ -42,7 +53,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   text-align: left;
-  grid-column: 4/9;
+  grid-column: 2/3;
 }
 .contactUs div {
   margin: auto 0;
@@ -59,7 +70,7 @@
   text-align: left;
 }
 .social {
-  grid-column: 9/10;
+  grid-column: 3/4;
   text-align: right;
   margin: auto 0;
 }

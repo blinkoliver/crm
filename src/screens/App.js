@@ -29,37 +29,39 @@ const App = (props) => {
         <Route path={"/faq"} component={Home} />
       </main>
       <footer className="footer">
-        <div className="aboutUs">
-          <p>
-            ООО "Наименование ИП"
-            <br />
-            2017-2020 Все права защищены
-          </p>
-        </div>
-        <div className="contactUs">
-          <div>
-            <NavLink to={"/home"}>О Нас</NavLink>
-            <NavLink to={"/home"}>Контакты</NavLink>
+        <div className="footer-content">
+          <div className="aboutUs">
+            <p>
+              ООО "Наименование ИП"
+              <br />
+              2017-2020 Все права защищены
+            </p>
           </div>
-          <div>
-            <NavLink to={"/home"}>Как пользоваться</NavLink>
-            <NavLink to={"/home"}>Вопрос-Ответ</NavLink>
+          <div className="contactUs">
+            <div>
+              <NavLink to={"/home"}>О Нас</NavLink>
+              <NavLink to={"/home"}>Контакты</NavLink>
+            </div>
+            <div>
+              <NavLink to={"/home"}>Как пользоваться</NavLink>
+              <NavLink to={"/home"}>Вопрос-Ответ</NavLink>
+            </div>
+            <div>
+              <NavLink to={"/home"}>Как пользоваться</NavLink>
+              <NavLink to={"/home"}>Вопрос-Ответ</NavLink>
+            </div>
           </div>
-          <div>
-            <NavLink to={"/home"}>Как пользоваться</NavLink>
-            <NavLink to={"/home"}>Вопрос-Ответ</NavLink>
+          <div className="social">
+            <a href="https://www.instagram.com/">
+              <img src={instagramLogo} alt="instagram" />
+            </a>
+            <a href="https://vk.com/">
+              <img src={vkLogo} alt="vkonakte" />
+            </a>
+            <a href="https://ok.ru/">
+              <img src={odnoklassnikiLogo} alt="odnoklassniki" />
+            </a>
           </div>
-        </div>
-        <div className="social">
-          <a href="https://www.instagram.com/">
-            <img src={instagramLogo} alt="instagram" />
-          </a>
-          <a href="https://vk.com/">
-            <img src={vkLogo} alt="vkonakte" />
-          </a>
-          <a href="https://ok.ru/">
-            <img src={odnoklassnikiLogo} alt="odnoklassniki" />
-          </a>
         </div>
       </footer>
     </div>
