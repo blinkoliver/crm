@@ -80,19 +80,28 @@
 @media screen and (max-width: 1020px) {
   .app {
     display: grid;
-    grid-template-columns: 1fr repeat(6, minmax(auto, 10em)) 1fr;
+    grid-template-columns: minmax(20px, 52px) minmax(720px, 920px) minmax(
+        20px,
+        52px
+      );
     grid-template-rows: minmax(1em, auto) 1fr minmax(1em, auto);
   }
   .main {
-    grid-column: span 8;
+    grid-column: 1/-1;
     display: grid;
-    grid-template-columns: 1fr repeat(6, minmax(auto, 10em)) 1fr;
+    grid-template-columns: minmax(20px, 52px) minmax(720px, 920px) minmax(
+        20px,
+        52px
+      );
     grid-template-rows: 1fr;
   }
   .footer {
-    grid-column: span 8;
+    grid-column: 1/-1;
     display: grid;
-    grid-template-columns: 1fr repeat(6, minmax(auto, 10em)) 1fr;
+    grid-template-columns: minmax(20px, 52px) minmax(720px, 920px) minmax(
+        20px,
+        52px
+      );
     grid-template-rows: 1fr;
   }
   .aboutUs {

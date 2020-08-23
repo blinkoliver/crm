@@ -177,8 +177,12 @@
 }
 @media screen and (max-width: 1020px) {
   .header {
-    grid-column: span 8;
-    grid-template-columns: 1fr repeat(6, minmax(auto, 10em)) 1fr;
+    grid-column: 1/-1;
+    grid-template-columns: minmax(20px, 52px) minmax(720px, 920px) minmax(
+        20px,
+        52px
+      );
+    grid-template-rows: 1fr;
   }
   .header-logo {
     grid-column: 2/3;
@@ -221,8 +225,7 @@
     position: relative;
     z-index: 1;
     width: 1020px;
-    top: 30px;
-    right: 190px;
+    right: 258px;
     background: linear-gradient(0deg, #f0f0f0, #f0f0f0), #000000;
     height: 302px;
   }
