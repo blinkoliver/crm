@@ -41,8 +41,6 @@
   display: flex;
   align-items: center;
 }
-.header-language .flag {
-}
 .header-language .button {
   width: 14px;
   height: 14px;
@@ -83,6 +81,9 @@
   padding: 1em 1em;
   margin: 0;
 }
+.menu-vertical {
+  display: none;
+}
 .menu-item {
   font-family: Open Sans;
   font-style: normal;
@@ -111,6 +112,7 @@
   padding: 1.5em 0em;
 }
 .menu-item-signin {
+  height: 40px;
   padding: 0.5em 0.5em 0.5em 0;
   font-family: Open Sans;
   font-style: normal;
@@ -125,6 +127,7 @@
   color: #161616;
 }
 .menu-item-registration {
+  height: 40px;
   padding: 0.5em;
   font-family: Open Sans;
   font-style: normal;
@@ -143,6 +146,7 @@
 }
 
 .header-language {
+  height: 77px;
   justify-content: flex-end;
   grid-column: 7/8;
   padding: 1em 1em;
@@ -182,24 +186,7 @@
         20px,
         52px
       );
-    grid-template-rows: 1fr;
-  }
-  .header-logo {
-    grid-column: 2/3;
-  }
-  .header-menu {
-    text-align: left;
-    grid-column: 3/6;
-    padding: 1em 0;
-  }
-  .header-login {
-    grid-template-columns: 1fr 1fr;
-    display: grid;
-    grid-column: 6/7;
-  }
-  .header-language {
-    grid-column: 7/8;
-    text-align: right;
+    grid-template-rows: 100%;
   }
   .menu {
     display: none;
@@ -221,11 +208,15 @@
     color: white;
     font-size: xxx-large;
   }
+  .humburger-open {
+    text-align: left;
+  }
   .menu-vertical {
-    position: relative;
+    display: block;
+    position: absolute;
     z-index: 1;
-    width: 1020px;
-    right: 258px;
+    width: -webkit-fill-available;
+    right: 0px;
     background: linear-gradient(0deg, #f0f0f0, #f0f0f0), #000000;
     height: 302px;
   }
@@ -245,14 +236,20 @@
   }
   @media screen and (max-width: 480px) {
     .header {
-      grid-column: 1/4;
-      grid-row: 1/1;
+      grid-column: 1/-1;
+      grid-row: 1/2;
       display: grid;
-      grid-template-columns: 1fr repeat(6, minmax(auto, 10em)) 1fr;
-      grid-template-rows: 1fr;
+      grid-template-columns: 1fr;
+    }
+    .header-content {
+      grid-template-columns: minmax(20px, 40px) 1fr 0.2fr 2fr 0.2fr 2fr 0.2fr 1fr minmax(
+          20px,
+          40px
+        );
+      grid-column: 1/-1;
     }
     .header-logo {
-      grid-column: 4/4;
+      grid-column: 4/5;
       grid-row: 1/1;
     }
     .header-menu {
@@ -260,9 +257,8 @@
       height: 87px;
       width: 80px;
       background: linear-gradient(0deg, #498c3b, #498c3b), #000000;
-      grid-column: 3/3;
+      grid-column: 2/3;
       grid-row: 1/1;
-      padding: 1em 0;
     }
     .header-menu .humburger-close li {
       border-bottom: solid white 3px;
@@ -279,14 +275,14 @@
     .header-login {
       grid-template-columns: 1fr 1fr;
       display: grid;
-      grid-column: 5/5;
+      grid-column: 6/7;
       grid-row: 1/1;
     }
     .header-login a {
       display: none;
     }
     .header-language {
-      grid-column: 6/6;
+      grid-column: 8/9;
       grid-row: 1/1;
 
       text-align: right;

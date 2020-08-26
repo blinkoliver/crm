@@ -6,6 +6,7 @@
       352px
     );
   grid-template-rows: 1fr 1fr;
+  overflow: hidden;
 }
 .background1 {
   display: grid;
@@ -80,10 +81,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, 505px);
   grid-column-gap: 95px;
+  grid-row-gap: 5px;
   grid-template-rows: repeat(4, 48px);
   grid-auto-flow: column;
   align-items: center;
-
   list-style-image: url("../img/checkbox.png");
 }
 
@@ -92,7 +93,7 @@
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
-  line-height: 24px;
+  line-height: 18px;
   align-items: center;
   text-align: left;
   color: #000000;
@@ -106,9 +107,9 @@
         52px
       );
     grid-template-rows: 50% 50%;
+    overflow: hidden;
   }
   .background1 {
-    height: 390px;
     display: grid;
     grid-column: 1/-1;
     grid-row: 1/2;
@@ -121,11 +122,10 @@
     border-bottom: 10px solid #e0d9d6;
   }
   .background1 img {
-    position: absolute;
     width: 772px;
     height: 420px;
-    left: 248px;
-    top: 150px;
+    left: 250px;
+    top: 73px;
   }
   .background2 {
     display: grid;
@@ -138,13 +138,18 @@
     grid-template-rows: 1fr;
     background: #ffffff;
   }
+  .suggest ul {
+    grid-template-columns: repeat(auto-fill, 385px);
+  }
 
   @media screen and (max-width: 480px) {
     .home {
       grid-column: span 3;
       display: grid;
-      grid-template-columns: 1fr minmax(auto, 10em) 1fr;
-      grid-template-rows: 400px 1fr;
+      grid-template-columns: minmax(20px, 40px) minmax(280px, 400px) minmax(
+        20px,
+        40px
+      );      grid-template-rows: 400px 1fr;
     }
     .background1 {
       grid-column: span 3;

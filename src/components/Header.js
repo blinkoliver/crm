@@ -91,7 +91,7 @@ const Header = (props) => {
                   to={"/myClients"}
                   onClick={hideMenu}
                 >
-                  Мои Клиенты
+                  Мои клиенты
                 </NavLink>
                 <NavLink
                   className="menu-item"

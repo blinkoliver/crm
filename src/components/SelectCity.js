@@ -44,7 +44,7 @@ const SelectCity = (props) => {
   return (
     <>
       <AsyncSelect
-        value={props.value}
+        // value={props.value}
         cacheOptions
         onChange={(city) => props.onChange(city.value)}
         loadOptions={loadOptions}

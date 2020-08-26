@@ -105,55 +105,65 @@
     grid-template-rows: 1fr;
   }
   .aboutUs {
-    grid-column: 2/4;
+    grid-column: 1/2;
     margin: auto 0;
   }
   .contactUs {
     display: grid;
+    justify-items: center;
     grid-template-columns: 1fr 1fr;
-    text-align: left;
-    grid-column: 4/6;
+    grid-column: 2/3;
   }
   .contactUs div:nth-of-type(3) {
     display: none;
   }
-
   .social {
-    grid-column: 6/8;
+    grid-column: 3/4;
     text-align: right;
     margin: auto 0;
   }
 }
 @media screen and (max-width: 480px) {
   .app {
-    height: auto;
     display: grid;
-    grid-template-columns: 1fr minmax(auto, 10em) 1fr;
+    grid-template-columns: minmax(20px, 40px) minmax(280px, 400px) minmax(
+        20px,
+        40px
+      );
     grid-template-rows: minmax(1em, auto) 1fr minmax(1em, auto);
   }
   .main {
-    grid-column: 1/4;
+    grid-column: 1/-1;
     grid-row: 2/3;
     display: grid;
-    grid-template-columns: 1fr minmax(auto, 10em) 1fr;
+    grid-template-columns: minmax(20px, 40px) minmax(280px, 400px) minmax(
+        20px,
+        40px
+      );
     grid-template-rows: 1fr;
   }
   .footer {
-    grid-column: 1/4;
+    grid-column: 1/-1;
     grid-row: 3/4;
     display: grid;
-    grid-template-columns: 1fr repeat(6, minmax(auto, 10em)) 1fr;
+    grid-template-columns: minmax(20px, 40px) minmax(280px, 400px) minmax(
+        20px,
+        40px
+      );
     grid-template-rows: 1fr;
   }
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+  }
   .aboutUs {
-    grid-column: 3/5;
+    grid-column: 1/2;
     margin: auto 0;
   }
   .contactUs {
     display: none;
   }
   .social {
-    grid-column: 5/7;
+    grid-column: 2/3;
     text-align: right;
     margin: auto 0;
   }

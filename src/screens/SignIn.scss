@@ -1,12 +1,15 @@
 .sign-in {
   display: grid;
-  grid-column: span 10;
+  grid-column: 1/-1;
   background-color: grey;
-  grid-template-columns: 1fr repeat(8, minmax(auto, 10em)) 1fr;
+  grid-template-columns: minmax(20px, 40px) minmax(280px, 400px) minmax(
+      20px,
+      40px
+    );
   grid-template-rows: 1fr;
 }
 .sign-in-container {
-  grid-column: 3/9;
+  grid-column: 2/3;
 }
 .sign-in-text {
   color: white;
