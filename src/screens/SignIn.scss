@@ -2,9 +2,9 @@
   display: grid;
   grid-column: 1/-1;
   background-color: grey;
-  grid-template-columns: minmax(20px, 40px) minmax(280px, 400px) minmax(
+  grid-template-columns: minmax(20px, 352px) minmax(1100px, 1280px) minmax(
       20px,
-      40px
+      352px
     );
   grid-template-rows: 1fr;
 }
@@ -30,4 +30,20 @@
   background-color: white;
   color: #50afff;
   text-decoration: none;
+}
+@media screen and (max-width: 1020px) {
+  .sign-in {
+    grid-template-columns: minmax(20px, 52px) minmax(720px, 920px) minmax(
+        20px,
+        52px
+      );
+  }
+}
+@media screen and (max-width: 480px) {
+  .sign-in {
+    grid-template-columns: minmax(20px, 40px) minmax(280px, 400px) minmax(
+        20px,
+        40px
+      );
+  }
 }
