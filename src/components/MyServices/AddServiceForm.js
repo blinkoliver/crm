@@ -13,7 +13,6 @@ import { reactSelectActivitiesStyle } from "../../constants/componentsStyle";
 import Transportation from "./Activities/Transportation";
 import PassengerTransportation from "./Activities/PassengerTransportation";
 import { httpPost } from "../../utils";
-import { testValues } from "../../constants/testValues";
 import "./AddServiceForm.scss";
 
 const AddServiceForm = (props) => {
@@ -33,9 +32,7 @@ const AddServiceForm = (props) => {
     setModalExecutor(!modalExecutor);
   };
 
-  const { register, handleSubmit, errors, control } = useForm({
-    defaultValues: testValues,
-  });
+  const { register, handleSubmit, errors, control } = useForm();
 
   const onSubmit = (data) => {
     switch (data.type.value) {

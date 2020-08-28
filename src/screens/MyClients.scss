@@ -1,14 +1,14 @@
 .my-clients {
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  display: grid;
+  grid-column: 2/3;
+  grid-template-rows: 1fr 5fr;
   color: #2855af;
-  width: 80%;
   margin: 0 auto;
 }
 .add-and-sort {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  grid-row: 1/2;
+  grid-column: 1/2;
   padding: 2vh 0;
 }
 .sort {
@@ -33,7 +33,7 @@
   transition: 0.5s;
 }
 .table-header {
-  display: flex;
+  grid-row: 2/3;
   justify-content: space-around;
 }
 .add-client-modal {

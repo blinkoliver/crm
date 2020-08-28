@@ -121,79 +121,142 @@ export const reactSelectCitiesStyle = {
   input: () => ({ height: "inherit", gridColumn: "1/3", gridRow: "1/2" }),
 };
 export const reactSelectClientStyle = {
+  container: () => ({
+    marginBottom: "18px",
+    width: "-webkit-fill-available",
+  }),
+  control: () => ({
+    height: "48px",
+    border: "2px solid #c9c9c9",
+    display: "flex",
+    justifyContent: "space-between",
+  }),
   valueContainer: () => ({
-    height: "7vh",
+    height: "inherit",
     paddingLeft: "2vh",
   }),
   placeholder: () => ({
-    fontSize: "3vh",
-    marginTop: "2.5vh",
-    color: "grey",
+    fontFamily: "Open Sans",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "20px",
+    lineHeight: "28px",
+    color: "#787878",
+    marginTop: "10px",
   }),
   singleValue: () => ({
-    color: "black",
-    fontSize: "3vh",
-    marginTop: "3vh",
-    paddingLeft: "2vh",
+    fontFamily: "Open Sans",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "20px",
+    lineHeight: "28px",
+    color: "#787878",
+    marginTop: "10px",
   }),
-  input: () => ({
-    position: "absolute",
-    height: "10vh",
+  menu: () => ({
+    border: "1px solid #c9c9c9",
+    borderRadius: "4px",
+    margin: "8px 0",
   }),
-  control: () => ({
-    border: "solid grey 1px",
-    height: "10vh",
-    borderRadius: "0.5vh",
+  menuList: () => ({
+    width: "100%",
   }),
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isSelected ? "#6bbe5a" : "transparent",
+  }),
+  input: () => ({ height: "inherit", position: "relative", bottom: "40px" }),
 };
 export const reactSelectExecutorStyle = {
+  container: () => ({
+    marginBottom: "18px",
+    width: "-webkit-fill-available",
+  }),
+  control: () => ({
+    height: "48px",
+    border: "2px solid #c9c9c9",
+    display: "flex",
+    justifyContent: "space-between",
+  }),
   valueContainer: () => ({
-    height: "9vh",
+    height: "inherit",
     paddingLeft: "2vh",
   }),
   placeholder: () => ({
-    fontSize: "3vh",
-    marginTop: "2.5vh",
-    color: "grey",
+    fontFamily: "Open Sans",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "20px",
+    lineHeight: "28px",
+    color: "#787878",
+    marginTop: "10px",
   }),
   singleValue: () => ({
-    color: "black",
-    fontSize: "3vh",
-    marginTop: "3vh",
+    fontFamily: "Open Sans",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "20px",
+    lineHeight: "28px",
+    color: "#787878",
+    marginTop: "10px",
   }),
-  input: () => ({
-    position: "relative",
-    bottom: "8vh",
+  menu: () => ({
+    border: "1px solid #c9c9c9",
+    borderRadius: "4px",
+    margin: "8px 0",
   }),
-  control: () => ({
-    border: "solid grey 1px",
-    height: "10vh",
-    borderRadius: "0.5vh",
+  menuList: () => ({
+    width: "100%",
   }),
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isSelected ? "#6bbe5a" : "transparent",
+  }),
+  input: () => ({ height: "inherit", position: "relative", bottom: "40px" }),
 };
 export const reactSelectActivitiesStyle = {
-  input: () => ({
-    position: "relative",
-    bottom: "8vh",
-    height: "inherit",
+  container: () => ({
+    marginTop: "18px",
   }),
   control: () => ({
-    border: "solid grey 1px",
-    borderRadius: "0.5vh",
-    height: "10vh",
+    height: "48px",
+    border: "2px solid #c9c9c9",
+    display: "flex",
+    justifyContent: "space-between",
   }),
   valueContainer: () => ({
-    height: "7vh",
+    height: "inherit",
     paddingLeft: "2vh",
   }),
   placeholder: () => ({
-    fontSize: "3vh",
-    marginTop: "2%",
-    color: "gray",
+    fontFamily: "Open Sans",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "20px",
+    lineHeight: "28px",
+    color: "#787878",
+    marginTop: "10px",
   }),
   singleValue: () => ({
-    color: "grey",
-    fontSize: "3vh",
-    marginTop: "3vh",
+    fontFamily: "Open Sans",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "20px",
+    lineHeight: "28px",
+    color: "#787878",
+    marginTop: "10px",
   }),
+  menu: () => ({
+    border: "1px solid #c9c9c9",
+    borderRadius: "4px",
+    margin: "8px 0",
+  }),
+  menuList: () => ({
+    width: "100%",
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isSelected ? "#6bbe5a" : "transparent",
+  }),
+  input: () => ({ height: "inherit", position: "relative", bottom: "40px" }),
 };

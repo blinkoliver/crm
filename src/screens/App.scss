@@ -11,6 +11,7 @@
   grid-template-rows: minmax(1em, auto) 1fr minmax(1em, auto);
 }
 .main {
+  min-height: 30vw;
   grid-column: 1/-1;
   display: grid;
   grid-template-columns: minmax(20px, 352px) minmax(1100px, 1280px) minmax(

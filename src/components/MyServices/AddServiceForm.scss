@@ -1,11 +1,26 @@
+$lightgreen: #6bbe5a;
+
+
 .service-form input {
   width: -webkit-fill-available;
-  border: solid grey 1px;
+  border: solid #c9c9c9 2px;
   margin-top: 18px;
   padding-left: 2vh;
-  height: 10vh;
+  height: 48px;
   border-radius: 0.5vh;
   font-size: 3vh;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 28px;
+  color: #787878;
+}
+.service-form > div {
+  height: 48px;
+}
+.service-form .add-routes-block {
+  height: 70px;
 }
 .service-form p {
   color: black;
@@ -18,14 +33,14 @@
   flex-direction: column;
 }
 .add-service-submit {
+  height: 40px;
+  width: 160px;
   margin-top: 18px;
-  height: fit-content;
   border: none;
   border-radius: 5px;
-  background-color: #3cd719;
+  background-color: $lightgreen;
   color: white;
   font-size: large;
-  width: fit-content;
   align-self: flex-end;
 }
 .add-service-submit:hover {
